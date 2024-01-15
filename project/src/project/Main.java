@@ -1,7 +1,7 @@
 package project;
 /**
  * 
- * @author Park min
+ * @author Park min, Yechan
  *
  */
 public class Main {
