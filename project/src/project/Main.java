@@ -1,8 +1,8 @@
 package project;
 /**
+ * @author kanghyun
  * 
  * 
- * @author �̰���
  *
  */
 public class Main {
