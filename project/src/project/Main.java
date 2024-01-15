@@ -2,7 +2,7 @@ package project;
 /**
  * 
  * @author Park min, Yechan
- *
+ * @author jae
  */
 public class Main {
 
