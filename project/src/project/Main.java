@@ -1,12 +1,16 @@
 package project;
-
+/**
+ * 
+ * @author Park min
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("d");
 		System.out.println("dd");
-		System.out.println("È®ÀÎ11");
+		System.out.println("È®ï¿½ï¿½11");
 	}
 
 }
