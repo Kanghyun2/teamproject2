@@ -1,11 +1,15 @@
 package project;
-
+/**
+ * 
+ * 
+ * @author ï¿½Ì°ï¿½ï¿½ï¿½
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("d");
-		System.out.println("È®ÀÎ11");
+		System.out.println("È®ï¿½ï¿½11");
 	}
-
 }
