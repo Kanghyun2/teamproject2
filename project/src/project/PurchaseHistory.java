@@ -19,9 +19,9 @@ public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
 	protected Vector round;
 	protected Vector purchase;
-	protected int index= 1;
+	protected int index = 1;
 	protected int purchaseindex = 1;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -48,14 +48,15 @@ public class PurchaseHistory extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		round = new Vector();
 		purchase = new Vector();
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
+
 		
 		JList list_1 = new JList<Integer>(round);
 		sl_panel.putConstraint(SpringLayout.NORTH, list_1, 62, SpringLayout.NORTH, panel);
@@ -63,6 +64,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, list_1, 122, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, list_1, 343, SpringLayout.WEST, panel);
 		panel.add(list_1);
+
 		
 		JList list_2 = new JList<Integer>(purchase);
 		sl_panel.putConstraint(SpringLayout.NORTH, list_2, 0, SpringLayout.NORTH, list_1);
@@ -70,7 +72,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, list_2, 0, SpringLayout.SOUTH, list_1);
 		sl_panel.putConstraint(SpringLayout.EAST, list_2, 671, SpringLayout.WEST, panel);
 		panel.add(list_2);
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 27, SpringLayout.SOUTH, list_1);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 57, SpringLayout.WEST, panel);
@@ -92,11 +94,13 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, 242, SpringLayout.EAST, lblNewLabel);
 		panel.add(btnNewButton);
 	}
-	public void roundAdd () {
+
+	public void roundAdd() {
 		round.add(index);
 		index++;
 	}
-	public void purchaseAdd () {
+
+	public void purchaseAdd() {
 		purchase.add(purchaseindex);
 		purchaseindex++;
 	}
