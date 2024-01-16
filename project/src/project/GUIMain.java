@@ -51,7 +51,9 @@ public class GUIMain extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Result result = new Result();
+				result.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -81,10 +83,6 @@ public class GUIMain extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -75, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -655, SpringLayout.EAST, panel);
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		panel.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("당첨 결과");
@@ -94,14 +92,6 @@ public class GUIMain extends JFrame {
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton_1);
 		
-
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Result result = new Result();
-				result.setVisible(true);
-				setVisible(false);
-			}
-		});
 
 		btnNewButton_2 = new JButton("구매 내역");
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_2, 673, SpringLayout.WEST, panel);
