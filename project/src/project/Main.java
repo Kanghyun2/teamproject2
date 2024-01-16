@@ -2,7 +2,7 @@ package project;
 /**
  * @author kanghyun
  * @author jae
- * 
+ * 브랜치 테스트용
  *
  */
 public class Main {
