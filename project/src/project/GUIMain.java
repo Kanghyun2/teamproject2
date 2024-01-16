@@ -43,8 +43,14 @@ public class GUIMain extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				new Purchase();
 				setVisible(false);
+=======
+					new Purchase();
+					dispose();
+//					setVisible(false);
+>>>>>>> branch 'main' of https://github.com/Kanghyun2/teamproject2.git
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
