@@ -53,7 +53,7 @@ public class GUIMain extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Result result = new Result();
 				result.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
