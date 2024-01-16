@@ -268,11 +268,27 @@ public class Purchase extends JFrame{
 		});
 		getContentPane().add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("뒤로가기");
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, -180, SpringLayout.WEST, btnNewButton_3);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, -89, SpringLayout.WEST, btnNewButton_3);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_3, 718, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_3, -50, SpringLayout.SOUTH, getContentPane());
-		getContentPane().add(btnNewButton_3);
+		JButton btnGoBack = new JButton("뒤로가기");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, -180, SpringLayout.WEST, btnGoBack);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, -89, SpringLayout.WEST, btnGoBack);
+		springLayout.putConstraint(SpringLayout.WEST, btnGoBack, 718, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, btnGoBack, -50, SpringLayout.SOUTH, getContentPane());
+		getContentPane().add(btnGoBack);
+		
+		showGUI();
+	}
+	
+	private void showGUI() {
+		setSize(1000, 600);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new Purchase();
 	}
 }
