@@ -2,6 +2,7 @@ package project;
 /**
  *
  * 
+ * 브랜치 테스트용
  *
  * @author Park min, Yechan, kanghyun , jae
  * 이 클래스는 깃 기능을 연습하기 위해 작성하고 있습니다.
