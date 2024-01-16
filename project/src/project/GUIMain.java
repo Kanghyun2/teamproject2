@@ -92,13 +92,7 @@ public class GUIMain extends JFrame {
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton_1);
 
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Result result = new Result();
-				result.setVisible(true);
-				setVisible(false);
-			}
-		});
+		
 		
 
 		btnNewButton_2 = new JButton("구매 내역");
