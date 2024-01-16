@@ -11,5 +11,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		System.out.println("d");
 		System.out.println("Ȯ��11");
+		System.out.println("풀 요청을 남겨보겠습니다.");
 	}
 }
