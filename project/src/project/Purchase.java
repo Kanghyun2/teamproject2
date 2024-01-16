@@ -271,6 +271,9 @@ public class Purchase extends JFrame{
 		JButton btnGoBack = new JButton("뒤로가기");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GUIMain guimain = new GUIMain();
+				guimain.setVisible(true);
+				setVisible(false);
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, -180, SpringLayout.WEST, btnGoBack);
