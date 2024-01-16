@@ -107,17 +107,17 @@ public class Result extends JFrame {
 		getContentPane().add(panel_1);
 		SpringLayout sl_panel_1 = new SpringLayout();
 		panel_1.setLayout(sl_panel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("당첨 결과");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 180, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("나의 번호");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 46, SpringLayout.SOUTH, lblNewLabel_2);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 0, SpringLayout.WEST, lblNewLabel_2);
 		panel_1.add(lblNewLabel_3);
-		
+
 		textField_1 = new JTextField();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_1, 6, SpringLayout.SOUTH, lblNewLabel_3);
 		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 122, SpringLayout.WEST, panel_1);
@@ -125,7 +125,7 @@ public class Result extends JFrame {
 		textField_1.setText("00 00 00 00 00 00 + 00");
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("나의 등수");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 51, SpringLayout.SOUTH, textField_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_4, 0, SpringLayout.WEST, lblNewLabel_2);
