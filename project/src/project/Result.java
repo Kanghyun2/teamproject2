@@ -23,6 +23,11 @@ public class Result extends JFrame {
 
 	public Result() {
 
+		// JPanel pnl = new JPanel();
+		// String[] menus = new String[] { "", "���� �� �ϳ��� �����ϼ���", "-----",
+		// "ù��°", "�ι�°",
+		// "������" };
+		// JComboBox<String> combo = new JComboBox<>(menus);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 

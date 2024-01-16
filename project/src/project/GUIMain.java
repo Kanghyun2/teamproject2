@@ -44,26 +44,26 @@ public class GUIMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Purchase();
-				setVisible(false);
-				new Purchase();
 				dispose();
-//					setVisible(false);
+				
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				Result result = new Result();
+				result.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnNewButton_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				new PurchaseHistory().setVisible(true);
+				dispose();
 			}
 		});
 	}
-
 	public void GUImathod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
@@ -71,24 +71,20 @@ public class GUIMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
-
+		
 		btnNewButton = new JButton("구매");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 77, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -75, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -655, SpringLayout.EAST, panel);
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		panel.add(btnNewButton);
-
+		
 		btnNewButton_1 = new JButton("당첨 결과");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, btnNewButton);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_1, 57, SpringLayout.EAST, btnNewButton);
@@ -103,6 +99,7 @@ public class GUIMain extends JFrame {
 				setVisible(false);
 			}
 		});
+		
 
 		btnNewButton_2 = new JButton("구매 내역");
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_2, 673, SpringLayout.WEST, panel);
@@ -112,10 +109,5 @@ public class GUIMain extends JFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_2, 0, SpringLayout.NORTH, btnNewButton);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_2, 0, SpringLayout.SOUTH, btnNewButton);
 		panel.add(btnNewButton_2);
-	}
-
-	public static void show(GUIMain guimain, String actionCommand) {
-		// TODO Auto-generated method stub
-
 	}
 }
