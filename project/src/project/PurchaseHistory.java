@@ -10,6 +10,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PurchaseHistory extends JFrame {
 
@@ -54,14 +57,14 @@ public class PurchaseHistory extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-		JList list_1 = new JList(round);
+		JList list_1 = new JList<Integer>(round);
 		sl_panel.putConstraint(SpringLayout.NORTH, list_1, 62, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, list_1, 53, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, list_1, 122, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, list_1, 343, SpringLayout.WEST, panel);
 		panel.add(list_1);
 		
-		JList list_2 = new JList(purchase);
+		JList list_2 = new JList<Integer>(purchase);
 		sl_panel.putConstraint(SpringLayout.NORTH, list_2, 0, SpringLayout.NORTH, list_1);
 		sl_panel.putConstraint(SpringLayout.WEST, list_2, 38, SpringLayout.EAST, list_1);
 		sl_panel.putConstraint(SpringLayout.SOUTH, list_2, 0, SpringLayout.SOUTH, list_1);
@@ -74,6 +77,20 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, 374, SpringLayout.SOUTH, list_1);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, list_2);
 		panel.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("뒤로가기");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new GUIMain().setVisible(true);
+				dispose();
+				
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -125, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 24, SpringLayout.EAST, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -52, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, 242, SpringLayout.EAST, lblNewLabel);
+		panel.add(btnNewButton);
 	}
 	public void roundAdd () {
 		round.add(index);
