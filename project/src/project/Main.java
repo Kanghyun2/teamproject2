@@ -3,7 +3,7 @@ package project;
  * @author kanghyun
  * @author jae
  * 
- *
+ * 브런치
  */
 public class Main {
 
