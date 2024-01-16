@@ -43,7 +43,7 @@ public class Result extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GUIMain guimain = new GUIMain();
 				guimain.setVisible(true);
-				dispose();
+				setVisible(false);
 			}
 		});
 
