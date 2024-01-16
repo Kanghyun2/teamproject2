@@ -4,6 +4,7 @@ package project;
  * @author jae
  * 이 클래스는 깃 기능을 연습하기 위해 작성하고 있습니다.
  * 브랜치를 새로 만들어봤어요.
+ * 메인 브랜치에 최신 적용사항을 푸쉬하겠습니다.
  */
 public class Main {
 
