@@ -26,7 +26,7 @@ public class Result extends JFrame {
 		// "ù��°", "�ι�°",
 		// "������" };
 		// JComboBox<String> combo = new JComboBox<>(menus);
-
+		System.out.println("지워주세요");
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
