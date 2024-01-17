@@ -45,7 +45,7 @@ public class GUIMain extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				new Purchase();
 				dispose();
-				
+
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -64,6 +64,7 @@ public class GUIMain extends JFrame {
 			}
 		});
 	}
+
 	public void GUImathod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
@@ -71,12 +72,12 @@ public class GUIMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
-		
+
 		btnNewButton = new JButton("구매");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 77, SpringLayout.WEST, panel);
@@ -84,16 +85,13 @@ public class GUIMain extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -655, SpringLayout.EAST, panel);
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton);
-		
+
 		btnNewButton_1 = new JButton("당첨 결과");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, btnNewButton);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_1, 57, SpringLayout.EAST, btnNewButton);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 0, SpringLayout.SOUTH, btnNewButton);
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton_1);
-
-		
-		
 
 		btnNewButton_2 = new JButton("구매 내역");
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_2, 673, SpringLayout.WEST, panel);
