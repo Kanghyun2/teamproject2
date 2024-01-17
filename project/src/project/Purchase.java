@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
@@ -73,8 +75,8 @@ public class Purchase extends JFrame {
 					int col = i % cols;
 					allButton.add(lottoNumbers[row][col]);
 				}
-				Collections.shuffle(allButton);
 
+				Collections.shuffle(allButton);
 				int Count = 0;
 				for (JToggleButton button : allButton) {
 					if (Count < 6) {
@@ -94,33 +96,52 @@ public class Purchase extends JFrame {
 		pnl.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("반 자동");
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				halfRandom();
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        halfRandom();
+		    }
 
-			public void halfRandom() {
-				List<JToggleButton> allButton = new ArrayList<>();
-				int selectedCount = 0;
-				for (int i = 0; i < 45; i++) {
-					int row = i / cols;
-					int col = i % cols;
-					allButton.add(lottoNumbers[row][col]);
-					if (lottoNumbers[row][col].isSelected()) {
-						selectedCount++;
-					}
-					Collections.shuffle(allButton);
-					for (JToggleButton button : allButton)
-					if (selectedCount == 1) {
-						if (selectedCount < 6) {
-							button.setSelected(true);
-							selectedCount++;
-					}
-					}
-				}
-			}
+		    public void halfRandom() {
+		        List<JToggleButton> allButton = new ArrayList<>();
+		        int selectedCount = 0;
+
+		        // 모든 버튼을 리스트에 추가
+		        for (int i = 0; i < 45; i++) {
+		            int row = i / cols;
+		            int col = i % cols;
+		            allButton.add(lottoNumbers[row][col]);
+
+		            // 수동으로 선택한 버튼의 개수를 카운트
+		            if (lottoNumbers[row][col].isSelected()) {
+		                selectedCount++;
+		            }
+		        }
+
+		        Collections.shuffle(allButton);
+		        for (JToggleButton button : allButton) {
+		            if (selectedCount == 1) {
+		                if (!button.isSelected()) {
+		                    button.setSelected(true);
+		                    selectedCount++;
+		                }
+		            } else if (selectedCount >= 2 && selectedCount <= 5) {
+		                if (!button.isSelected()) {
+		                    button.setSelected(true);
+		                    selectedCount++;
+		                }
+
+		                if (selectedCount >= 6) {
+		                    break;
+		                }
+		            if (selectedCount > 6) {
+		            	InputDialog dialog = new InputDialog(Purchase.this);
+		            }
+		            }
+		        }
+		        btnNewButton_1.setEnabled(false);
+		    }
 		});
-
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 64, SpringLayout.SOUTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, btnNewButton);
 		pnl.add(btnNewButton_1);
@@ -161,6 +182,16 @@ public class Purchase extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	class InputDialog extends JDialog {
+		public InputDialog(Purchase main) {
+			super(main);
+			
+			setModal(true);
+			
+			JPanel pnl = new JPanel();
+			JLabel lbl = new JLabel("");
+		}
 	}
 
 	public static void main(String[] args) {
