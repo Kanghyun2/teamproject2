@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class PurchaseHistory extends JFrame {
 
@@ -57,30 +59,15 @@ public class PurchaseHistory extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
-		
-		JList list_1 = new JList<Integer>(round);
-		sl_panel.putConstraint(SpringLayout.NORTH, list_1, 62, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, list_1, 53, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, list_1, 122, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, list_1, 343, SpringLayout.WEST, panel);
-		panel.add(list_1);
-
-		
-		JList list_2 = new JList<Integer>(purchase);
-		sl_panel.putConstraint(SpringLayout.NORTH, list_2, 0, SpringLayout.NORTH, list_1);
-		sl_panel.putConstraint(SpringLayout.WEST, list_2, 38, SpringLayout.EAST, list_1);
-		sl_panel.putConstraint(SpringLayout.SOUTH, list_2, 0, SpringLayout.SOUTH, list_1);
-		sl_panel.putConstraint(SpringLayout.EAST, list_2, 671, SpringLayout.WEST, panel);
-		panel.add(list_2);
-
 		JLabel lblNewLabel = new JLabel("New label");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 27, SpringLayout.SOUTH, list_1);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 57, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, 374, SpringLayout.SOUTH, list_1);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, list_2);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -55, SpringLayout.SOUTH, panel);
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("뒤로가기");
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 695, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -61, SpringLayout.EAST, panel);
+		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIMain().setVisible(true);
@@ -89,11 +76,27 @@ public class PurchaseHistory extends JFrame {
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -125, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 24, SpringLayout.EAST, lblNewLabel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -52, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, 242, SpringLayout.EAST, lblNewLabel);
 		panel.add(btnNewButton);
+		
+		JComboBox comboBox = new JComboBox(round);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 27, SpringLayout.SOUTH, comboBox);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox, 62, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox, -429, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox, 57, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBox, -639, SpringLayout.EAST, panel);
+		panel.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox(purchase);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 0, SpringLayout.NORTH, comboBox);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 29, SpringLayout.EAST, comboBox);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, 0, SpringLayout.SOUTH, comboBox);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, 319, SpringLayout.EAST, comboBox);
+		panel.add(comboBox_1);
+		
 	}
+	
 
 	public void roundAdd() {
 		round.add(index);
