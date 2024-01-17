@@ -81,14 +81,8 @@ public class GUIMain extends JFrame {
 		JPanel panel = new JPanel() {
 			@Override
             public void paintComponent(Graphics g) {
-                // Approach 1: Dispaly image at at full size
                 g.drawImage(icon.getImage(), 0, 0, null);
-                // Approach 2: Scale image to size of component
-                // Dimension d = getSize();
-                // g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-                // Approach 3: Fix the image position in the scroll pane
-                // Point p = scrollPane.getViewport().getViewPosition();
-                // g.drawImage(icon.getImage(), p.x, p.y, null);
+               
                 setOpaque(false); //그림을 표시하게 설정,투명하게 조절
                 super.paintComponent(g);
             }
