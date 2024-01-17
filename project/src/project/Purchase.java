@@ -25,51 +25,12 @@ public class Purchase extends JFrame {
 
 	private ImageIcon[] loadImages() {
 		ImageIcon[] images = new ImageIcon[45];
-		images[0] = new ImageIcon("ball_1.png");
-		images[1] = new ImageIcon("ball_2.png");
-		images[2] = new ImageIcon("ball_3.png");
-		images[3] = new ImageIcon("ball_4.png");
-		images[4] = new ImageIcon("ball_5.png");
-		images[5] = new ImageIcon("ball_6.png");
-		images[6] = new ImageIcon("ball_7.png");
-		images[7] = new ImageIcon("ball_8.png");
-		images[8] = new ImageIcon("ball_9.png");
-		images[9] = new ImageIcon("ball_10.png");
-		images[10] = new ImageIcon("ball_11.png");
-		images[11] = new ImageIcon("ball_12.png");
-		images[12] = new ImageIcon("ball_13.png");
-		images[13] = new ImageIcon("ball_14.png");
-		images[14] = new ImageIcon("ball_15.png");
-		images[15] = new ImageIcon("ball_16.png");
-		images[16] = new ImageIcon("ball_17.png");
-		images[17] = new ImageIcon("ball_18.png");
-		images[18] = new ImageIcon("ball_19.png");
-		images[19] = new ImageIcon("ball_20.png");
-		images[20] = new ImageIcon("ball_21.png");
-		images[21] = new ImageIcon("ball_22.png");
-		images[22] = new ImageIcon("ball_23.png");
-		images[23] = new ImageIcon("ball_24.png");
-		images[24] = new ImageIcon("ball_25.png");
-		images[25] = new ImageIcon("ball_26.png");
-		images[26] = new ImageIcon("ball_27.png");
-		images[27] = new ImageIcon("ball_28.png");
-		images[28] = new ImageIcon("ball_29.png");
-		images[29] = new ImageIcon("ball_30.png");
-		images[30] = new ImageIcon("ball_31.png");
-		images[31] = new ImageIcon("ball_32.png");
-		images[32] = new ImageIcon("ball_33.png");
-		images[33] = new ImageIcon("ball_34.png");
-		images[34] = new ImageIcon("ball_35.png");
-		images[35] = new ImageIcon("ball_36.png");
-		images[36] = new ImageIcon("ball_37.png");
-		images[37] = new ImageIcon("ball_38.png");
-		images[38] = new ImageIcon("ball_39.png");
-		images[39] = new ImageIcon("ball_40.png");
-		images[40] = new ImageIcon("ball_41.png");
-		images[41] = new ImageIcon("ball_42.png");
-		images[42] = new ImageIcon("ball_43.png");
-		images[43] = new ImageIcon("ball_44.png");
-		images[44] = new ImageIcon("ball_45.png");
+		
+		 for (int i = 0; i < 45; i++) {
+		        int num = i + 1;
+		        String file = "ball_" + num + ".png";
+		        images[i] = new ImageIcon(file);
+		    }
 
 		return images;
 	}
