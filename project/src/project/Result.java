@@ -25,7 +25,7 @@ public class Result extends JFrame {
 	private JTextField textField_4;
 
 	public Result() {
-
+		
 		// JPanel pnl = new JPanel();ㄴㄴㄴ
 		// String[] menus = new String[] { "", "���� �� �ϳ��� �����ϼ���", "-----",
 		// "ù��°", "�ι�°",

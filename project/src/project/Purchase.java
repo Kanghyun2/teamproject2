@@ -96,8 +96,9 @@ public class Purchase extends JFrame {
 		JButton btnNewButton_1 = new JButton("반 자동");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				halfRandom();
 			}
+
 			public void halfRandom() {
 				List<JToggleButton> allButton = new ArrayList<>();
 				for (int i = 0; i < 45; i++) {
@@ -106,9 +107,22 @@ public class Purchase extends JFrame {
 					allButton.add(lottoNumbers[row][col]);
 				}
 				Collections.shuffle(allButton);
-			}
 
+				int Count = 0;
+				for (JToggleButton button : allButton) {
+					if (Count < 6) {
+						button.setSelected(true);
+						Count++;
+					} else if (Count >= 6) {
+						button.setSelected(false);
+						
+					} else {
+						break;
+					}
+				}
+			}
 		});
+
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 64, SpringLayout.SOUTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, btnNewButton);
 		pnl.add(btnNewButton_1);
