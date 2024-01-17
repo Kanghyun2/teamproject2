@@ -174,7 +174,7 @@ public class Purchase extends JFrame {
 		pnl.add(btnRegistration);
 
 		// pnl.setLayout(new SpringLayout()); // 이 라인은 삭제
-
+		
 		showGUI();
 	}
 
