@@ -237,5 +237,6 @@ public class Purchase extends JFrame {
 
 	public static void main(String[] args) {
 		new Purchase();
+		System.out.println("테스트");
 	}
 }
