@@ -101,23 +101,21 @@ public class Purchase extends JFrame {
 
 			public void halfRandom() {
 				List<JToggleButton> allButton = new ArrayList<>();
+				int selectedCount = 0;
 				for (int i = 0; i < 45; i++) {
 					int row = i / cols;
 					int col = i % cols;
 					allButton.add(lottoNumbers[row][col]);
-				}
-				Collections.shuffle(allButton);
-
-				int Count = 0;
-				for (JToggleButton button : allButton) {
-					if (Count < 6) {
-						button.setSelected(true);
-						Count++;
-					} else if (Count >= 6) {
-						button.setSelected(false);
-						
-					} else {
-						break;
+					if (lottoNumbers[row][col].isSelected()) {
+						selectedCount++;
+					}
+					Collections.shuffle(allButton);
+					for (JToggleButton button : allButton)
+					if (selectedCount == 1) {
+						if (selectedCount < 6) {
+							button.setSelected(true);
+							selectedCount++;
+					}
 					}
 				}
 			}
