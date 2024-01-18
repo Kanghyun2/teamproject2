@@ -97,7 +97,7 @@ public class PurchaseHistory extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
 				Integer selectedValue = (Integer) source.getSelectedItem();
-				if(round.contains(selectedValue)) {
+				if(round.iterator().equals(selectedValue)) {
 					for (ArrayList<Integer> elem : winningNumber) {
 		                for (Integer element : elem) {
 		                    System.out.print(element + " ");
@@ -127,12 +127,14 @@ public class PurchaseHistory extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
 				Integer selectedValue = (Integer) source.getSelectedItem();
-				if(purchase.contains(selectedValue)) {
+				if(purchase.iterator().equals(selectedValue)) {
 					for(ArrayList<Integer> elem : purchaseNumber) {
+						if(elem.iterator().equals(selectedValue)) {
 						for (Integer element : elem) {
 							  System.out.print(element + " ");
 		                }
 		                System.out.println();
+						}
 					}
 				}
 			}
