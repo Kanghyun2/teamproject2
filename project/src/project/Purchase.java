@@ -22,10 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JToggleButton;
 import java.awt.Color;
+import java.awt.Component;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
-	private List<JLabel> registeredLabels = new ArrayList<>();
+//	private List<JLabel> registeredLabels = new ArrayList<>();
 	private List<Integer> delNum = new ArrayList<>();
 	private JButton btnNewButton_1;
 	private JPanel pnl;
@@ -358,87 +359,56 @@ public class Purchase extends JFrame {
 	}
 
 	private void showBall() {
-		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
-		pnlBall1.setLayout(flowLayout);
-		pnlBall2.setLayout(flowLayout);
-		pnlBall3.setLayout(flowLayout);
-		pnlBall4.setLayout(flowLayout);
-		pnlBall5.setLayout(flowLayout);
+		    FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
+		    List<JLabel> registeredLabels = new ArrayList<>();
+		    pnlBall1.setLayout(flowLayout);
+		    pnlBall2.setLayout(flowLayout);
+		    pnlBall3.setLayout(flowLayout);
+		    pnlBall4.setLayout(flowLayout);
+		    pnlBall5.setLayout(flowLayout);
 
-		for (int i = 0; i < 7; i++) {
-			for (int j = 0; j < 7; j++) {
-				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
-					int number = Integer.parseInt(lottoNumbers[i][j].getText());
+		    for (int i = 0; i < 7; i++) {
+		        for (int j = 0; j < 7; j++) {
+		            if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
+		                int number = Integer.parseInt(lottoNumbers[i][j].getText());
+		                String file = "ball_" + number + ".png";
+		                System.out.println("확인");
+		                ballIcon = new ImageIcon(file);
+		                lbl = new JLabel(ballIcon);
+		                registeredLabels.add(lbl);
+		            }
+		        }
+		    }
 
-					String file = "ball_" + number + ".png";
-					System.out.println("확인");
-					ballIcon = new ImageIcon(file);
-					lbl = new JLabel(ballIcon);
-					lbl2 = new JLabel(ballIcon);
-					lbl3 = new JLabel(ballIcon);
-					lbl4 = new JLabel(ballIcon);
-					lbl5 = new JLabel(ballIcon);
+		
 
-					registeredLabels.add(lbl);
+		    // 각 패널에 이미지 추가
+		    for (JLabel registeredLabel : registeredLabels) {
+		        if (pnlBall1.getComponentCount() <= 6) {
+		            pnlBall1.add(registeredLabel);
+		        } else if (pnlBall2.getComponentCount() <= 5) {
+		            pnlBall2.add(registeredLabel);
+		        } else if (pnlBall3.getComponentCount() <= 5) {
+		            pnlBall3.add(registeredLabel);
+		        } else if (pnlBall4.getComponentCount() <= 5) {
+		            pnlBall4.add(registeredLabel);
+		        } else if (pnlBall5.getComponentCount() <= 5) {
+		            pnlBall5.add(registeredLabel);
+		        }
+		    }
 
-					switch (regCount) {
-					case 0:
-						pnlBall1.add(lbl);
-						break;
-					case 1:
-						pnlBall2.add(lbl2);
-						break;
-					case 2:
-						pnlBall3.add(lbl3);
-						break;
-					case 3:
-						pnlBall4.add(lbl4);
-						break;
-					case 4:
-						pnlBall5.add(lbl5);
-						break;
-					default:
-						break;
-					}
-
-					if (!delNum.isEmpty()) {
-						for (Integer index : delNum) {
-							switch (index) {
-							case 1:
-								pnlBall1.add(lbl);
-								break;
-							case 2:
-								pnlBall2.add(lbl2);
-								break;
-							case 3:
-								pnlBall3.add(lbl3);
-								break;
-							case 4:
-								pnlBall4.add(lbl4);
-								break;
-							case 5:
-								pnlBall5.add(lbl5);
-								break;
-							default:
-								break;
-							}
-						}
-						delNum.clear();
-					}
-				}
-			}
-			pnlBall1.revalidate();
-			pnlBall1.repaint();
-			pnlBall2.revalidate();
-			pnlBall2.repaint();
-			pnlBall3.revalidate();
-			pnlBall3.repaint();
-			pnlBall4.revalidate();
-			pnlBall4.repaint();
-			pnlBall5.revalidate();
-			pnlBall5.repaint();
+		    pnlBall1.revalidate();
+		    pnlBall1.repaint();
+		    pnlBall2.revalidate();
+		    pnlBall2.repaint();
+		    pnlBall3.revalidate();
+		    pnlBall3.repaint();
+		    pnlBall4.revalidate();
+		    pnlBall4.repaint();
+		    pnlBall5.revalidate();
+		    pnlBall5.repaint();
 		}
-	}
+//	
 
 	private void showGUI() {
 		setSize(1000, 600);
