@@ -20,10 +20,13 @@ import javax.swing.JComboBox;
 public class PurchaseHistory extends JFrame {
 
 	private JPanel contentPane;
-	protected static Vector<Integer> round = new Vector<>();
-	protected static Vector<Integer> purchase = new Vector<>();
-	protected static int index = 1;
-	protected static int purchaseindex = 1;
+	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
+	protected static Vector<Integer> purchase = new Vector<>(); // 구매 리스트
+	protected static int index = 1; // 회차콤보박스 
+	protected static int purchaseindex = 1; // 회차콤보박스
+	protected static ArrayList<ArrayList<Integer>> winningNumber = new ArrayList<>(); // 당첨번호
+	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
+	private JComboBox comboBox_1;
 
 	/**
 	 * Launch the application.
@@ -88,7 +91,29 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, comboBox, -639, SpringLayout.EAST, panel);
 		panel.add(comboBox);
 		
-		JComboBox comboBox_1 = new JComboBox(purchase);
+		// 회차 클릭 했을때 당첨번호 출력
+		comboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
+				Integer selectedValue = (Integer) source.getSelectedItem();
+				if(round.contains(selectedValue)) {
+					for (ArrayList<Integer> elem : winningNumber) {
+		                for (Integer element : elem) {
+		                    System.out.print(element + " ");
+		                }
+		                System.out.println();
+		            }
+		        }
+				if (round.lastElement().equals(selectedValue)) {
+					comboBox_1.setEnabled(true);
+				} else {
+					comboBox_1.setEnabled(false);
+				}
+			}
+		});
+		
+		comboBox_1 = new JComboBox(purchase);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, comboBox_1);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 0, SpringLayout.NORTH, comboBox);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 29, SpringLayout.EAST, comboBox);
@@ -96,19 +121,44 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, 319, SpringLayout.EAST, comboBox);
 		panel.add(comboBox_1);
 		
+		// 여러장 구매했을시 내가 구매한 로또내역 출력
+		comboBox_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
+				Integer selectedValue = (Integer) source.getSelectedItem();
+				if(purchase.contains(selectedValue)) {
+					for(ArrayList<Integer> elem : purchaseNumber) {
+						for (Integer element : elem) {
+							  System.out.print(element + " ");
+		                }
+		                System.out.println();
+					}
+				}
+			}
+		});
+		
 	}
-	
 
+	// 로또 당첨번호 저장 메소드
+	public static void winningNumberAdd(ArrayList<Integer> winningnumber) {
+		winningNumber.add(winningnumber);
+	}
+	// 내가 구매한 로또 번호 저장
+	public static void purchaseNumberAdd(ArrayList<Integer> purchaseumber) {
+		purchaseNumber.add(purchaseumber);
+	}
+	// 회차 올려주는 메소드
 	public static void roundAdd() {
 		round.add(index);
 		index++;
 	}
-
+	// 구매시 장수 올려주는 메소드
 	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
 		purchaseindex++;
 	}
-	
+	// 내 추첨번호 삭제
 	public static void purchaseClear() {
 		purchase.clear();
 	}
