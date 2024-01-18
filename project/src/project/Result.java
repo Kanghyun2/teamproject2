@@ -1,6 +1,7 @@
 package project;
 
 import java.awt.Choice;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -49,15 +49,15 @@ public class Result extends JFrame {
 		});
 
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.WEST, panel, 34, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -39, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, -562, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel, -89, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, panel, -549, SpringLayout.EAST, getContentPane());
 		panel.setBackground(SystemColor.inactiveCaption);
 		getContentPane().add(panel);
 
 		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, -984, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, panel_1, 78, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.EAST, panel_1, -58, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 69, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -56, SpringLayout.NORTH, btnBack);
 		panel_1.setBackground(SystemColor.inactiveCaption);
@@ -119,17 +119,40 @@ public class Result extends JFrame {
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 
+		JLabel lblNewLabel_7 = new JLabel("총 당첨금액");
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, 0, SpringLayout.SOUTH, textField_3);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_7, -28, SpringLayout.WEST, textField_3);
+		panel.add(lblNewLabel_7);
+
+		JLabel lblNewLabel_8 = new JLabel("내가 받을 금액");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_8, 30, SpringLayout.SOUTH, lblNewLabel_7);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_8, 0, SpringLayout.EAST, lblNewLabel_7);
+		panel.add(lblNewLabel_8);
+
+		textField_4 = new JTextField();
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 0, SpringLayout.SOUTH, lblNewLabel_8);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, lblNewLabel);
+		panel.add(textField_4);
+		textField_4.setColumns(10);
+
 		textField_5 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_5, 75, SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_5, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_5, -84, SpringLayout.NORTH, textField_3);
+		textField_5.setBackground(new Color(0, 250, 154));
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_5, 64, SpringLayout.SOUTH, textField);
+		sl_panel.putConstraint(SpringLayout.WEST, textField_5, -74, SpringLayout.WEST, lblNewLabel_7);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField_5, -55, SpringLayout.NORTH, textField_3);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_5, -10, SpringLayout.EAST, panel);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		getContentPane().add(panel_1);
-		// SpringLayout sl_panel_11 = new SpringLayout();
-		panel_1.setLayout(sl_panel);
+		SpringLayout sl_panel_1 = new SpringLayout();
+		panel_1.setLayout(sl_panel_1);
 
+	//	ImageDisplayApp a = new ImageDisplayApp();
+		
+		
+		
+		
+		
 		Set<Integer> setOfSix = new TreeSet<>();
 		Random random = new Random();
 		while (setOfSix.size() < 6) {
@@ -152,33 +175,14 @@ public class Result extends JFrame {
 
 		textField_5.setText(result.toString());
 
-		JLabel lblNewLabel_7 = new JLabel("총 당첨금액");
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, 0, SpringLayout.SOUTH, textField_3);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_7, -28, SpringLayout.WEST, textField_3);
-		panel.add(lblNewLabel_7);
-
-		JLabel lblNewLabel_8 = new JLabel("내가 받을 금액");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_8, 30, SpringLayout.SOUTH, lblNewLabel_7);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_8, 0, SpringLayout.EAST, lblNewLabel_7);
-		panel.add(lblNewLabel_8);
-
-		textField_4 = new JTextField();
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 0, SpringLayout.SOUTH, lblNewLabel_8);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, lblNewLabel);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
-		getContentPane().add(panel_1);
-		SpringLayout sl_panel_1 = new SpringLayout();
-		panel_1.setLayout(sl_panel_1);
-
 		JLabel lblNewLabel_2 = new JLabel("당첨 결과");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 180, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("나의 번호");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 66, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 180, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 46, SpringLayout.SOUTH, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 0, SpringLayout.WEST, lblNewLabel_2);
 		panel_1.add(lblNewLabel_3);
 
 		textField_1 = new JTextField();
@@ -191,7 +195,7 @@ public class Result extends JFrame {
 
 		JLabel lblNewLabel_4 = new JLabel("나의 등수");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 51, SpringLayout.SOUTH, textField_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_4, 180, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_4, 0, SpringLayout.WEST, lblNewLabel_2);
 		panel_1.add(lblNewLabel_4);
 
 		textField_2 = new JTextField();
@@ -206,7 +210,7 @@ public class Result extends JFrame {
 		panel_1.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_6 = new JLabel("당첨 결과");
-		springLayout.putConstraint(SpringLayout.NORTH, panel, 6, SpringLayout.SOUTH, lblNewLabel_6);
+		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
 		lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 21));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 47, SpringLayout.WEST, getContentPane());

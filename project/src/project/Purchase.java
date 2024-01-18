@@ -9,8 +9,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
@@ -18,6 +21,19 @@ import javax.swing.JToggleButton;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
+	private JButton btnNewButton_1;
+
+	private ImageIcon[] loadImages() {
+		ImageIcon[] images = new ImageIcon[45];
+		
+		 for (int i = 0; i < 45; i++) {
+		        int num = i + 1;
+		        String file = "ball_" + num + ".png";
+		        images[i] = new ImageIcon(file);
+		    }
+
+		return images;
+	}
 
 	public Purchase() {
 		Random ran = new Random();
@@ -73,8 +89,8 @@ public class Purchase extends JFrame {
 					int col = i % cols;
 					allButton.add(lottoNumbers[row][col]);
 				}
-				Collections.shuffle(allButton);
 
+				Collections.shuffle(allButton);
 				int Count = 0;
 				for (JToggleButton button : allButton) {
 					if (Count < 6) {
@@ -93,31 +109,54 @@ public class Purchase extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 67, SpringLayout.WEST, pnl);
 		pnl.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("반 자동");
+		btnNewButton_1 = new JButton("반 자동");
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 		btnNewButton_1.addActionListener(new ActionListener() {
+			private int selectedCount;
+
 			public void actionPerformed(ActionEvent e) {
 				halfRandom();
+				if (selectedCount <= 0 || selectedCount >= 7) {
+					InputDialog dialog = new InputDialog(Purchase.this);
+					dialog.setVisible(true);
+				}
 			}
 
 			public void halfRandom() {
 				List<JToggleButton> allButton = new ArrayList<>();
-				int selectedCount = 0;
+				selectedCount = 0;
+
+				// 모든 버튼을 리스트에 추가
 				for (int i = 0; i < 45; i++) {
 					int row = i / cols;
 					int col = i % cols;
 					allButton.add(lottoNumbers[row][col]);
+
+					// 수동으로 선택한 버튼의 개수를 카운트
 					if (lottoNumbers[row][col].isSelected()) {
 						selectedCount++;
 					}
-					Collections.shuffle(allButton);
-					for (JToggleButton button : allButton)
+				}
+
+				Collections.shuffle(allButton);
+				for (JToggleButton button : allButton) {
 					if (selectedCount == 1) {
-						if (selectedCount < 6) {
+						if (!button.isSelected()) {
 							button.setSelected(true);
 							selectedCount++;
-					}
+						}
+					} else if (selectedCount >= 2 && selectedCount <= 5) {
+						if (!button.isSelected()) {
+							button.setSelected(true);
+							selectedCount++;
+						}
+
+						if (selectedCount >= 6) {
+							break;
+						}
 					}
 				}
+				btnNewButton_1.setEnabled(false);
 			}
 		});
 
@@ -148,11 +187,14 @@ public class Purchase extends JFrame {
 		pnl.add(btnGoBack);
 
 		JButton btnRegistration = new JButton("등록");
+		btnRegistration.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 350, SpringLayout.WEST, pnl);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -126, SpringLayout.SOUTH, pnl);
 		pnl.add(btnRegistration);
-
-		// pnl.setLayout(new SpringLayout()); // 이 라인은 삭제
 
 		showGUI();
 	}
@@ -161,6 +203,36 @@ public class Purchase extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	class InputDialog extends JDialog {
+		public InputDialog(Purchase main) {
+			super(main);
+
+			setModal(true);
+
+			JPanel pnl = new JPanel();
+			JLabel lbl = new JLabel("1개 ~ 6개만 선택 가능 합니다.");
+			JButton btn = new JButton("뒤로가기");
+
+			pnl.add(lbl);
+			pnl.add(btn);
+
+			setSize(200, 100);
+			setLocationRelativeTo(main);
+
+			add(pnl);
+
+			btn.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					btnNewButton_1.setEnabled(true);
+
+				}
+			});
+		}
 	}
 
 	public static void main(String[] args) {

@@ -2,6 +2,7 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -19,10 +20,10 @@ import javax.swing.JComboBox;
 public class PurchaseHistory extends JFrame {
 
 	private JPanel contentPane;
-	protected Vector round;
-	protected Vector purchase;
-	protected int index = 1;
-	protected int purchaseindex = 1;
+	protected static Vector<Integer> round = new Vector<>();
+	protected static Vector<Integer> purchase = new Vector<>();
+	protected static int index = 1;
+	protected static int purchaseindex = 1;
 
 	/**
 	 * Launch the application.
@@ -51,8 +52,8 @@ public class PurchaseHistory extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		round = new Vector();
-		purchase = new Vector();
+//		round = new Vector();
+//		purchase = new Vector();
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -98,13 +99,17 @@ public class PurchaseHistory extends JFrame {
 	}
 	
 
-	public void roundAdd() {
+	public static void roundAdd() {
 		round.add(index);
 		index++;
 	}
 
-	public void purchaseAdd() {
+	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
 		purchaseindex++;
+	}
+	
+	public static void purchaseClear() {
+		purchase.clear();
 	}
 }
