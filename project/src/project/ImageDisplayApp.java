@@ -26,7 +26,7 @@ public class ImageDisplayApp extends JFrame {
 	private JLabel[] imageLabels;
 	private JButton displayButton;
 	private List<Integer> keysList;
-	private TreeMap<Integer, String> imageMap;
+	protected TreeMap<Integer, String> imageMap;
 	private static JLabel resultLabel;
 
 	public ImageDisplayApp(JLabel resultLabel) {

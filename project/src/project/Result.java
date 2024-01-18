@@ -94,7 +94,7 @@ public class Result extends JFrame {
 			}
 		});
 
-		app.displayRandomImages();
+//		app.displayRandomImages();
 
 		SpringLayout sl_panel = new SpringLayout();
 		sl_panel.putConstraint(SpringLayout.NORTH, combo, 5, SpringLayout.NORTH, panel);

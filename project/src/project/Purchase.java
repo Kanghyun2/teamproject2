@@ -384,7 +384,7 @@ public class Purchase extends JFrame {
 
 		    // 각 패널에 이미지 추가
 		    for (JLabel registeredLabel : registeredLabels) {
-		        if (pnlBall1.getComponentCount() <= 6) {
+		        if (pnlBall1.getComponentCount() <= 5) {
 		            pnlBall1.add(registeredLabel);
 		        } else if (pnlBall2.getComponentCount() <= 5) {
 		            pnlBall2.add(registeredLabel);
