@@ -371,7 +371,7 @@ public class Purchase extends JFrame {
 					int number = Integer.parseInt(lottoNumbers[i][j].getText());
 
 					String file = "ball_" + number + ".png";
-
+					System.out.println("확인");
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
 					lbl2 = new JLabel(ballIcon);
