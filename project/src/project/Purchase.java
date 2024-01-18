@@ -36,13 +36,8 @@ public class Purchase extends JFrame {
 	private JPanel pnlBall4;
 	private JPanel pnlBall5;
 	private JLabel lbl;
-	private JLabel lbl2;
-	private JLabel lbl3;
-	private JLabel lbl4;
-	private JLabel lbl5;
 	private ImageIcon ballIcon;
 	private JButton btnRegistration;
-	private int regCount;
 	private JButton btnDel1;
 	private JButton btnDel2;
 	private JButton btnDel3;
@@ -56,7 +51,6 @@ public class Purchase extends JFrame {
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-		regCount = 0;
 
 		int rows = 7; // 행
 		int cols = 7; // 열
@@ -206,7 +200,6 @@ public class Purchase extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				showBall();
-				regCount++;
 			}
 
 		});
@@ -337,7 +330,6 @@ public class Purchase extends JFrame {
 		JLabel lblNewLabel = new JLabel();
 		sl_pnlBall1.putConstraint(SpringLayout.NORTH, lblNewLabel, 26, SpringLayout.NORTH, pnlBall1);
 		sl_pnlBall1.putConstraint(SpringLayout.WEST, lblNewLabel, 140, SpringLayout.WEST, pnlBall1);
-		pnlBall1.add(lblNewLabel);
 		pnlBall5.setBackground(Color.WHITE);
 		pnl.add(pnlBall5);
 		pnlBall5.setLayout(new SpringLayout());
@@ -384,7 +376,7 @@ public class Purchase extends JFrame {
 
 		    // 각 패널에 이미지 추가
 		    for (JLabel registeredLabel : registeredLabels) {
-		        if (pnlBall1.getComponentCount() <= 6) {
+		        if (pnlBall1.getComponentCount() <= 5) {
 		            pnlBall1.add(registeredLabel);
 		        } else if (pnlBall2.getComponentCount() <= 5) {
 		            pnlBall2.add(registeredLabel);
