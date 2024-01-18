@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class PurchaseHistory extends JFrame {
 
@@ -84,6 +85,8 @@ public class PurchaseHistory extends JFrame {
 		panel.add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox(round);
+		comboBox.setBackground(new Color(255, 255, 255));
+		comboBox.setFont(new Font("굴림", Font.BOLD, 30));
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 27, SpringLayout.SOUTH, comboBox);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox, 62, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox, -429, SpringLayout.SOUTH, panel);
@@ -114,6 +117,7 @@ public class PurchaseHistory extends JFrame {
 		});
 		
 		comboBox_1 = new JComboBox(purchase);
+		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, 0, SpringLayout.EAST, comboBox_1);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 0, SpringLayout.NORTH, comboBox);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 29, SpringLayout.EAST, comboBox);

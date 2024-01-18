@@ -275,7 +275,7 @@ public class Result extends JFrame {
 		당첨번호확인버튼.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PurchaseHistory.roundAdd();
 				TreeMap<Integer, String> shuffledTreeMap = new TreeMap<>();
 				for (Integer key : keysList) {
 					shuffledTreeMap.put(key, imageMap.get(key));
@@ -310,7 +310,7 @@ public class Result extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		PurchaseHistory.roundAdd();
+		
 	}
 
 	protected void setLayout(Panel panel) {

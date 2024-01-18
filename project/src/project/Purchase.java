@@ -358,7 +358,7 @@ public class Purchase extends JFrame {
 		    pnlBall3.setLayout(flowLayout);
 		    pnlBall4.setLayout(flowLayout);
 		    pnlBall5.setLayout(flowLayout);
-
+		    
 		    for (int i = 0; i < 7; i++) {
 		        for (int j = 0; j < 7; j++) {
 		            if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
@@ -400,7 +400,7 @@ public class Purchase extends JFrame {
 		    pnlBall5.revalidate();
 		    pnlBall5.repaint();
 		}
-//	
+	
 
 	private void showGUI() {
 		setSize(1000, 600);
