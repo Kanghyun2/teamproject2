@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,14 +27,14 @@ public class Result extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private ImageDisplayApp app;
+	private String displayRandomImages;
 
 	public Result() {
-		System.out.println("ㅇㅇ");
-		// JPanel pnl = new JPanel();ㄴㄴㄴ
-		// String[] menus = new String[] { "", "���� �� �ϳ��� �����ϼ���", "-----",
-		// "ù��°", "�ι�°",
-		// "������" };
-		// JComboBox<String> combo = new JComboBox<>(menus);
+
+		JLabel resultLabel = new JLabel();
+		ImageDisplayApp app = new ImageDisplayApp(resultLabel);
+
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
@@ -48,18 +52,17 @@ public class Result extends JFrame {
 		});
 
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.WEST, panel, 47, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -89, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, panel, -549, SpringLayout.EAST, getContentPane());
 		panel.setBackground(SystemColor.inactiveCaption);
 		getContentPane().add(panel);
 
 		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 69, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, panel_1, 78, SpringLayout.EAST, panel);
-		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -56, SpringLayout.NORTH, btnBack);
 		springLayout.putConstraint(SpringLayout.EAST, panel_1, -58, SpringLayout.EAST, getContentPane());
 		springLayout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, panel_1);
+		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 69, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -56, SpringLayout.NORTH, btnBack);
 		panel_1.setBackground(SystemColor.inactiveCaption);
 
 		Choice choice = new Choice();
@@ -90,6 +93,8 @@ public class Result extends JFrame {
 				}
 			}
 		});
+
+		app.displayRandomImages();
 
 		SpringLayout sl_panel = new SpringLayout();
 		sl_panel.putConstraint(SpringLayout.NORTH, combo, 5, SpringLayout.NORTH, panel);
@@ -138,6 +143,8 @@ public class Result extends JFrame {
 		SpringLayout sl_panel_1 = new SpringLayout();
 		panel_1.setLayout(sl_panel_1);
 
+//		ImageDisplayApp app = new ImageDisplayApp();
+		
 		JLabel lblNewLabel_2 = new JLabel("당첨 결과");
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 180, SpringLayout.WEST, panel_1);
@@ -173,6 +180,24 @@ public class Result extends JFrame {
 		panel_1.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_6 = new JLabel("당첨 결과");
+		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
+
+		JPanel panel_2 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 37, SpringLayout.SOUTH, textField);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, 156, SpringLayout.SOUTH, textField);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -10, SpringLayout.EAST, panel);
+		panel.add(panel_2);
+		SpringLayout sl_panel_2 = new SpringLayout();
+		panel_2.setLayout(sl_panel_2);
+
+		JLabel lblNewLabel_9 = new JLabel(displayRandomImages);
+		sl_panel_2.putConstraint(SpringLayout.NORTH, lblNewLabel_9, 10, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.WEST, lblNewLabel_9, 10, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, lblNewLabel_9, 109, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, lblNewLabel_9, 358, SpringLayout.WEST, panel_2);
+		panel_2.add(lblNewLabel_9);
+
 		lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 21));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 47, SpringLayout.WEST, getContentPane());
@@ -180,12 +205,36 @@ public class Result extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_6, 159, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblNewLabel_6);
 
+//		Set<Integer> setOfSix = new TreeSet<>();
+//		Random random = new Random();
+//		while (setOfSix.size() < 6) {
+//			setOfSix.add(random.nextInt(45) + 1);
+//		}
+//		StringBuilder result = new StringBuilder();
+//		for (int number : setOfSix) {
+//			result.append(number).append(" ");
+//		}
+//		panel_2.setToolTipText(result.toString());
+//
+//		Set<Integer> setOfOne = new HashSet<>();
+//		Random random2 = new Random();
+//
+//		while (setOfOne.size() < 1) {
+//			setOfOne.add(random2.nextInt(45) + 1);
+//		}
+//
+//		result.append(" + ").append(setOfOne.iterator().next());
+//
+//		panel_2.setToolTipText(result.toString());
+
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		PurchaseHistory.roundAdd();
 	}
 
 	public static void main(String[] args) {
 		new Result();
+
 	}
 }
