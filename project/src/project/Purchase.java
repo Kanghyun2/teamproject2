@@ -1,13 +1,16 @@
 package project;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,46 +18,49 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
 import javax.swing.JToggleButton;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
 	private JButton btnNewButton_1;
+	private JPanel pnlImage;
+	private JPanel pnl;
 
-	private ImageIcon[] loadImages() {
-		ImageIcon[] images = new ImageIcon[45];
-		
-		 for (int i = 0; i < 45; i++) {
-		        int num = i + 1;
-		        String file = "ball_" + num + ".png";
-		        images[i] = new ImageIcon(file);
-		    }
-
-		return images;
-	}
+//	private ImageIcon[] loadImages() {
+//		images = new ImageIcon[45];
+//
+//		for (int i = 0; i < 45; i++) {
+//			int num = i + 1;
+//			file = "ball_" + num + ".png";
+//			images[i] = new ImageIcon(getClass().getResource("/" + file));
+//		}
+//
+//		return images;
+//	}
 
 	public Purchase() {
-		Random ran = new Random();
-		JPanel pnl = new JPanel();
+		pnl = new JPanel();
+		pnlImage = new JPanel();
 		getContentPane().add(pnl);
-
+		pnl.add(pnlImage);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
 
-		int rows = 7;
-		int cols = 7;
-		int checkboxMargin = 10;
+		
+		
+		int rows = 7; // 행
+		int cols = 7; // 열
+		int checkboxMargin = 10; // 버튼 간격
 
 		lottoNumbers = new JToggleButton[rows][cols];
 
-		for (int i = 0; i < 45; i++) {
+		for (int i = 0; i < 45; i++) { // 7x7 45 버튼으로 표현
 			int row = i / cols;
 			int col = i % cols;
 
-			lottoNumbers[row][col] = new JToggleButton(Integer.toString(i + 1));
-			lottoNumbers[row][col].setPreferredSize(new Dimension(25, 25));
+			lottoNumbers[row][col] = new JToggleButton(Integer.toString(i + 1)); // 버튼 숫자
+			lottoNumbers[row][col].setPreferredSize(new Dimension(25, 25)); // 버튼 사이즈
 			pnl.add(lottoNumbers[row][col]);
 
 			// 첫 번째 열은 왼쪽에 고정
@@ -80,6 +86,7 @@ public class Purchase extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ranSelect();
+				btnNewButton_1.setEnabled(true);
 			}
 
 			public void ranSelect() {
@@ -156,7 +163,6 @@ public class Purchase extends JFrame {
 						}
 					}
 				}
-				btnNewButton_1.setEnabled(false);
 			}
 		});
 
@@ -189,14 +195,60 @@ public class Purchase extends JFrame {
 		JButton btnRegistration = new JButton("등록");
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				showBall();
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 350, SpringLayout.WEST, pnl);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -126, SpringLayout.SOUTH, pnl);
 		pnl.add(btnRegistration);
 
+		JButton btnNewButton_3 = new JButton("리셋");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				reset();
+			}
+		});
+
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_3, 0, SpringLayout.SOUTH, btnRegistration);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_3, -21, SpringLayout.WEST, btnRegistration);
+		pnl.add(btnNewButton_3);
+
 		showGUI();
+
+	}
+
+	private void reset() {
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (lottoNumbers[i][j] != null) {
+					lottoNumbers[i][j].setSelected(false);
+				} else {
+					lottoNumbers[i][j] = new JToggleButton();
+				}
+			}
+		}
+	}
+
+	private void showBall() {
+		
+		pnlImage.removeAll();
+		
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
+					int number = Integer.parseInt(lottoNumbers[i][j].getText());
+					
+					String file = "ball_" + number + ".png";
+	                
+	                ImageIcon ballIcon = new ImageIcon(getClass().getResource("/" + file));
+	                JLabel lbl = new JLabel(ballIcon);
+	                pnlImage.add(lbl);	               
+
+				}
+			}
+		}
+		pnlImage.revalidate();
+		pnlImage.repaint();
 	}
 
 	private void showGUI() {
@@ -222,6 +274,15 @@ public class Purchase extends JFrame {
 			setLocationRelativeTo(main);
 
 			add(pnl);
+
+			addWindowListener(new WindowAdapter() {
+
+				@Override
+				public void windowClosing(WindowEvent e) {
+					btnNewButton_1.setEnabled(true);
+				}
+
+			});
 
 			btn.addActionListener(new ActionListener() {
 
