@@ -365,6 +365,7 @@ public class Purchase extends JFrame {
 	private void showBall() {
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
 		registeredLabels = new ArrayList<>();
+		int showBallselectedCount = 0;
 		pnlBall1.setLayout(flowLayout);
 		pnlBall2.setLayout(flowLayout);
 		pnlBall3.setLayout(flowLayout);
@@ -379,11 +380,13 @@ public class Purchase extends JFrame {
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
 					registeredLabels.add(lbl);
+					showBallselectedCount++;
 				}
 			}
 		}
 
 		// 각 패널에 이미지 추가
+		if (showBallselectedCount >= 6) {
 		for (JLabel registeredLabel : registeredLabels) {
 			if (pnlBall1.getComponentCount() <= 5) {
 				pnlBall1.add(registeredLabel);
@@ -396,6 +399,7 @@ public class Purchase extends JFrame {
 			} else if (pnlBall5.getComponentCount() <= 5) {
 				pnlBall5.add(registeredLabel);
 			}
+		}
 		}
 
 		pnlBall1.revalidate();
