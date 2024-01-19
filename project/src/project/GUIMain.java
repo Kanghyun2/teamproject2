@@ -88,7 +88,9 @@ public class GUIMain extends JFrame {
         String gifFilePath = "C:\\Users\\GGG\\Desktop\\배경테스트1.gif";
         JLabel gifLabel = new JLabel(new ImageIcon(gifFilePath));
         add(gifLabel);
-//        setComponentZOrder(panel, 0);
+//        setComponentZOrder(panel., 0);
+//        setComponentZOrder(btnNewButton_1, 0);
+//        setComponentZOrder(btnNewButton_2, 0);
         
         btnNewButton = new JButton("구매");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);

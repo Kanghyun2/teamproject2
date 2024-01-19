@@ -11,6 +11,7 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -43,7 +44,7 @@ public class Purchase extends JFrame {
 	private JButton btnDel4;
 	private JButton btnDel5;
 	private List<JLabel> registeredLabels;
-
+	
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -51,7 +52,9 @@ public class Purchase extends JFrame {
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-
+		
+	
+		
 		int rows = 7; // 행
 		int cols = 7; // 열
 		int checkboxMargin = 10; // 버튼 간격
@@ -179,15 +182,15 @@ public class Purchase extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-
-				if (registeredLabels.size() > 0) {
-					PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
-					dialog.setVisible(true);
-				} else {
-					PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
-					dialog.setVisible(true);
-				}
-			}
+		        if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0 && pnlBall3.getComponentCount() == 0
+		        		&& pnlBall4.getComponentCount() == 0 && pnlBall5.getComponentCount() == 0) {
+		        	PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
+	                dialog.setVisible(true);
+		        } else {
+		        	PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
+	                dialog.setVisible(true);
+		        }
+		    }
 		});
 		pnl.add(btnNewButton_2);
 
@@ -232,14 +235,13 @@ public class Purchase extends JFrame {
 				pnlBall1.removeAll();
 				pnlBall1.revalidate();
 				pnlBall1.repaint();
-				registeredLabels.remove(0);
-				registeredLabels.remove(0);
-				registeredLabels.remove(0);
-				registeredLabels.remove(0);
-				registeredLabels.remove(0);
-				registeredLabels.remove(0);
-				
-			
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.
+
 			}
 		});
 		pnl.add(btnDel1);
@@ -492,6 +494,7 @@ public class Purchase extends JFrame {
 			});
 		}
 	}
+
 	class PurchaseDialog2 extends JDialog {
 		public PurchaseDialog2(Purchase main) {
 			super(main);
@@ -530,6 +533,7 @@ public class Purchase extends JFrame {
 			});
 		}
 	}
+
 	public static void main(String[] args) {
 		new Purchase();
 	}
