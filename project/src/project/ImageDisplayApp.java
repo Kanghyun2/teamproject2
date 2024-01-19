@@ -1,36 +1,30 @@
 package project;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class ImageDisplayApp extends JFrame {
 
-	private JLabel[] imageLabels;
+	public static JLabel[] imageLabels;
 	private JButton displayButton;
-	private List<Integer> keysList;
-	private TreeMap<Integer, String> imageMap;
-	private static JLabel resultLabel;
+	private static List<Integer> keysList;
+	private static TreeMap<Integer, String> imageMap;
+	public static List<StringBuilder> listnumber;
+	private static Component lblNewLabel_9;
 
-	public ImageDisplayApp(JLabel resultLabel) {
-		this.resultLabel = resultLabel;
+	public ImageDisplayApp() {
 
 		setTitle("로또 랜덤 번호");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +102,6 @@ public class ImageDisplayApp extends JFrame {
 		}
 
 		setSize(500, 500);
-		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		dispose();
 		setVisible(true);
 	}
@@ -129,16 +122,41 @@ public class ImageDisplayApp extends JFrame {
 			ImageIcon icon = new ImageIcon(imageList);
 			imageLabels[i].setIcon(icon);
 
-		}
+			// result.append(selectedNumber.get(i)).append(" ");
 
+		}
+		// Result.lblNewLabel_9.setText(result.toString());
 	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new ImageDisplayApp(resultLabel);
+				new ImageDisplayApp();
 			}
 		});
 	}
+
 }
+
+//Set<Integer> setOfSix = new TreeSet<>();
+//Random random = new Random();
+//while (setOfSix.size() < 6) {
+//	setOfSix.add(random.nextInt(45) + 1);
+//}
+//StringBuilder result = new StringBuilder();
+//for (int number : setOfSix) {
+//	result.append(number).append(" ");
+//}
+//panel_2.setToolTipText(result.toString());
+//
+//Set<Integer> setOfOne = new HashSet<>();
+//Random random2 = new Random();
+//
+//while (setOfOne.size() < 1) {
+//	setOfOne.add(random2.nextInt(45) + 1);
+//}
+//
+//result.append(" + ").append(setOfOne.iterator().next());
+//
+//panel_2.setToolTipText(result.toString());
