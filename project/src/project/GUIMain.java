@@ -2,15 +2,18 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
 
 public class GUIMain extends JFrame {
 
@@ -18,6 +21,7 @@ public class GUIMain extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private ImageIcon icon;
 
 	/**
 	 * Launch the application.
@@ -77,15 +81,22 @@ public class GUIMain extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
-
-		btnNewButton = new JButton("구매");
+		
+        add(panel);
+		
+        String gifFilePath = "C:\\Users\\GGG\\Desktop\\배경테스트1.gif";
+        JLabel gifLabel = new JLabel(new ImageIcon(gifFilePath));
+        add(gifLabel);
+//        setComponentZOrder(panel, 0);
+        
+        btnNewButton = new JButton("구매");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 77, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -75, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -655, SpringLayout.EAST, panel);
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton);
-
+		
 		btnNewButton_1 = new JButton("당첨 결과");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, btnNewButton);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_1, 57, SpringLayout.EAST, btnNewButton);
