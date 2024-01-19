@@ -84,6 +84,7 @@ public class GUIMain extends JFrame {
 		
         add(panel);
 		
+        
         String gifFilePath = "C:\\Users\\GGG\\Desktop\\배경테스트1.gif";
         JLabel gifLabel = new JLabel(new ImageIcon(gifFilePath));
         add(gifLabel);
