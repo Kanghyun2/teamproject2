@@ -44,7 +44,9 @@ public class Purchase extends JFrame {
 	private JButton btnDel4;
 	private JButton btnDel5;
 	private List<JLabel> registeredLabels;
-	
+	private int rows = 7; // 행
+	private int cols = 7; // 열
+	private int checkboxMargin = 10; // 버튼 간격
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -52,27 +54,29 @@ public class Purchase extends JFrame {
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-		
-	
-		
-		int rows = 7; // 행
-		int cols = 7; // 열
-		int checkboxMargin = 10; // 버튼 간격
 
+
+		ImageIcon[][] originalIcons = new ImageIcon[rows][cols];
 		lottoNumbers = new JToggleButton[rows][cols];
 
 		for (int i = 0; i < 45; i++) { // 7x7 45 버튼으로 표현
 			int row = i / cols;
 			int col = i % cols;
+			
+			ImageIcon toggleIcon = new ImageIcon("num" + (i + 1) + ".png");
+			
+			lottoNumbers[row][col] = new JToggleButton();
+			lottoNumbers[row][col].setIcon(toggleIcon);
+			lottoNumbers[row][col].setText(Integer.toString(i + 1));
+			lottoNumbers[row][col].setPreferredSize(new Dimension(30, 30)); // 버튼 사이즈
 
-			lottoNumbers[row][col] = new JToggleButton(Integer.toString(i + 1)); // 버튼 숫자
-			lottoNumbers[row][col].setPreferredSize(new Dimension(25, 25)); // 버튼 사이즈
 			pnl.add(lottoNumbers[row][col]);
 
 			// 첫 번째 열은 왼쪽에 고정
 			if (col == 0) {
 				springLayout.putConstraint(SpringLayout.WEST, lottoNumbers[row][col], 180, SpringLayout.WEST, pnl);
 			} else {
+				pnl.add(lottoNumbers[row][col]);
 				// 나머지 열은 이전 체크박스를 기준으로 위치 조정 (가로로 배치)
 				springLayout.putConstraint(SpringLayout.WEST, lottoNumbers[row][col], checkboxMargin, SpringLayout.EAST,
 						lottoNumbers[row][col - 1]);
@@ -86,13 +90,27 @@ public class Purchase extends JFrame {
 				springLayout.putConstraint(SpringLayout.NORTH, lottoNumbers[row][col], checkboxMargin,
 						SpringLayout.SOUTH, lottoNumbers[row - 1][0]);
 			}
+
+			lottoNumbers[row][col].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (lottoNumbers[row][col].isSelected()) {
+						ImageIcon clickIcon = new ImageIcon("clicknum.png");
+						lottoNumbers[row][col].setIcon(clickIcon);
+					} else {
+						ImageIcon toggleIcon = new ImageIcon("num" + (row * cols + col + 1) + ".png");
+						lottoNumbers[row][col].setIcon(toggleIcon);
+					}
+				}
+
+			});
 		}
 
 		JButton btnNewButton = new JButton("자동 선택");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ranSelect();
-				btnNewButton_1.setEnabled(true);
+
 			}
 
 			public void ranSelect() {
@@ -101,15 +119,23 @@ public class Purchase extends JFrame {
 					int row = i / cols;
 					int col = i % cols;
 					allButton.add(lottoNumbers[row][col]);
+					
+					ImageIcon toggleIcon = new ImageIcon("num" + (i + 1) + ".png");
+					originalIcons[row][col] = toggleIcon;
 				}
 
 				Collections.shuffle(allButton);
-				int Count = 0;
+				int count = 0;
 				for (JToggleButton button : allButton) {
-					if (Count < 6) {
+					if (count < 6) {
+						ImageIcon clickIcon = new ImageIcon("clicknum.png");
+						button.setIcon(clickIcon);
 						button.setSelected(true);
-						Count++;
-					} else if (Count >= 6) {
+						count++;
+					} else if (count >= 6) {
+						int row = (count - 6) / cols;  
+			            int col = (count - 6) % cols;  
+						button.setIcon(originalIcons[row][col]);
 						button.setSelected(false);
 					} else {
 						break;
@@ -182,15 +208,16 @@ public class Purchase extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-		        if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0 && pnlBall3.getComponentCount() == 0
-		        		&& pnlBall4.getComponentCount() == 0 && pnlBall5.getComponentCount() == 0) {
-		        	PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
-	                dialog.setVisible(true);
-		        } else {
-		        	PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
-	                dialog.setVisible(true);
-		        }
-		    }
+				if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0
+						&& pnlBall3.getComponentCount() == 0 && pnlBall4.getComponentCount() == 0
+						&& pnlBall5.getComponentCount() == 0) {
+					PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
+					dialog.setVisible(true);
+				} else {
+					PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
+					dialog.setVisible(true);
+				}
+			}
 		});
 		pnl.add(btnNewButton_2);
 
@@ -207,6 +234,8 @@ public class Purchase extends JFrame {
 		pnl.add(btnGoBack);
 
 		btnRegistration = new JButton("등록");
+		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 392, SpringLayout.WEST, pnl);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -122, SpringLayout.SOUTH, pnl);
 		btnRegistration.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -214,19 +243,16 @@ public class Purchase extends JFrame {
 			}
 
 		});
-		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 350, SpringLayout.WEST, pnl);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -126, SpringLayout.SOUTH, pnl);
 		pnl.add(btnRegistration);
 
 		JButton btnNewButton_3 = new JButton("리셋");
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_3, 0, SpringLayout.NORTH, btnRegistration);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_3, -20, SpringLayout.WEST, btnRegistration);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reset();
 			}
 		});
-
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_3, 0, SpringLayout.SOUTH, btnRegistration);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_3, -21, SpringLayout.WEST, btnRegistration);
 		pnl.add(btnNewButton_3);
 
 		btnDel1 = new JButton("삭제");
@@ -386,20 +412,20 @@ public class Purchase extends JFrame {
 		}
 
 		// 각 패널에 이미지 추가
-		if (showBallselectedCount >= 6) {
-		for (JLabel registeredLabel : registeredLabels) {
-			if (pnlBall1.getComponentCount() <= 5) {
-				pnlBall1.add(registeredLabel);
-			} else if (pnlBall2.getComponentCount() <= 5) {
-				pnlBall2.add(registeredLabel);
-			} else if (pnlBall3.getComponentCount() <= 5) {
-				pnlBall3.add(registeredLabel);
-			} else if (pnlBall4.getComponentCount() <= 5) {
-				pnlBall4.add(registeredLabel);
-			} else if (pnlBall5.getComponentCount() <= 5) {
-				pnlBall5.add(registeredLabel);
+		if (showBallselectedCount >= 5) {
+			for (JLabel registeredLabel : registeredLabels) {
+				if (pnlBall1.getComponentCount() <= 5) {
+					pnlBall1.add(registeredLabel);
+				} else if (pnlBall2.getComponentCount() <= 5) {
+					pnlBall2.add(registeredLabel);
+				} else if (pnlBall3.getComponentCount() <= 5) {
+					pnlBall3.add(registeredLabel);
+				} else if (pnlBall4.getComponentCount() <= 5) {
+					pnlBall4.add(registeredLabel);
+				} else if (pnlBall5.getComponentCount() <= 5) {
+					pnlBall5.add(registeredLabel);
+				}
 			}
-		}
 		}
 
 		pnlBall1.revalidate();
