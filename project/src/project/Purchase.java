@@ -27,7 +27,6 @@ import java.awt.Component;
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
 //	private List<JLabel> registeredLabels = new ArrayList<>();
-	private List<Integer> delNum = new ArrayList<>();
 	private JButton btnNewButton_1;
 	private JPanel pnl;
 	private JPanel pnlBall1;
@@ -43,6 +42,7 @@ public class Purchase extends JFrame {
 	private JButton btnDel3;
 	private JButton btnDel4;
 	private JButton btnDel5;
+	private List<JLabel> registeredLabels;
 
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
@@ -179,6 +179,14 @@ public class Purchase extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+
+				if (registeredLabels.size() > 0) {
+					PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
+					dialog.setVisible(true);
+				} else {
+					PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
+					dialog.setVisible(true);
+				}
 			}
 		});
 		pnl.add(btnNewButton_2);
@@ -224,8 +232,14 @@ public class Purchase extends JFrame {
 				pnlBall1.removeAll();
 				pnlBall1.revalidate();
 				pnlBall1.repaint();
-				delNum.add(1);
-
+				registeredLabels.remove(0);
+				registeredLabels.remove(0);
+				registeredLabels.remove(0);
+				registeredLabels.remove(0);
+				registeredLabels.remove(0);
+				registeredLabels.remove(0);
+				
+			
 			}
 		});
 		pnl.add(btnDel1);
@@ -240,7 +254,6 @@ public class Purchase extends JFrame {
 				pnlBall2.removeAll();
 				pnlBall2.revalidate();
 				pnlBall2.repaint();
-				delNum.add(2);
 			}
 		});
 		pnl.add(btnDel2);
@@ -251,7 +264,6 @@ public class Purchase extends JFrame {
 				pnlBall3.removeAll();
 				pnlBall3.revalidate();
 				pnlBall3.repaint();
-				delNum.add(3);
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel3, 40, SpringLayout.SOUTH, btnDel2);
@@ -263,7 +275,6 @@ public class Purchase extends JFrame {
 				pnlBall4.removeAll();
 				pnlBall4.revalidate();
 				pnlBall4.repaint();
-				delNum.add(4);
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel4, 44, SpringLayout.SOUTH, btnDel3);
@@ -275,7 +286,6 @@ public class Purchase extends JFrame {
 				pnlBall5.removeAll();
 				pnlBall5.revalidate();
 				pnlBall5.repaint();
-				delNum.add(5);
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel5, 50, SpringLayout.SOUTH, btnDel4);
@@ -351,56 +361,53 @@ public class Purchase extends JFrame {
 	}
 
 	private void showBall() {
-		    FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
-		    List<JLabel> registeredLabels = new ArrayList<>();
-		    pnlBall1.setLayout(flowLayout);
-		    pnlBall2.setLayout(flowLayout);
-		    pnlBall3.setLayout(flowLayout);
-		    pnlBall4.setLayout(flowLayout);
-		    pnlBall5.setLayout(flowLayout);
-		    
-		    for (int i = 0; i < 7; i++) {
-		        for (int j = 0; j < 7; j++) {
-		            if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
-		                int number = Integer.parseInt(lottoNumbers[i][j].getText());
-		                String file = "ball_" + number + ".png";
-		                System.out.println("확인");
-		                ballIcon = new ImageIcon(file);
-		                lbl = new JLabel(ballIcon);
-		                registeredLabels.add(lbl);
-		            }
-		        }
-		    }
+		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
+		registeredLabels = new ArrayList<>();
+		pnlBall1.setLayout(flowLayout);
+		pnlBall2.setLayout(flowLayout);
+		pnlBall3.setLayout(flowLayout);
+		pnlBall4.setLayout(flowLayout);
+		pnlBall5.setLayout(flowLayout);
 
-		
-
-		    // 각 패널에 이미지 추가
-		    for (JLabel registeredLabel : registeredLabels) {
-		        if (pnlBall1.getComponentCount() <= 5) {
-		            pnlBall1.add(registeredLabel);
-		        } else if (pnlBall2.getComponentCount() <= 5) {
-		            pnlBall2.add(registeredLabel);
-		        } else if (pnlBall3.getComponentCount() <= 5) {
-		            pnlBall3.add(registeredLabel);
-		        } else if (pnlBall4.getComponentCount() <= 5) {
-		            pnlBall4.add(registeredLabel);
-		        } else if (pnlBall5.getComponentCount() <= 5) {
-		            pnlBall5.add(registeredLabel);
-		        }
-		    }
-
-		    pnlBall1.revalidate();
-		    pnlBall1.repaint();
-		    pnlBall2.revalidate();
-		    pnlBall2.repaint();
-		    pnlBall3.revalidate();
-		    pnlBall3.repaint();
-		    pnlBall4.revalidate();
-		    pnlBall4.repaint();
-		    pnlBall5.revalidate();
-		    pnlBall5.repaint();
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
+					int number = Integer.parseInt(lottoNumbers[i][j].getText());
+					String file = "ball_" + number + ".png";
+					ballIcon = new ImageIcon(file);
+					lbl = new JLabel(ballIcon);
+					registeredLabels.add(lbl);
+				}
+			}
 		}
-	
+
+		// 각 패널에 이미지 추가
+		for (JLabel registeredLabel : registeredLabels) {
+			if (pnlBall1.getComponentCount() <= 5) {
+				pnlBall1.add(registeredLabel);
+			} else if (pnlBall2.getComponentCount() <= 5) {
+				pnlBall2.add(registeredLabel);
+			} else if (pnlBall3.getComponentCount() <= 5) {
+				pnlBall3.add(registeredLabel);
+			} else if (pnlBall4.getComponentCount() <= 5) {
+				pnlBall4.add(registeredLabel);
+			} else if (pnlBall5.getComponentCount() <= 5) {
+				pnlBall5.add(registeredLabel);
+			}
+		}
+
+		pnlBall1.revalidate();
+		pnlBall1.repaint();
+		pnlBall2.revalidate();
+		pnlBall2.repaint();
+		pnlBall3.revalidate();
+		pnlBall3.repaint();
+		pnlBall4.revalidate();
+		pnlBall4.repaint();
+		pnlBall5.revalidate();
+		pnlBall5.repaint();
+	}
+//	
 
 	private void showGUI() {
 		setSize(1000, 600);
@@ -447,6 +454,82 @@ public class Purchase extends JFrame {
 		}
 	}
 
+	class PurchaseDialog extends JDialog {
+		public PurchaseDialog(Purchase main) {
+			super(main);
+
+			setModal(true);
+
+			JPanel pnl = new JPanel();
+			JLabel lbl = new JLabel("구매완료");
+			JButton btn = new JButton("뒤로가기");
+
+			pnl.add(lbl);
+			pnl.add(btn);
+
+			setSize(200, 100);
+			setLocationRelativeTo(main);
+
+			add(pnl);
+
+			addWindowListener(new WindowAdapter() {
+
+				@Override
+				public void windowClosing(WindowEvent e) {
+					btnNewButton_1.setEnabled(true);
+				}
+
+			});
+
+			btn.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					btnNewButton_1.setEnabled(true);
+
+				}
+			});
+		}
+	}
+	class PurchaseDialog2 extends JDialog {
+		public PurchaseDialog2(Purchase main) {
+			super(main);
+
+			setModal(true);
+
+			JPanel pnl = new JPanel();
+			JLabel lbl = new JLabel("등록된 번호가 없습니다.");
+			JButton btn = new JButton("뒤로가기");
+
+			pnl.add(lbl);
+			pnl.add(btn);
+
+			setSize(200, 100);
+			setLocationRelativeTo(main);
+
+			add(pnl);
+
+			addWindowListener(new WindowAdapter() {
+
+				@Override
+				public void windowClosing(WindowEvent e) {
+					btnNewButton_1.setEnabled(true);
+				}
+
+			});
+
+			btn.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					btnNewButton_1.setEnabled(true);
+
+				}
+			});
+		}
+	}
 	public static void main(String[] args) {
 		new Purchase();
 	}
