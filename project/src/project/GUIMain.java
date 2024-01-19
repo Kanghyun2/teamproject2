@@ -86,7 +86,7 @@ public class GUIMain extends JFrame {
         getContentPane().add(panel);
 		
         
-        String gifFilePath = "D:/kanghyun/teamproject2/project/src/테스트1.gif";
+        String gifFilePath = "테스트1.gif";
         ImageIcon imageIcon = new ImageIcon(gifFilePath);
         Image image = imageIcon.getImage().getScaledInstance(982, 300, Image.SCALE_DEFAULT); // 300x200 크기로 조정
         
@@ -102,7 +102,7 @@ public class GUIMain extends JFrame {
         sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -75, SpringLayout.SOUTH, panel);
         sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -637, SpringLayout.EAST, panel);
         btnNewButton.setBackground(Color.WHITE);
-        btnNewButton.setIcon(new ImageIcon("C:\\Users\\GGG\\Desktop\\새 폴더\\button.png"));
+        btnNewButton.setIcon(new ImageIcon("button.png"));
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton);
 		
@@ -112,7 +112,7 @@ public class GUIMain extends JFrame {
 		
 		btnNewButton_1 = new JButton("");
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_1, 39, SpringLayout.EAST, btnNewButton);
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\GGG\\Desktop\\새 폴더\\button2.png"));
+		btnNewButton_1.setIcon(new ImageIcon("button2.png"));
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 386, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -75, SpringLayout.SOUTH, panel);
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
@@ -126,7 +126,7 @@ public class GUIMain extends JFrame {
 		btnNewButton_2 = new JButton("");
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton_1, -50, SpringLayout.WEST, btnNewButton_2);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton_2, -23, SpringLayout.EAST, panel);
-		btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\GGG\\Desktop\\새 폴더\\button3.png"));
+		btnNewButton_2.setIcon(new ImageIcon("button3.png"));
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_2, 676, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_2, 86, SpringLayout.SOUTH, gifLabel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_2, -75, SpringLayout.SOUTH, panel);
