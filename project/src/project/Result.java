@@ -11,7 +11,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -23,7 +25,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import javax.swing.SwingUtilities;
 
 public class Result extends JFrame {
 	private JTextField textField;
@@ -35,6 +36,8 @@ public class Result extends JFrame {
 	protected ArrayList<Integer> keysList;
 	protected JLabel[] imageLabels;
 	protected TreeMap<Integer, String> imageMap;
+	protected int icon;
+	private String imageList;
 	protected static JLabel lblNewLabel_9;
 	static JPanel panel_2;
 
@@ -83,20 +86,99 @@ public class Result extends JFrame {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					int index = combo.getSelectedIndex();
 
-					if (index == 0) {
+					if (index == 0 || index == 1) {
 						textField.setText("");
 						lblNewLabel_9.setText("");
-					} else if (index == 1) {
-						textField.setText("");
-						lblNewLabel_9.setText("");
+						panel_2.removeAll();
+						panel_2.revalidate();
+						panel_2.repaint();
+
 					} else if (index == 2) {
+						lblNewLabel_9.setText("");
 						textField.setText("2023.08.16");
-						lblNewLabel_9.setText("5 10 12 22 34 41 + 42");
+						TreeMap<Integer, String> imageMap3 = new TreeMap<>();
+						imageMap3.put(4, "ball_4.png");
+						imageMap3.put(5, "ball_5.png");
+						imageMap3.put(10, "ball_10.png");
+						imageMap3.put(12, "ball_12.png");
+						imageMap3.put(22, "ball_22.png");
+						imageMap3.put(34, "ball_34.png");
+						imageMap3.put(41, "ball_41.png");
+						List<Integer> keysList = new ArrayList<>(imageMap3.keySet());
+						for (int j = 0; j < 8; j++) {
+							if (j == 6) {
+								imageLabels[j].setText("+");
+							} else if (j <= 5) {
+								imageList = imageMap3.get(keysList.get(j));
+								ImageIcon icon = new ImageIcon(imageList);
+								imageLabels[j].setIcon(icon);
+							} else {
+								imageList = imageMap3.get(keysList.get(6));
+								ImageIcon icon = new ImageIcon(imageList);
+								imageLabels[j].setIcon(icon);
+							}
+							panel_2.add(imageLabels[j]);
+						}
+						panel_2.revalidate();
+						panel_2.repaint();
+
 					} else if (index == 3) {
+						lblNewLabel_9.setText("");
 						textField.setText("2024.01.11");
-						lblNewLabel_9.setText("2 12 19 21 33 36 + 40");
+
+						TreeMap<Integer, String> imageMap2 = new TreeMap<>();
+						imageMap2.put(2, "ball_2.png");
+						imageMap2.put(11, "ball_11.png");
+						imageMap2.put(12, "ball_12.png");
+						imageMap2.put(19, "ball_19.png");
+						imageMap2.put(21, "ball_21.png");
+						imageMap2.put(33, "ball_33.png");
+						imageMap2.put(36, "ball_36.png");
+						List<Integer> keysList = new ArrayList<>(imageMap2.keySet());
+						for (int j = 0; j < 8; j++) {
+							if (j == 6) {
+								imageLabels[j].setText("+");
+							} else if (j <= 5) {
+								imageList = imageMap2.get(keysList.get(j));
+								ImageIcon icon = new ImageIcon(imageList);
+								imageLabels[j].setIcon(icon);
+							} else {
+								imageList = imageMap2.get(keysList.get(6));
+								ImageIcon icon = new ImageIcon(imageList);
+								imageLabels[j].setIcon(icon);
+							}
+							panel_2.add(imageLabels[j]);
+						}
+						panel_2.revalidate();
+						panel_2.repaint();
+
 					} else if (index == 4) {
-						textField.setText("2024.01.16");
+						lblNewLabel_9.setText("");
+						textField.setText("2024.01.25");
+
+						TreeMap<Integer, String> shuffledTreeMap = new TreeMap<>();
+						for (Integer key : keysList) {
+							shuffledTreeMap.put(key, imageMap.get(key));
+						}
+
+						List<Integer> selectedNumber = keysList.subList(0, 8);
+						Collections.sort(selectedNumber);
+
+						StringBuilder result = new StringBuilder();
+
+						for (int i = 0; i < 8; i++) {
+							if (i == 6) {
+								imageLabels[i].setText("+");
+							} else {
+								String imageList = shuffledTreeMap.get(selectedNumber.get(i));
+								ImageIcon icon = new ImageIcon(imageList);
+								imageLabels[i].setIcon(icon);
+							}
+							panel_2.add(imageLabels[i]);
+
+						}
+						panel_2.revalidate();
+						panel_2.repaint();
 					}
 
 				}
@@ -193,8 +275,6 @@ public class Result extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, 156, SpringLayout.SOUTH, textField);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -10, SpringLayout.EAST, panel);
 		panel.add(panel_2);
-//		SpringLayout sl_panel_2 = new SpringLayout();
-//		panel_2.setLayout(sl_panel_2);
 
 		lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 21));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH, getContentPane());
@@ -204,10 +284,6 @@ public class Result extends JFrame {
 		getContentPane().add(lblNewLabel_6);
 
 		lblNewLabel_9 = new JLabel();
-//		sl_panel_2.putConstraint(SpringLayout.NORTH, lblNewLabel_9, 10, SpringLayout.NORTH, panel_2);
-//		sl_panel_2.putConstraint(SpringLayout.WEST, lblNewLabel_9, 10, SpringLayout.WEST, panel_2);
-//		sl_panel_2.putConstraint(SpringLayout.SOUTH, lblNewLabel_9, 109, SpringLayout.NORTH, panel_2);
-//		sl_panel_2.putConstraint(SpringLayout.EAST, lblNewLabel_9, 358, SpringLayout.WEST, panel_2);
 		panel_2.add(lblNewLabel_9);
 
 		imageMap = new TreeMap<>();
@@ -261,8 +337,8 @@ public class Result extends JFrame {
 
 		Collections.shuffle(keysList);
 
-		imageLabels = new JLabel[6];
-		for (int i = 0; i < 6; i++) {
+		imageLabels = new JLabel[8];
+		for (int i = 0; i < 8; i++) {
 			imageLabels[i] = new JLabel();
 		}
 
@@ -310,26 +386,34 @@ public class Result extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		
+		System.out.println("dd");
+	}
+
+	protected JLabel textField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected JLabel lblNewLabel_9() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected JLabel panel_2() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	protected void setLayout(Panel panel) {
-		// TODO Auto-generated method stub
 
 	}
 
 	protected void getLayout(FlowLayout flowLayout) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public static void main(String[] args) {
-		// SwingUtilities.invokeLater(new Runnable() {
-		// @Override
-		// public void run() {
 		new Result();
 
-		// }
-		// });
 	}
 }

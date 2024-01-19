@@ -2,6 +2,7 @@ package project;
 
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -80,8 +81,8 @@ public class ImageDisplayApp extends JFrame {
 
 		Collections.shuffle(keysList);
 
-		imageLabels = new JLabel[6];
-		for (int i = 0; i < 6; i++) {
+		imageLabels = new JLabel[8];
+		for (int i = 0; i < 8; i++) {
 			imageLabels[i] = new JLabel();
 		}
 
@@ -97,7 +98,7 @@ public class ImageDisplayApp extends JFrame {
 		setLayout(new FlowLayout());
 		add(new JLabel("당첨 번호를 확인하세요"));
 		add(displayButton);
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 8; i++) {
 			add(imageLabels[i]);
 		}
 
@@ -112,20 +113,18 @@ public class ImageDisplayApp extends JFrame {
 			shuffledTreeMap.put(key, imageMap.get(key));
 		}
 
-		List<Integer> selectedNumber = keysList.subList(0, 6);
-
+		List<Integer> selectedNumber = keysList.subList(0, 8);
 		Collections.sort(selectedNumber);
 
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < 6; i++) {
-			String imageList = shuffledTreeMap.get(selectedNumber.get(i));
-			ImageIcon icon = new ImageIcon(imageList);
-			imageLabels[i].setIcon(icon);
-
-			// result.append(selectedNumber.get(i)).append(" ");
-
+		for (int i = 0; i < 8; i++) {
+			if (i == 6) {
+				imageLabels[i].setText("+");
+			} else {
+				String imageList = shuffledTreeMap.get(selectedNumber.get(i));
+				ImageIcon icon = new ImageIcon(imageList);
+				imageLabels[i].setIcon(icon);
+			}
 		}
-		// Result.lblNewLabel_9.setText(result.toString());
 	}
 
 	public static void main(String[] args) {
