@@ -82,7 +82,7 @@ public class GUIMain extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-        add(panel);
+        getContentPane().add(panel);
 		
         
         String gifFilePath = "D:/kanghyun/teamproject2/project/src/테스트1.gif";
@@ -95,6 +95,8 @@ public class GUIMain extends JFrame {
         
         
         btnNewButton = new JButton("구매");
+        btnNewButton.setBackground(Color.WHITE);
+        btnNewButton.setIcon(new ImageIcon("C:\\Users\\GGG\\Downloads\\button (2) (1) (1).png"));
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 77, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -75, SpringLayout.SOUTH, panel);
@@ -103,19 +105,19 @@ public class GUIMain extends JFrame {
 		panel.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("당첨 결과");
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 0, SpringLayout.NORTH, btnNewButton);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 337, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_1, 57, SpringLayout.EAST, btnNewButton);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 0, SpringLayout.SOUTH, btnNewButton);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_1, -75, SpringLayout.SOUTH, panel);
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("구매 내역");
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton_1, -55, SpringLayout.WEST, btnNewButton_2);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_2, 337, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_2, -75, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton_2, 673, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton_2, -56, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton_1, -55, SpringLayout.WEST, btnNewButton_2);
 		btnNewButton_2.setFont(new Font("굴림", Font.PLAIN, 30));
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton_2, 0, SpringLayout.NORTH, btnNewButton);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton_2, 0, SpringLayout.SOUTH, btnNewButton);
 		panel.add(btnNewButton_2);
 	}
 }
