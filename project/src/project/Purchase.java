@@ -44,7 +44,7 @@ public class Purchase extends JFrame {
 	private JButton btnDel4;
 	private JButton btnDel5;
 	private List<JLabel> registeredLabels;
-	
+	private int key = 1;
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -189,6 +189,7 @@ public class Purchase extends JFrame {
 		        } else {
 		        	PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
 	                dialog.setVisible(true);
+	                PurchaseHistory.purchaseAdd();
 		        }
 		    }
 		});
@@ -380,11 +381,13 @@ public class Purchase extends JFrame {
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
 					registeredLabels.add(lbl);
+					
 					showBallselectedCount++;
 				}
 			}
 		}
-
+		PurchaseHistory.pnlpurchaseNumber.put(key, registeredLabels);
+		key++;
 		// 각 패널에 이미지 추가
 		if (showBallselectedCount >= 6) {
 		for (JLabel registeredLabel : registeredLabels) {
