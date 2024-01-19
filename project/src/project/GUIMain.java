@@ -85,10 +85,14 @@ public class GUIMain extends JFrame {
         add(panel);
 		
         
-        String gifFilePath = "C:\\Users\\GGG\\Desktop\\배경테스트1.gif";
-        JLabel gifLabel = new JLabel(new ImageIcon(gifFilePath));
-        add(gifLabel);
-//        setComponentZOrder(panel, 0);
+        String gifFilePath = "D:/kanghyun/teamproject2/project/src/테스트1.gif";
+        ImageIcon imageIcon = new ImageIcon(gifFilePath);
+        Image image = imageIcon.getImage().getScaledInstance(1000, 600, Image.SCALE_DEFAULT); // 300x200 크기로 조정
+        
+        JLabel gifLabel = new JLabel(new ImageIcon(image));
+        panel.add(gifLabel);
+        setComponentZOrder(panel, 0);
+        
         
         btnNewButton = new JButton("구매");
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 337, SpringLayout.NORTH, panel);
