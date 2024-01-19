@@ -1,6 +1,7 @@
 package project;
 
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Panel;
@@ -11,9 +12,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -26,9 +25,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class Result extends JFrame {
+public class Result<invalid> extends JFrame {
+//	protected static final String lblNewLabel_10 = null;
+	protected static final String panel_3 = null;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -40,6 +40,13 @@ public class Result extends JFrame {
 	private String imageList;
 	protected static JLabel lblNewLabel_9;
 	static JPanel panel_2;
+	static JLabel lblNewLabel_10;
+//	private JPanel panel_3, panel_3, pnlBall3, pnlBall4, pnlBall5;
+	protected static List<JLabel> resultregisteredLabels;
+	private invalid[][] lottoNumbers;
+	private ImageIcon ballIcon;
+	private JLabel lbl;
+	private FlowLayout flowLayout;
 
 	public Result() {
 
@@ -233,38 +240,76 @@ public class Result extends JFrame {
 		panel_1.setLayout(sl_panel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("당첨 결과");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 5, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 180, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 10, SpringLayout.NORTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_2, 10, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("나의 번호");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 46, SpringLayout.SOUTH, lblNewLabel_2);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 0, SpringLayout.WEST, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 0, SpringLayout.NORTH, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 116, SpringLayout.EAST, lblNewLabel_2);
 		panel_1.add(lblNewLabel_3);
 
-		textField_1 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_1, 6, SpringLayout.SOUTH, lblNewLabel_3);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_1, 122, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_1, 281, SpringLayout.WEST, panel_1);
-		textField_1.setText("00 00 00 00 00 00 + 00");
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-
 		JLabel lblNewLabel_4 = new JLabel("나의 등수");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 51, SpringLayout.SOUTH, textField_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_4, 0, SpringLayout.WEST, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_4, -77, SpringLayout.EAST, panel_1);
 		panel_1.add(lblNewLabel_4);
 
 		textField_2 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_2, 6, SpringLayout.SOUTH, lblNewLabel_4);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_2, 146, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, -6, SpringLayout.NORTH, textField_2);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_2, -10, SpringLayout.SOUTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_2, -49, SpringLayout.EAST, panel_1);
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("등");
+		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 3, SpringLayout.NORTH, textField_2);
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_5, 6, SpringLayout.EAST, textField_2);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_5, 0, SpringLayout.SOUTH, textField_2);
 		panel_1.add(lblNewLabel_5);
+
+		JPanel panel_3 = new JPanel();
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_3, 17, SpringLayout.SOUTH, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_3, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, lblNewLabel_4);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, -10, SpringLayout.EAST, panel_1);
+		panel_1.add(panel_3);
+
+		JLabel lblNewLabel_10 = new JLabel("");
+		panel_3.add(lblNewLabel_10);
+
+		flowLayout = new FlowLayout(FlowLayout.LEFT);
+		resultregisteredLabels = new ArrayList<>();
+		int showBallselectedCount = 0;
+		panel_3.setLayout(flowLayout);
+//		pnlBall2.setLayout(flowLayout);
+//		pnlBall3.setLayout(flowLayout);
+//		pnlBall4.setLayout(flowLayout);
+//		pnlBall5.setLayout(flowLayout);
+
+		if (showBallselectedCount >= 6) {
+			for (JLabel registeredLabel : resultregisteredLabels) {
+				if (panel_3.getComponentCount() <= 5) {
+					panel_3.add(registeredLabel);
+				} else if (panel_3.getComponentCount() <= 5) {
+					panel_3.add(registeredLabel);
+				} else if (panel_3.getComponentCount() <= 5) {
+					panel_3.add(registeredLabel);
+				} else if (panel_3.getComponentCount() <= 5) {
+					panel_3.add(registeredLabel);
+				} else if (panel_3.getComponentCount() <= 5) {
+					panel_3.add(registeredLabel);
+				}
+			}
+		}
+
+		panel_3.revalidate();
+		panel_3.repaint();
+//		panel_3.revalidate();
+//		panel_3.repaint();
+//		pnlBall3.revalidate();
+//		pnlBall3.repaint();
+//		pnlBall4.revalidate();
+//		pnlBall4.repaint();
+//		pnlBall5.revalidate();
+//		pnlBall5.repaint();
 
 		JLabel lblNewLabel_6 = new JLabel("당첨 결과");
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
@@ -342,51 +387,9 @@ public class Result extends JFrame {
 			imageLabels[i] = new JLabel();
 		}
 
-		JButton 당첨번호확인버튼 = new JButton("당첨 번호 확인");
-		sl_panel.putConstraint(SpringLayout.NORTH, 당첨번호확인버튼, 4, SpringLayout.SOUTH, panel_2);
-		sl_panel.putConstraint(SpringLayout.EAST, 당첨번호확인버튼, -10, SpringLayout.EAST, panel);
-
-		panel.add(당첨번호확인버튼);
-
-		당첨번호확인버튼.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				PurchaseHistory.roundAdd();
-				TreeMap<Integer, String> shuffledTreeMap = new TreeMap<>();
-				for (Integer key : keysList) {
-					shuffledTreeMap.put(key, imageMap.get(key));
-				}
-
-				List<Integer> selectedNumber = keysList.subList(0, 6);
-
-				Collections.sort(selectedNumber);
-
-				StringBuilder result = new StringBuilder();
-
-				// System.out.println("맵" + shuffledTreeMap);
-				// System.out.println("리스트" + selectedNumber);
-
-				for (int i = 0; i < 6; i++) {
-					String imageList = shuffledTreeMap.get(selectedNumber.get(i));
-					ImageIcon icon = new ImageIcon(imageList);
-					imageLabels[i].setIcon(icon);
-					panel_2.add(imageLabels[i]);
-
-					// result.append(selectedNumber.get(i)).append(" ");
-				}
-				// System.out.println(panel_2);
-				// Result.lblNewLabel_9.setText(result.toString());
-
-				panel_2.revalidate();
-				panel_2.repaint();
-
-			}
-		});
-
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		System.out.println("dd");
 	}
 
 	protected JLabel textField() {
@@ -404,6 +407,11 @@ public class Result extends JFrame {
 		return null;
 	}
 
+	protected JLabel panel_3(Object lblNewLabel_102) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	protected void setLayout(Panel panel) {
 
 	}
@@ -412,8 +420,14 @@ public class Result extends JFrame {
 
 	}
 
+	public static void lblNewLabel_10(List<JLabel> registeredLabels) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public static void main(String[] args) {
 		new Result();
 
 	}
+
 }

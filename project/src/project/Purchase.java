@@ -44,7 +44,9 @@ public class Purchase extends JFrame {
 	private JButton btnDel4;
 	private JButton btnDel5;
 	private List<JLabel> registeredLabels;
-	
+	protected Object flowLayout;
+	protected Object lblNewLabel_10;
+
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -52,9 +54,7 @@ public class Purchase extends JFrame {
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-		
-	
-		
+
 		int rows = 7; // 행
 		int cols = 7; // 열
 		int checkboxMargin = 10; // 버튼 간격
@@ -182,15 +182,18 @@ public class Purchase extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-		        if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0 && pnlBall3.getComponentCount() == 0
-		        		&& pnlBall4.getComponentCount() == 0 && pnlBall5.getComponentCount() == 0) {
-		        	PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
-	                dialog.setVisible(true);
-		        } else {
-		        	PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
-	                dialog.setVisible(true);
-		        }
-		    }
+				if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0
+						&& pnlBall3.getComponentCount() == 0 && pnlBall4.getComponentCount() == 0
+						&& pnlBall5.getComponentCount() == 0) {
+					PurchaseDialog2 dialog = new PurchaseDialog2(Purchase.this);
+					dialog.setVisible(true);
+				} else {
+					PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
+					dialog.setVisible(true);
+				}
+
+			}
+
 		});
 		pnl.add(btnNewButton_2);
 
@@ -379,6 +382,7 @@ public class Purchase extends JFrame {
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
+					// Result.resultregisteredLabels.add(lbl);
 					registeredLabels.add(lbl);
 					showBallselectedCount++;
 				}
@@ -387,19 +391,19 @@ public class Purchase extends JFrame {
 
 		// 각 패널에 이미지 추가
 		if (showBallselectedCount >= 6) {
-		for (JLabel registeredLabel : registeredLabels) {
-			if (pnlBall1.getComponentCount() <= 5) {
-				pnlBall1.add(registeredLabel);
-			} else if (pnlBall2.getComponentCount() <= 5) {
-				pnlBall2.add(registeredLabel);
-			} else if (pnlBall3.getComponentCount() <= 5) {
-				pnlBall3.add(registeredLabel);
-			} else if (pnlBall4.getComponentCount() <= 5) {
-				pnlBall4.add(registeredLabel);
-			} else if (pnlBall5.getComponentCount() <= 5) {
-				pnlBall5.add(registeredLabel);
+			for (JLabel registeredLabel : registeredLabels) {
+				if (pnlBall1.getComponentCount() <= 5) {
+					pnlBall1.add(registeredLabel);
+				} else if (pnlBall2.getComponentCount() <= 5) {
+					pnlBall2.add(registeredLabel);
+				} else if (pnlBall3.getComponentCount() <= 5) {
+					pnlBall3.add(registeredLabel);
+				} else if (pnlBall4.getComponentCount() <= 5) {
+					pnlBall4.add(registeredLabel);
+				} else if (pnlBall5.getComponentCount() <= 5) {
+					pnlBall5.add(registeredLabel);
+				}
 			}
-		}
 		}
 
 		pnlBall1.revalidate();
@@ -413,7 +417,6 @@ public class Purchase extends JFrame {
 		pnlBall5.revalidate();
 		pnlBall5.repaint();
 	}
-//	
 
 	private void showGUI() {
 		setSize(1000, 600);
