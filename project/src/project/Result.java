@@ -310,6 +310,7 @@ public class Result extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		PurchaseHistory.roundAdd();
 	}
 
 	protected void setLayout(Panel panel) {
