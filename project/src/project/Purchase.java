@@ -46,7 +46,6 @@ public class Purchase extends JFrame {
 	private List<JLabel> registeredLabels;
 	private int rows = 7; // 행
 	private int cols = 7; // 열
-	private int checkboxMargin = 10; // 버튼 간격
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -55,6 +54,7 @@ public class Purchase extends JFrame {
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
 
+		int checkboxMargin = 10; // 버튼 간격
 
 		ImageIcon[][] originalIcons = new ImageIcon[rows][cols];
 		lottoNumbers = new JToggleButton[rows][cols];
@@ -64,7 +64,6 @@ public class Purchase extends JFrame {
 			int col = i % cols;
 			
 			ImageIcon toggleIcon = new ImageIcon("num" + (i + 1) + ".png");
-			
 			lottoNumbers[row][col] = new JToggleButton();
 			lottoNumbers[row][col].setIcon(toggleIcon);
 			lottoNumbers[row][col].setText(Integer.toString(i + 1));
@@ -261,6 +260,12 @@ public class Purchase extends JFrame {
 				pnlBall1.removeAll();
 				pnlBall1.revalidate();
 				pnlBall1.repaint();
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.remove(0);
+//				registeredLabels.
 
 			}
 		});
@@ -433,6 +438,7 @@ public class Purchase extends JFrame {
 		pnlBall5.revalidate();
 		pnlBall5.repaint();
 	}
+//	
 
 	private void showGUI() {
 		setSize(1000, 600);
