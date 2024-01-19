@@ -60,8 +60,17 @@ public class Purchase extends JFrame {
 		pnl.setLayout(springLayout);
 
 		
-// 1. 1~6개의 번호만 등록에서 6개의 번호만 등록하게 변경 2.판넬에 라벨추가해서 이미지 추가 했으나 다른 버튼은 뜨는데 토글버튼들 안뜸 뜨게해도 몇개만 뜸
 		
+//       수정설명할것
+//       오류 몇개 수정 
+//		 showBall 수정
+//		 버튼 누를때 값이 계속 0 으로 뜨는 이유는 모르겠음 showBall 카운트 필드화 해서  오류 메세지 1~6개의 번호만 등록에서 6개의 번호만 등록하게 변경
+//		 이미지 밀린거 텍스트 커맨드로 바꿔서 이미지 크기 맞춤
+//		 자동번호 돌렸을때 이미지 이상한거 오류 수정
+//		 아직은 토글버튼 이미지 오류 발견X
+//		 미구현
+//		 라벨 이미지 토글버튼 렉걸린건지 다 안나옴
+// 		 해줘		
 		
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
