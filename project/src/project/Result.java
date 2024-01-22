@@ -1,7 +1,6 @@
 package project;
 
 import java.awt.Choice;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Panel;
@@ -15,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
+import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,12 +41,11 @@ public class Result<invalid> extends JFrame {
 	protected static JLabel lblNewLabel_9;
 	static JPanel panel_2;
 	static JLabel lblNewLabel_10;
-//	private JPanel panel_3, panel_3, pnlBall3, pnlBall4, pnlBall5;
 	protected static List<JLabel> resultregisteredLabels;
 	private invalid[][] lottoNumbers;
 	private ImageIcon ballIcon;
 	private JLabel lbl;
-	private FlowLayout flowLayout;
+	private AbstractButton model;
 
 	public Result() {
 
@@ -271,45 +270,79 @@ public class Result<invalid> extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, lblNewLabel_4);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, -10, SpringLayout.EAST, panel_1);
 		panel_1.add(panel_3);
+		SpringLayout sl_panel_3 = new SpringLayout();
+		panel_3.setLayout(sl_panel_3);
 
-		JLabel lblNewLabel_10 = new JLabel("");
-		panel_3.add(lblNewLabel_10);
+		JPanel panel_4 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4, 0, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4, -249, SpringLayout.SOUTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4, -10, SpringLayout.EAST, panel_3);
+		panel_3.add(panel_4);
 
-		flowLayout = new FlowLayout(FlowLayout.LEFT);
+		JPanel panel_4_1_1 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4_1_1, 6, SpringLayout.SOUTH, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4_1_1, 0, SpringLayout.WEST, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4_1_1, -189, SpringLayout.SOUTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4_1_1, -10, SpringLayout.EAST, panel_3);
+		panel_3.add(panel_4_1_1);
+
+		JPanel panel_4_1_1_1 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4_1_1_1, 6, SpringLayout.SOUTH, panel_4_1_1);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4_1_1_1, 0, SpringLayout.WEST, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1, -129, SpringLayout.SOUTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4_1_1_1, 0, SpringLayout.EAST, panel_4);
+		panel_3.add(panel_4_1_1_1);
+
+		JPanel panel_4_1_1_1_1 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4_1_1_1_1, 6, SpringLayout.SOUTH, panel_4_1_1_1);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1, 0, SpringLayout.WEST, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1_1, 60, SpringLayout.SOUTH, panel_4_1_1_1);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1, 0, SpringLayout.EAST, panel_4);
+		panel_3.add(panel_4_1_1_1_1);
+
+		JPanel panel_4_1_1_1_1_1 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4_1_1_1_1_1, 6, SpringLayout.SOUTH, panel_4_1_1_1_1);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1_1, 10, SpringLayout.WEST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1_1_1, 59, SpringLayout.SOUTH, panel_4_1_1_1_1);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1_1, 383, SpringLayout.WEST, panel_3);
+		panel_3.add(panel_4_1_1_1_1_1);
+
+		FlowLayout flowLayout = new FlowLayout();
 		resultregisteredLabels = new ArrayList<>();
 		int showBallselectedCount = 0;
-		panel_3.setLayout(flowLayout);
-//		pnlBall2.setLayout(flowLayout);
-//		pnlBall3.setLayout(flowLayout);
-//		pnlBall4.setLayout(flowLayout);
-//		pnlBall5.setLayout(flowLayout);
+		panel_4.setLayout(flowLayout);
+		panel_4_1_1.setLayout(flowLayout);
+		panel_4_1_1_1.setLayout(flowLayout);
+		panel_4_1_1_1_1.setLayout(flowLayout);
+		panel_4_1_1_1_1_1.setLayout(flowLayout);
 
 		if (showBallselectedCount >= 6) {
 			for (JLabel registeredLabel : resultregisteredLabels) {
-				if (panel_3.getComponentCount() <= 5) {
-					panel_3.add(registeredLabel);
-				} else if (panel_3.getComponentCount() <= 5) {
-					panel_3.add(registeredLabel);
-				} else if (panel_3.getComponentCount() <= 5) {
-					panel_3.add(registeredLabel);
-				} else if (panel_3.getComponentCount() <= 5) {
-					panel_3.add(registeredLabel);
-				} else if (panel_3.getComponentCount() <= 5) {
-					panel_3.add(registeredLabel);
+				if (panel_4.getComponentCount() <= 5) {
+					panel_4.add(registeredLabel);
+				} else if (panel_4_1_1.getComponentCount() <= 5) {
+					panel_4_1_1.add(registeredLabel);
+				} else if (panel_4_1_1_1.getComponentCount() <= 5) {
+					panel_4_1_1_1.add(registeredLabel);
+				} else if (panel_4_1_1_1_1.getComponentCount() <= 5) {
+					panel_4_1_1_1_1.add(registeredLabel);
+				} else if (panel_4_1_1_1_1_1.getComponentCount() <= 5) {
+					panel_4_1_1_1_1_1.add(registeredLabel);
 				}
 			}
 		}
 
-		panel_3.revalidate();
-		panel_3.repaint();
-//		panel_3.revalidate();
-//		panel_3.repaint();
-//		pnlBall3.revalidate();
-//		pnlBall3.repaint();
-//		pnlBall4.revalidate();
-//		pnlBall4.repaint();
-//		pnlBall5.revalidate();
-//		pnlBall5.repaint();
+		panel_4.revalidate();
+		panel_4.repaint();
+		panel_4_1_1.revalidate();
+		panel_4_1_1.repaint();
+		panel_4_1_1_1.revalidate();
+		panel_4_1_1_1.repaint();
+		panel_4_1_1_1_1.revalidate();
+		panel_4_1_1_1_1.repaint();
+		panel_4_1_1_1_1_1.revalidate();
+		panel_4_1_1_1_1_1.repaint();
 
 		JLabel lblNewLabel_6 = new JLabel("당첨 결과");
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
@@ -429,5 +462,4 @@ public class Result<invalid> extends JFrame {
 		new Result();
 
 	}
-
 }
