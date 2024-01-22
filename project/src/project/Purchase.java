@@ -1,8 +1,9 @@
 package project;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,24 +11,22 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.JToggleButton;
-import java.awt.Color;
-import java.awt.Component;
+import javax.swing.SpringLayout;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
@@ -55,7 +54,25 @@ public class Purchase extends JFrame {
 	public Purchase() {
 		setTitle("구매 화면");
 		getContentPane().setBackground(Color.WHITE);
-		pnl = new JPanel();
+		pnl = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				BufferedImage image = null;
+				Image scaledImage = null;
+				try {
+					image = ImageIO.read(new File("구매창배경.png"));
+					scaledImage =  image.getScaledInstance(970, 550, Image.SCALE_DEFAULT);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				g.drawImage(scaledImage, 0, 0, null);
+				
+				super.paintComponents(g);
+				
+				g.dispose();
+			}
+		};
 		pnl.setBackground(Color.WHITE);
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
@@ -71,12 +88,12 @@ public class Purchase extends JFrame {
 
 		originalIcons = new ImageIcon[rows][cols]; // 버튼 누르고 다시 눌럿을때 복구 사진 저장
 		lottoNumbers = new JToggleButton[rows][cols];
-		
-		String gifFilePath = "구매창배경.png";
-		ImageIcon imageIcon = new ImageIcon(gifFilePath);
-		Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
-		JLabel gifLabel = new JLabel(new ImageIcon(image));
-		gifLabel.setLayout(springLayout);
+//		
+//		String gifFilePath = "구매창배경.png";
+//		ImageIcon imageIcon = new ImageIcon(gifFilePath);
+//		Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
+//		JLabel gifLabel = new JLabel(new ImageIcon(image));
+//		gifLabel.setLayout(springLayout);
 //		JLayeredPane layeredPane = new JLayeredPane();
 //		layeredPane.setPreferredSize(new Dimension(970, 550));
 //		layeredPane.add(gifLabel, 0);
@@ -105,9 +122,9 @@ public class Purchase extends JFrame {
 		
 			
 //			layeredPane.add(lottoNumbers[row][col], 0);
-			gifLabel.setBackground(Color.WHITE);
-			pnl.add(gifLabel);
-			gifLabel.add(lottoNumbers[row][col]);
+//			gifLabel.setBackground(Color.WHITE);
+//			pnl.add(gifLabel);
+			pnl.add(lottoNumbers[row][col]);
 		
 			// 첫 번째 열은 왼쪽에 고정
 			if (col == 0) {
@@ -188,7 +205,7 @@ public class Purchase extends JFrame {
 		
 			springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 200, SpringLayout.NORTH, pnl);
 			springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 80, SpringLayout.WEST, pnl);
-			gifLabel.add(btnNewButton);
+			pnl.add(btnNewButton);
 			
 			btnNewButton_1 = new JButton("반 자동");
 			springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 38, SpringLayout.SOUTH, btnNewButton);
@@ -240,7 +257,7 @@ public class Purchase extends JFrame {
 					}
 				}
 			});
-			gifLabel.add(btnNewButton_1);
+			pnl.add(btnNewButton_1);
 
 			JButton btnNewButton_2 = new JButton("구매");
 			springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, -123, SpringLayout.EAST, pnl);
@@ -263,7 +280,7 @@ public class Purchase extends JFrame {
 					PurchaseHistory.pnlwinningNumber.clear();
 				}
 			});
-			gifLabel.add(btnNewButton_2);
+			pnl.add(btnNewButton_2);
 
 			JButton btnGoBack = new JButton("뒤로가기");
 			springLayout.putConstraint(SpringLayout.SOUTH, btnGoBack, -10, SpringLayout.SOUTH, pnl);
@@ -275,7 +292,7 @@ public class Purchase extends JFrame {
 					setVisible(false);
 				}
 			});
-			gifLabel.add(btnGoBack);
+			pnl.add(btnGoBack);
 
 			btnRegistration = new JButton("");
 			btnRegistration.setIcon(new ImageIcon("확인 버튼.png"));
@@ -296,7 +313,7 @@ public class Purchase extends JFrame {
 					}
 					
 			});
-			gifLabel.add(btnRegistration);
+			pnl.add(btnRegistration);
 
 			JButton btnNewButton_3 = new JButton("");
 			btnNewButton_3.setIcon(new ImageIcon("초기화.png"));
@@ -316,7 +333,7 @@ public class Purchase extends JFrame {
 					reset();
 				}
 			});
-			gifLabel.add(btnNewButton_3);
+			pnl.add(btnNewButton_3);
 
 			btnDel1 = new JButton("");
 			btnDel1.setIcon(new ImageIcon("삭제.png"));
@@ -333,7 +350,7 @@ public class Purchase extends JFrame {
 
 				}
 			});
-			gifLabel.add(btnDel1);
+			pnl.add(btnDel1);
 
 			btnDel2 = new JButton("");
 			btnDel2.setIcon(new ImageIcon("삭제.png"));
@@ -352,7 +369,7 @@ public class Purchase extends JFrame {
 					pnlBall2.repaint();
 				}
 			});
-			gifLabel.add(btnDel2);
+			pnl.add(btnDel2);
 
 			btnDel3 = new JButton("");
 			btnDel3.setIcon(new ImageIcon("삭제.png"));
@@ -369,7 +386,7 @@ public class Purchase extends JFrame {
 					pnlBall3.repaint();
 				}
 			});
-			gifLabel.add(btnDel3);
+			pnl.add(btnDel3);
 
 			btnDel4 = new JButton("");
 			btnDel4.setIcon(new ImageIcon("삭제.png"));
@@ -387,7 +404,7 @@ public class Purchase extends JFrame {
 					pnlBall4.repaint();
 				}
 			});
-			gifLabel.add(btnDel4);
+			pnl.add(btnDel4);
 
 			btnDel5 = new JButton("");
 			btnDel5.setIcon(new ImageIcon("삭제.png"));
@@ -404,7 +421,7 @@ public class Purchase extends JFrame {
 					pnlBall5.repaint();
 				}
 			});
-			gifLabel.add(btnDel5);
+			pnl.add(btnDel5);
 
 			pnlBall1 = new JPanel();
 			springLayout.putConstraint(SpringLayout.WEST, btnDel1, 18, SpringLayout.EAST, pnlBall1);
