@@ -1,21 +1,20 @@
 package project;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,12 +22,12 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.JToggleButton;
-import java.awt.Color;
-import java.awt.Component;
+import javax.swing.SpringLayout;
 
 public class Purchase extends JFrame {
+	protected static final Collection<JLabel> PN1 = null;
+	protected static final Collection<JLabel> PN2 = null;
 	private JToggleButton[][] lottoNumbers;
 //	private List<JLabel> registeredLabels = new ArrayList<>();
 	private JButton btnNewButton_1;
@@ -51,6 +50,15 @@ public class Purchase extends JFrame {
 	private int rows = 7; // 행
 	private int cols = 7; // 열
 	private int showBallselectedCount = 0;
+	protected String[] numberOfOneTwoThree;
+	private JLabel lbl1;
+	private JLabel lbl2;
+	private JLabel lbl3;
+	private Object comboBox;
+	private int index;
+	protected Map<Integer, List<JLabel>> pnlpurchasString;
+	protected Map<Integer, List<JLabel>> pnlpurchaseString;
+
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -59,8 +67,6 @@ public class Purchase extends JFrame {
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
 
-		
-		
 //       수정설명할것
 //       오류 몇개 수정 
 //		 showBall 수정
@@ -71,7 +77,7 @@ public class Purchase extends JFrame {
 //		 미구현
 //		 라벨 이미지 토글버튼 렉걸린건지 다 안나옴
 // 		 해줘		
-		
+
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
 //        Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
@@ -185,15 +191,15 @@ public class Purchase extends JFrame {
 			btnNewButton_1 = new JButton("반 자동");
 			springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 			btnNewButton_1.addActionListener(new ActionListener() {
-				
-				
+
 				public void actionPerformed(ActionEvent e) {
 					halfRandom();
 					if (showBallselectedCount < 6 || showBallselectedCount > 6) {
-				        InputDialog dialog = new InputDialog(Purchase.this);
-				        dialog.setVisible(true);
-				    }
+						InputDialog dialog = new InputDialog(Purchase.this);
+						dialog.setVisible(true);
+					}
 				}
+
 				public void halfRandom() {
 					List<JToggleButton> allButton = new ArrayList<>();
 					int selectedCount = 0;
@@ -249,7 +255,28 @@ public class Purchase extends JFrame {
 					} else {
 						PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
 						dialog.setVisible(true);
+						PurchaseHistory.purchaseAdd();
+						PurchaseHistory.pnlpurchaseNumber.put(PurchaseHistory.numberOfPurchases,
+								new ArrayList<>(PurchaseHistory.pnlwinningNumber));
+						PurchaseHistory.numberOfPurchases++;
+						Result.pnlpurchaseString.put("첫번째 장", new ArrayList<>(Result.purchaseNumber1));
+						List<JLabel> purchaseNumber1 = PN1.stream().limit(5) // 처음 5개 요소만 선택
+								.map(JLabel::new) // 각 문자열을 JLabel로 변환 (필요에 따라 이 부분을 조정해야 합니다)
+								.collect(Collectors.toList());
+
+						List<JLabel> purchaseNumber2 = PN2.stream().limit(5) // 처음 5개 요소만 선택
+								.map(JLabel::new) // 각 문자열을 JLabel로 변환 (필요에 따라 이 부분을 조정해야 합니다)
+								.collect(Collectors.toList());
+
+						pnlpurchasString.put("첫번째 장", purchaseNumber1);
+						pnlpurchaseString.put("두번째 장", purchaseNumber2);
+
+						Result.pnlpurchaseString.put("두번째 장", new ArrayList<>(Result.purchaseNumber2));
+						Result.pnlpurchaseString.put("세번째 장", new ArrayList<>(Result.purchaseNumber3));
+
 					}
+
+					PurchaseHistory.pnlwinningNumber.clear();
 				}
 			});
 			pnl.add(btnNewButton_2);
@@ -271,14 +298,14 @@ public class Purchase extends JFrame {
 			springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -122, SpringLayout.SOUTH, pnl);
 			btnRegistration.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					showBall();	
+					showBall();
 
 					if (showBallselectedCount < 6 || showBallselectedCount > 6) {
-					        InputDialog dialog = new InputDialog(Purchase.this);
-					        dialog.setVisible(true);
-					    }
+						InputDialog dialog = new InputDialog(Purchase.this);
+						dialog.setVisible(true);
 					}
-					
+				}
+
 			});
 			pnl.add(btnRegistration);
 
@@ -405,7 +432,6 @@ public class Purchase extends JFrame {
 
 			showGUI();
 		}
-//		setComponentZOrder(gifLabel, 0);
 	}
 
 	private void reset() {
@@ -428,18 +454,20 @@ public class Purchase extends JFrame {
 		pnlBall3.setLayout(flowLayout);
 		pnlBall4.setLayout(flowLayout);
 		pnlBall5.setLayout(flowLayout);
-		
+
 		showBallselectedCount = 0;
 
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
 					int number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
-//					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
 					registeredLabels.add(lbl);
+					PurchaseHistory.pnlwinningNumber.add(lbl);
+
+					Result.purchaseNumber1.add(lbl);
 
 					showBallselectedCount++;
 				}
@@ -474,7 +502,6 @@ public class Purchase extends JFrame {
 		pnlBall5.revalidate();
 		pnlBall5.repaint();
 	}
-//	
 
 	private void showGUI() {
 		setSize(1000, 600);

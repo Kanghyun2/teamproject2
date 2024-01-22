@@ -1,6 +1,7 @@
 package project;
 
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Panel;
@@ -28,11 +29,13 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 
-public class Result<invalid> extends JFrame {
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+
+public class Result extends JFrame {
 	protected static final String panel_3 = null;
 	protected static final Object List = null;
+	protected static final Object String = null;
 	private JTextField textField;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private ImageDisplayApp app;
@@ -49,10 +52,18 @@ public class Result<invalid> extends JFrame {
 	private JLabel lbl;
 	private AbstractButton model;
 	private FlowLayout flowLayout;
-	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>();
-	protected static Map<String, List<JLabel>> pnlpurchaseString = new HashMap<>();;
-
+	protected static List<JLabel> purchaseNumber1 = new ArrayList<>();
+	protected static List<JLabel> purchaseNumber2 = new ArrayList<>();
+	protected static List<JLabel> purchaseNumber3 = new ArrayList<>();
+	protected static Map<String, List<JLabel>> pnlpurchaseString = new HashMap<>();
 	private int showBallselectedCount;
+	protected static String numberOfOne = "첫번째 장";
+	protected static String numberOfTwo = "두번째 장";
+	protected static String numberOfThree = "세번째 장";
+	private JTextField textField_1;
+	protected Component lbl2;
+	protected int index;
+	protected Component lbl1;
 
 	public Result() {
 
@@ -189,7 +200,6 @@ public class Result<invalid> extends JFrame {
 						panel_2.revalidate();
 						panel_2.repaint();
 					}
-
 				}
 			}
 		});
@@ -208,6 +218,7 @@ public class Result<invalid> extends JFrame {
 		textField = new JTextField();
 		sl_panel.putConstraint(SpringLayout.NORTH, textField, 6, SpringLayout.SOUTH, combo);
 		sl_panel.putConstraint(SpringLayout.EAST, textField, -5, SpringLayout.EAST, combo);
+		textField.setEditable(false);
 		panel.add(textField);
 		textField.setColumns(10);
 
@@ -220,6 +231,7 @@ public class Result<invalid> extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, textField_3, -118, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, lblNewLabel);
 		panel.add(textField_3);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 
 		JLabel lblNewLabel_7 = new JLabel("총 당첨금액");
@@ -235,6 +247,7 @@ public class Result<invalid> extends JFrame {
 		textField_4 = new JTextField();
 		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 0, SpringLayout.SOUTH, lblNewLabel_8);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, lblNewLabel);
+		textField_4.setEditable(false);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		getContentPane().add(panel_1);
@@ -251,102 +264,98 @@ public class Result<invalid> extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 116, SpringLayout.EAST, lblNewLabel_2);
 		panel_1.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("나의 등수");
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_4, -77, SpringLayout.EAST, panel_1);
-		panel_1.add(lblNewLabel_4);
-
-		textField_2 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, -6, SpringLayout.NORTH, textField_2);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_2, -10, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_2, -49, SpringLayout.EAST, panel_1);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
-
-		JLabel lblNewLabel_5 = new JLabel("등");
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 3, SpringLayout.NORTH, textField_2);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_5, 6, SpringLayout.EAST, textField_2);
-		panel_1.add(lblNewLabel_5);
-
 		JPanel panel_4 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4, 22, SpringLayout.SOUTH, lblNewLabel_2);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4, -297, SpringLayout.SOUTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4, 403, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_4);
 
 		JPanel panel_4_1 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1, 105, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1, -196, SpringLayout.NORTH, lblNewLabel_4);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1, 9, SpringLayout.SOUTH, panel_4);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1, 0, SpringLayout.WEST, lblNewLabel_2);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1, -10, SpringLayout.EAST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_4_1);
 		panel_1.add(panel_4_1);
 
 		JPanel panel_4_1_1 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1, 6, SpringLayout.SOUTH, panel_4_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1, 0, SpringLayout.WEST, lblNewLabel_2);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1, 56, SpringLayout.SOUTH, panel_4_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1, 393, SpringLayout.WEST, lblNewLabel_2);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1, -10, SpringLayout.EAST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1, -6, SpringLayout.NORTH, panel_4_1_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1, 186, SpringLayout.NORTH, panel_1);
 		panel_1.add(panel_4_1_1);
 
 		JPanel panel_4_1_1_1 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1, 6, SpringLayout.SOUTH, panel_4_1_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1, 0, SpringLayout.WEST, lblNewLabel_2);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1, -134, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1, 0, SpringLayout.EAST, panel_4);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1, -10, SpringLayout.EAST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1, -6, SpringLayout.NORTH, panel_4_1_1_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1, 257, SpringLayout.NORTH, panel_1);
 		panel_1.add(panel_4_1_1_1);
 
 		JPanel panel_4_1_1_1_1 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1_1, 6, SpringLayout.SOUTH, panel_4_1_1_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1, 0, SpringLayout.WEST, lblNewLabel_2);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1_1, -24, SpringLayout.NORTH, lblNewLabel_4);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1, 403, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1, 10, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1, -10, SpringLayout.EAST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1, -6, SpringLayout.NORTH, panel_4_1_1_1_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1_1, 328, SpringLayout.NORTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1_1, -10, SpringLayout.SOUTH, panel_1);
 		panel_1.add(panel_4_1_1_1_1);
 
 		JComboBox<String> comboBox = new JComboBox<>();
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4, 6, SpringLayout.SOUTH, comboBox);
+		sl_panel_1.putConstraint(SpringLayout.WEST, comboBox, 54, SpringLayout.EAST, lblNewLabel_3);
+		sl_panel_1.putConstraint(SpringLayout.EAST, comboBox, -10, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, comboBox, -3, SpringLayout.NORTH, lblNewLabel_2);
-		sl_panel_1.putConstraint(SpringLayout.WEST, comboBox, 0, SpringLayout.WEST, lblNewLabel_4);
-		sl_panel_1.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, panel_4);
 		panel_1.add(comboBox);
 
 		String[] menus2 = new String[] { "구매 내역 보기", "-----", "첫번째 장", "두번째 장", "세번째 장" };
 		comboBox.setModel(new DefaultComboBoxModel<>(menus2));
 
-		comboBox.addItemListener(new ItemListener() {
+		comboBox.addActionListener(new ActionListener() {
 			@Override
-			public void itemStateChanged(ItemEvent e) {
-				panel_4.setLayout(flowLayout);
-				panel_4_1.setLayout(flowLayout);
-				panel_4_1_1.setLayout(flowLayout);
-				panel_4_1_1_1.setLayout(flowLayout);
-				panel_4_1_1_1_1.setLayout(flowLayout);
-
+			public void actionPerformed(ActionEvent e) {
 				String selectedValue = (String) comboBox.getSelectedItem();
 
-				for (JLabel registeredLabel : pnlpurchaseString.get(selectedValue)) {
-					if (panel_4.getComponentCount() <= 5) {
-						panel_4.add(registeredLabel);
-					} else if (panel_4_1.getComponentCount() <= 5) {
-						panel_4_1.add(registeredLabel);
-					} else if (panel_4_1_1.getComponentCount() <= 5) {
-						panel_4_1_1.add(registeredLabel);
-					} else if (panel_4_1_1_1.getComponentCount() <= 5) {
-						panel_4_1_1_1.add(registeredLabel);
-					} else if (panel_4_1_1_1_1.getComponentCount() <= 5) {
-						panel_4_1_1_1_1.add(registeredLabel);
-					}
-				}
+				if (selectedValue != null) {
 
-				panel_4.revalidate();
-				panel_4.repaint();
-				panel_4_1.revalidate();
-				panel_4_1.repaint();
-				panel_4_1_1.revalidate();
-				panel_4_1_1.repaint();
-				panel_4_1_1_1.revalidate();
-				panel_4_1_1_1.repaint();
-				panel_4_1_1_1_1.revalidate();
-				panel_4_1_1_1_1.repaint();
+					panel_4.removeAll();
+					panel_4_1.removeAll();
+					panel_4_1_1.removeAll();
+					panel_4_1_1_1.removeAll();
+					panel_4_1_1_1_1.removeAll();
+
+					for (String i : pnlpurchaseString.keySet()) {
+						if (i.equals(selectedValue)) {
+							pnlpurchaseString.get(i);
+							for (JLabel lbl : pnlpurchaseString.get(i)) {
+								if (panel_4.getComponentCount() <= 5) {
+									panel_4.add(lbl);
+								} else if (panel_4_1.getComponentCount() <= 5) {
+									panel_4_1.add(lbl);
+								} else if (panel_4_1_1.getComponentCount() <= 5) {
+									panel_4_1_1.add(lbl);
+								} else if (panel_4_1_1_1.getComponentCount() <= 5) {
+									panel_4_1_1_1.add(lbl);
+								} else if (panel_4_1_1_1_1.getComponentCount() <= 5) {
+									panel_4_1_1_1_1.add(lbl);
+								}
+							}
+						}
+					}
+
+					panel_4.revalidate();
+					panel_4.repaint();
+					panel_4_1.revalidate();
+					panel_4_1.repaint();
+					panel_4_1_1.revalidate();
+					panel_4_1_1.repaint();
+					panel_4_1_1_1.revalidate();
+					panel_4_1_1_1.repaint();
+					panel_4_1_1_1_1.revalidate();
+					panel_4_1_1_1_1.repaint();
+
+				} else if() {
+					
+				}
 			}
+
 		});
 
 		JLabel lblNewLabel_6 = new JLabel("당첨 결과");
@@ -361,9 +370,7 @@ public class Result<invalid> extends JFrame {
 		panel.add(panel_2);
 
 		lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 21));
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH,
-
-				getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 47, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_6, 44, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_6, 159, SpringLayout.WEST, getContentPane());
@@ -371,6 +378,18 @@ public class Result<invalid> extends JFrame {
 
 		lblNewLabel_9 = new JLabel();
 		panel_2.add(lblNewLabel_9);
+
+		JLabel lblNewLabel_4 = new JLabel("나의 등수");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 24, SpringLayout.SOUTH, lblNewLabel_8);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_4, 0, SpringLayout.EAST, lblNewLabel_7);
+		panel.add(lblNewLabel_4);
+
+		textField_1 = new JTextField();
+		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 0, SpringLayout.NORTH, lblNewLabel_4);
+		sl_panel.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, lblNewLabel);
+		textField_1.setColumns(10);
+		textField_1.setEditable(false);
+		panel.add(textField_1);
 
 		imageMap = new TreeMap<>();
 		imageMap.put(1, "ball_1.png");
@@ -464,10 +483,6 @@ public class Result<invalid> extends JFrame {
 	public static void lblNewLabel_10(List<JLabel> registeredLabels) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public static void purchaseNumberAdd(ArrayList<Integer> purchaseumber) {
-		purchaseNumber.add(purchaseumber);
 	}
 
 	public static void main(String[] args) {
