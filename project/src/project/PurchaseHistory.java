@@ -2,6 +2,7 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -29,7 +30,8 @@ public class PurchaseHistory extends JFrame {
 	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
 	protected static Vector<Integer> purchase = new Vector<>(); // 구매 리스트
 	protected static int index = 1; // 회차콤보박스
-	protected static int purchaseindex = 1; // 회차콤보박스
+	protected static int purchaseindex = 1; // 구매콤보박스
+	protected static int numberOfPurchases = 1; // 구매장수
 	protected static List<JLabel> pnlwinningNumber = new ArrayList<>();;
 	protected static Map<Integer,List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
 	protected static ArrayList<Integer> winningNumber = new ArrayList<>(); // 당첨번호
@@ -159,50 +161,55 @@ public class PurchaseHistory extends JFrame {
 		panel.add(panel_5);
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
-		comboBox_1.addItemListener(new ItemListener() {
+		comboBox_1.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        // 선택된 값 가져오기
+		        Integer selectedValue = (Integer) comboBox_1.getSelectedItem();
 
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				panel_1.setLayout(flowLayout);
-				panel_2.setLayout(flowLayout);
-				panel_3.setLayout(flowLayout);
-				panel_4.setLayout(flowLayout);
-				panel_5.setLayout(flowLayout);
-				
-				Integer selectedValue = (Integer) comboBox_1.getSelectedItem();
-				
-//				for (Integer i : pnlpurchaseNumber.keySet()) {
-//					
-//				}
-//				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
-			            for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
-			                if (panel_1.getComponentCount() <= 5) {
-			                    panel_1.add(registeredLabel);
-			                } else if (panel_2.getComponentCount() <= 5) {
-			                    panel_2.add(registeredLabel);
-			                } else if (panel_3.getComponentCount() <= 5) {
-			                    panel_3.add(registeredLabel);
-			                } else if (panel_4.getComponentCount() <= 5) {
-			                    panel_4.add(registeredLabel);
-			                } else if (panel_5.getComponentCount() <= 5) {
-			                    panel_5.add(registeredLabel);
-			                }
-			            }
-//			        }
-				 
-				panel_1.revalidate();
-				panel_1.repaint();
-				panel_2.revalidate();
-				panel_2.repaint();
-				panel_3.revalidate();
-				panel_3.repaint();
-				panel_4.revalidate();
-				panel_4.repaint();
-				panel_5.revalidate();
-				panel_5.repaint();
-			}
+		        // 선택된 값이 null이 아닐 때 처리
+		        if (selectedValue != null) {
+		            // 패널 내부의 모든 컴포넌트 제거
+		            panel_1.removeAll();
+		            panel_2.removeAll();
+		            panel_3.removeAll();
+		            panel_4.removeAll();
+		            panel_5.removeAll();
+
+		            // 선택된 값에 대한 처리
+		            for (Integer i : pnlpurchaseNumber.keySet()) {
+		                if (i.equals(selectedValue)) {
+		                	pnlpurchaseNumber.get(i);
+		                	for(JLabel lbl : pnlpurchaseNumber.get(i))
+		                        if (panel_1.getComponentCount() <= 5) {
+		                            panel_1.add(lbl);
+		                        } else if (panel_2.getComponentCount() <= 5) {
+		                            panel_2.add(lbl);
+		                        } else if (panel_3.getComponentCount() <= 5) {
+		                            panel_3.add(lbl);
+		                        } else if (panel_4.getComponentCount() <= 5) {
+		                            panel_4.add(lbl);
+		                        } else if (panel_5.getComponentCount() <= 5) {
+		                            panel_5.add(lbl);
+		                        
+		                    }
+		                }
+		            }
+
+		            // 패널 리레이아웃 갱신
+		            panel_1.revalidate();
+		            panel_1.repaint();
+		            panel_2.revalidate();
+		            panel_2.repaint();
+		            panel_3.revalidate();
+		            panel_3.repaint();
+		            panel_4.revalidate();
+		            panel_4.repaint();
+		            panel_5.revalidate();
+		            panel_5.repaint();
+		        }
+		    }
 		});
-
 	}
 
 	// 로또 당첨번호 저장 메소드

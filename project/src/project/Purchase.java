@@ -249,7 +249,12 @@ public class Purchase extends JFrame {
 					} else {
 						PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
 						dialog.setVisible(true);
+						PurchaseHistory.purchaseAdd();
+						PurchaseHistory.pnlpurchaseNumber.put(PurchaseHistory.numberOfPurchases, new ArrayList<>(PurchaseHistory.pnlwinningNumber));
+						PurchaseHistory.numberOfPurchases++;
 					}
+					
+					PurchaseHistory.pnlwinningNumber.clear();
 				}
 			});
 			pnl.add(btnNewButton_2);
@@ -440,7 +445,7 @@ public class Purchase extends JFrame {
 					ballIcon = new ImageIcon(file);
 					lbl = new JLabel(ballIcon);
 					registeredLabels.add(lbl);
-
+					PurchaseHistory.pnlwinningNumber.add(lbl);
 					showBallselectedCount++;
 				}
 			}
