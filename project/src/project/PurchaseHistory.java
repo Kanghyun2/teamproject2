@@ -173,23 +173,23 @@ public class PurchaseHistory extends JFrame {
 				
 //				for (Integer i : pnlpurchaseNumber.keySet()) {
 //					
-//				}
-				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
-			            for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
-			                if (panel_1.getComponentCount() <= 5) {
-			                    panel_1.add(registeredLabel);
-			                } else if (panel_2.getComponentCount() <= 5) {
-			                    panel_2.add(registeredLabel);
-			                } else if (panel_3.getComponentCount() <= 5) {
-			                    panel_3.add(registeredLabel);
-			                } else if (panel_4.getComponentCount() <= 5) {
-			                    panel_4.add(registeredLabel);
-			                } else if (panel_5.getComponentCount() <= 5) {
-			                    panel_5.add(registeredLabel);
-			                }
-			            }
-			        }
-				 
+////				}
+//				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
+//			            for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
+//			                if (panel_1.getComponentCount() <= 5) {
+//			                    panel_1.add(registeredLabel);
+//			                } else if (panel_2.getComponentCount() <= 5) {
+//			                    panel_2.add(registeredLabel);
+//			                } else if (panel_3.getComponentCount() <= 5) {
+//			                    panel_3.add(registeredLabel);
+//			                } else if (panel_4.getComponentCount() <= 5) {
+//			                    panel_4.add(registeredLabel);
+//			                } else if (panel_5.getComponentCount() <= 5) {
+//			                    panel_5.add(registeredLabel);
+//			                }
+//			            }
+//			        }
+//				 
 				panel_1.revalidate();
 				panel_1.repaint();
 				panel_2.revalidate();
