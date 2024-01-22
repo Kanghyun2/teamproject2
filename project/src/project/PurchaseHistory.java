@@ -31,13 +31,12 @@ public class PurchaseHistory extends JFrame {
 	protected static int index = 1; // 회차콤보박스
 	protected static int purchaseindex = 1; // 회차콤보박스
 	protected static List<JLabel> pnlwinningNumber = new ArrayList<>();;
-	protected static Map<Integer,List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
+	protected static Map<Integer, List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
 	protected static ArrayList<Integer> winningNumber = new ArrayList<>(); // 당첨번호
 	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
 	private JComboBox comboBox_1;
 	private FlowLayout flowLayout;
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -168,28 +167,23 @@ public class PurchaseHistory extends JFrame {
 				panel_3.setLayout(flowLayout);
 				panel_4.setLayout(flowLayout);
 				panel_5.setLayout(flowLayout);
-				
+
 				Integer selectedValue = (Integer) comboBox_1.getSelectedItem();
-				
-//				for (Integer i : pnlpurchaseNumber.keySet()) {
-//					
-//				}
-//				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
-			            for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
-			                if (panel_1.getComponentCount() <= 5) {
-			                    panel_1.add(registeredLabel);
-			                } else if (panel_2.getComponentCount() <= 5) {
-			                    panel_2.add(registeredLabel);
-			                } else if (panel_3.getComponentCount() <= 5) {
-			                    panel_3.add(registeredLabel);
-			                } else if (panel_4.getComponentCount() <= 5) {
-			                    panel_4.add(registeredLabel);
-			                } else if (panel_5.getComponentCount() <= 5) {
-			                    panel_5.add(registeredLabel);
-			                }
-			            }
-//			        }
-				 
+
+				for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
+					if (panel_1.getComponentCount() <= 5) {
+						panel_1.add(registeredLabel);
+					} else if (panel_2.getComponentCount() <= 5) {
+						panel_2.add(registeredLabel);
+					} else if (panel_3.getComponentCount() <= 5) {
+						panel_3.add(registeredLabel);
+					} else if (panel_4.getComponentCount() <= 5) {
+						panel_4.add(registeredLabel);
+					} else if (panel_5.getComponentCount() <= 5) {
+						panel_5.add(registeredLabel);
+					}
+				}
+
 				panel_1.revalidate();
 				panel_1.repaint();
 				panel_2.revalidate();
