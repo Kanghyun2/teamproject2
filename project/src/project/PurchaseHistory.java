@@ -24,18 +24,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
-	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
+//	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
 	protected static Vector<Integer> purchase = new Vector<>(); // 구매 리스트
-	protected static int index = 1; // 회차콤보박스
+//	protected static int index = 1; // 회차콤보박스
 	protected static int purchaseindex = 1; // 구매콤보박스
 	protected static int numberOfPurchases = 1; // 구매장수
 	protected static List<JLabel> pnlwinningNumber = new ArrayList<>();;
 	protected static Map<Integer,List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
-	protected static ArrayList<Integer> winningNumber = new ArrayList<>(); // 당첨번호
-	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
+//	protected static ArrayList<Integer> winningNumber = new ArrayList<>(); // 당첨번호
+//	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
 	private JComboBox comboBox_1;
 	private FlowLayout flowLayout;
 	
@@ -60,22 +61,33 @@ public class PurchaseHistory extends JFrame {
 	 * Create the frame.
 	 */
 	public PurchaseHistory() {
+		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
+		setTitle("로또 구매내역"); 
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
-		JButton btnNewButton = new JButton("뒤로가기");
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 695, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -61, SpringLayout.EAST, panel);
+		JButton btnNewButton = new JButton("");
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -83, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 721, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -35, SpringLayout.EAST, panel);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon("뒤로가기버튼테스트-.png"));
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIMain().setVisible(true);
@@ -83,82 +95,100 @@ public class PurchaseHistory extends JFrame {
 
 			}
 		});
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -125, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -52, SpringLayout.SOUTH, panel);
 		panel.add(btnNewButton);
 
-		JComboBox comboBox = new JComboBox(round);
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setFont(new Font("굴림", Font.BOLD, 30));
-		sl_panel.putConstraint(SpringLayout.NORTH, comboBox, 62, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox, -429, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBox, 57, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, comboBox, -639, SpringLayout.EAST, panel);
-		panel.add(comboBox);
-
-		// 회차 클릭 했을때 당첨번호 출력
-		comboBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
-				Integer selectedValue = (Integer) source.getSelectedItem();
-				if (round.iterator().equals(selectedValue)) {
-					for (Integer element : winningNumber) {
-						System.out.print(element + " ");
-					}
-					System.out.println();
-				}
-				if (round.lastElement().equals(selectedValue)) {
-					comboBox_1.setEnabled(true);
-				} else {
-					comboBox_1.setEnabled(false);
-				}
-			}
-		});
+//		// 회차 클릭 했을때 당첨번호 출력
+//		comboBox.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//
+//				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
+//				Integer selectedValue = (Integer) source.getSelectedItem();
+//				if (round.iterator().equals(selectedValue)) {
+//					for (Integer element : winningNumber) {
+//						System.out.print(element + " ");
+//					}
+//					System.out.println();
+//				}
+//				if (round.lastElement().equals(selectedValue)) {
+//					comboBox_1.setEnabled(true);
+//				} else {
+//					comboBox_1.setEnabled(false);
+//				}
+//			}
+//		});
 
 		comboBox_1 = new JComboBox(purchase);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 77, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 259, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -441, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, -534, SpringLayout.EAST, panel);
+		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
-		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 0, SpringLayout.NORTH, comboBox);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 29, SpringLayout.EAST, comboBox);
-		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, 0, SpringLayout.SOUTH, comboBox);
-		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, 319, SpringLayout.EAST, comboBox);
 		panel.add(comboBox_1);
-
-		JPanel panel_1 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 51, SpringLayout.SOUTH, comboBox);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 57, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, 116, SpringLayout.SOUTH, comboBox);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, comboBox_1);
-		panel.add(panel_1);
-
-		JPanel panel_2 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 6, SpringLayout.SOUTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 57, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, 79, SpringLayout.SOUTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 654, SpringLayout.WEST, panel);
-		panel.add(panel_2);
-
-		JPanel panel_3 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 6, SpringLayout.SOUTH, panel_2);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 57, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, 71, SpringLayout.SOUTH, panel_2);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_3, 654, SpringLayout.WEST, panel);
-		panel.add(panel_3);
-
-		JPanel panel_4 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 6, SpringLayout.SOUTH, panel_3);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 0, SpringLayout.WEST, comboBox);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -92, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_4, -41, SpringLayout.WEST, btnNewButton);
-		panel.add(panel_4);
-
-		JPanel panel_5 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 6, SpringLayout.SOUTH, panel_4);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, comboBox);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -26, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_5, 0, SpringLayout.EAST, comboBox_1);
-		panel.add(panel_5);
+		
+		JLabel lblNewLabel = new JLabel("구매 내역");
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 105, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -437, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 73, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -721, SpringLayout.EAST, panel);
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
+		panel.add(lblNewLabel);
+		
+		JPanel panel_6 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.WEST, panel_6, 72, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, 372, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 8, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_6, 589, SpringLayout.WEST, panel);
+		panel.add(panel_6);
+		panel_6.setLayout(new FlowLayout());
+		
+		@Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        // 이미지 그리기
+	        g.drawImage(new ImageIcon("로또용지 테두리.png"), 0, 0, getWidth(), getHeight(), this);
+	    }
+		
+				JPanel panel_1 = new JPanel();
+				panel_6.add(panel_1);
+				sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 10, SpringLayout.NORTH, panel);
+				sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -476, SpringLayout.SOUTH, panel);
+				sl_panel.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, btnNewButton);
+				panel_1.setBackground(Color.WHITE);
+				
+						JPanel panel_2 = new JPanel();
+						panel_6.add(panel_2);
+						sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 95, SpringLayout.NORTH, panel);
+						sl_panel.putConstraint(SpringLayout.WEST, panel_2, 681, SpringLayout.WEST, panel);
+						sl_panel.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, btnNewButton);
+						panel_2.setBackground(Color.WHITE);
+						sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel_2);
+						
+								JPanel panel_3 = new JPanel();
+								panel_6.add(panel_3);
+								sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 181, SpringLayout.NORTH, panel);
+								sl_panel.putConstraint(SpringLayout.WEST, panel_3, 681, SpringLayout.WEST, panel);
+								sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -305, SpringLayout.SOUTH, panel);
+								sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, btnNewButton);
+								panel_3.setBackground(Color.WHITE);
+								sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -21, SpringLayout.NORTH, panel_3);
+								
+										JPanel panel_4 = new JPanel();
+										panel_6.add(panel_4);
+										sl_panel.putConstraint(SpringLayout.EAST, panel_4, -35, SpringLayout.EAST, panel);
+										panel_4.setBackground(Color.WHITE);
+										sl_panel.putConstraint(SpringLayout.WEST, panel_4, 44, SpringLayout.EAST, panel_6);
+										sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 38, SpringLayout.SOUTH, panel_3);
+										
+												JPanel panel_5 = new JPanel();
+												panel_6.add(panel_5);
+												sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 347, SpringLayout.NORTH, panel);
+												sl_panel.putConstraint(SpringLayout.WEST, panel_5, 681, SpringLayout.WEST, panel);
+												sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -139, SpringLayout.SOUTH, panel);
+												sl_panel.putConstraint(SpringLayout.EAST, panel_5, 0, SpringLayout.EAST, btnNewButton);
+												panel_5.setBackground(Color.WHITE);
+												sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
@@ -170,7 +200,7 @@ public class PurchaseHistory extends JFrame {
 		        // 선택된 값이 null이 아닐 때 처리
 		        if (selectedValue != null) {
 		            // 패널 내부의 모든 컴포넌트 제거
-		            panel_1.removeAll();
+		        	panel_1.removeAll();
 		            panel_2.removeAll();
 		            panel_3.removeAll();
 		            panel_4.removeAll();
@@ -212,31 +242,25 @@ public class PurchaseHistory extends JFrame {
 		});
 	}
 
-	// 로또 당첨번호 저장 메소드
-	public static void winningNumberAdd(Integer winningnumber) {
-		winningNumber.add(winningnumber);
-	}
+//	// 로또 당첨번호 저장 메소드
+//	public static void winningNumberAdd(Integer winningnumber) {
+//		winningNumber.add(winningnumber);
+//	}
 
-	// 내가 구매한 로또 번호 저장
-	public static void purchaseNumberAdd(ArrayList<Integer> purchaseumber) {
-		purchaseNumber.add(purchaseumber);
-	}
+//	// 내가 구매한 로또 번호 저장
+//	public static void purchaseNumberAdd(ArrayList<Integer> purchaseumber) {
+//		purchaseNumber.add(purchaseumber);
+//	}
 
-	// 회차 올려주는 메소드
-	public static void roundAdd() {
-		round.add(index);
-		index++;
-	}
+//	// 회차 올려주는 메소드
+//	public static void roundAdd() {
+//		round.add(index);
+//		index++;
+//	}
 
 	// 구매시 장수 올려주는 메소드
 	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
 		purchaseindex++;
 	}
-
-	// 내 추첨번호 삭제
-	public static void purchaseClear() {
-		purchase.clear();
-	}
-
 }

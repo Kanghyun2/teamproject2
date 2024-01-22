@@ -34,11 +34,11 @@ public class Purchase extends JFrame {
 	private JButton btnNewButton_1;
 	private ImageIcon[][] originalIcons;
 	private JPanel pnl;
-	private JPanel pnlBall1;
-	private JPanel pnlBall2;
-	private JPanel pnlBall3;
-	private JPanel pnlBall4;
-	private JPanel pnlBall5;
+	protected static JPanel pnlBall1;
+	protected static JPanel pnlBall2;
+	protected static JPanel pnlBall3;
+	protected static JPanel pnlBall4;
+	protected static JPanel pnlBall5;
 	private JLabel lbl;
 	private ImageIcon ballIcon;
 	private JButton btnRegistration;
@@ -51,6 +51,7 @@ public class Purchase extends JFrame {
 	private int rows = 7; // 행
 	private int cols = 7; // 열
 	private int showBallselectedCount = 0;
+
 	public Purchase() {
 		getContentPane().setBackground(Color.WHITE);
 		pnl = new JPanel();
@@ -59,8 +60,6 @@ public class Purchase extends JFrame {
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
 
-		
-		
 //       수정설명할것
 //       오류 몇개 수정 
 //		 showBall 수정
@@ -71,7 +70,7 @@ public class Purchase extends JFrame {
 //		 미구현
 //		 라벨 이미지 토글버튼 렉걸린건지 다 안나옴
 // 		 해줘		
-		
+
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
 //        Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
@@ -185,15 +184,15 @@ public class Purchase extends JFrame {
 			btnNewButton_1 = new JButton("반 자동");
 			springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 			btnNewButton_1.addActionListener(new ActionListener() {
-				
-				
+
 				public void actionPerformed(ActionEvent e) {
 					halfRandom();
 					if (showBallselectedCount < 6 || showBallselectedCount > 6) {
-				        InputDialog dialog = new InputDialog(Purchase.this);
-				        dialog.setVisible(true);
-				    }
+						InputDialog dialog = new InputDialog(Purchase.this);
+						dialog.setVisible(true);
+					}
 				}
+
 				public void halfRandom() {
 					List<JToggleButton> allButton = new ArrayList<>();
 					int selectedCount = 0;
@@ -250,10 +249,10 @@ public class Purchase extends JFrame {
 						PurchaseDialog dialog = new PurchaseDialog(Purchase.this);
 						dialog.setVisible(true);
 						PurchaseHistory.purchaseAdd();
-						PurchaseHistory.pnlpurchaseNumber.put(PurchaseHistory.numberOfPurchases, new ArrayList<>(PurchaseHistory.pnlwinningNumber));
+						PurchaseHistory.pnlpurchaseNumber.put(PurchaseHistory.numberOfPurchases , new ArrayList<>(PurchaseHistory.pnlwinningNumber));
 						PurchaseHistory.numberOfPurchases++;
 					}
-					
+
 					PurchaseHistory.pnlwinningNumber.clear();
 				}
 			});
@@ -276,14 +275,14 @@ public class Purchase extends JFrame {
 			springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -122, SpringLayout.SOUTH, pnl);
 			btnRegistration.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					showBall();	
+					showBall();
 
 					if (showBallselectedCount < 6 || showBallselectedCount > 6) {
-					        InputDialog dialog = new InputDialog(Purchase.this);
-					        dialog.setVisible(true);
-					    }
+						InputDialog dialog = new InputDialog(Purchase.this);
+						dialog.setVisible(true);
 					}
-					
+				}
+
 			});
 			pnl.add(btnRegistration);
 
@@ -300,7 +299,8 @@ public class Purchase extends JFrame {
 			btnDel1 = new JButton("삭제");
 			btnDel1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					pnlBall1.removeAll();
+//					pnlBall1.removeAll();
+					removeComponentFromPanel(pnlBall1);
 					pnlBall1.revalidate();
 					pnlBall1.repaint();
 
@@ -315,7 +315,8 @@ public class Purchase extends JFrame {
 			springLayout.putConstraint(SpringLayout.SOUTH, btnDel1, -45, SpringLayout.NORTH, btnDel2);
 			btnDel2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					pnlBall2.removeAll();
+//					pnlBall2.removeAll();
+					removeComponentFromPanel(pnlBall2);
 					pnlBall2.revalidate();
 					pnlBall2.repaint();
 				}
@@ -325,7 +326,8 @@ public class Purchase extends JFrame {
 			btnDel3 = new JButton("삭제");
 			btnDel3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					pnlBall3.removeAll();
+//					pnlBall3.removeAll();
+					removeComponentFromPanel(pnlBall3);
 					pnlBall3.revalidate();
 					pnlBall3.repaint();
 				}
@@ -336,7 +338,8 @@ public class Purchase extends JFrame {
 			btnDel4 = new JButton("삭제");
 			btnDel4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					pnlBall4.removeAll();
+//					pnlBall4.removeAll();
+					removeComponentFromPanel(pnlBall4);
 					pnlBall4.revalidate();
 					pnlBall4.repaint();
 				}
@@ -347,7 +350,8 @@ public class Purchase extends JFrame {
 			btnDel5 = new JButton("삭제");
 			btnDel5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					pnlBall5.removeAll();
+//					pnlBall5.removeAll();
+					removeComponentFromPanel(pnlBall5);
 					pnlBall5.revalidate();
 					pnlBall5.repaint();
 				}
@@ -433,7 +437,7 @@ public class Purchase extends JFrame {
 		pnlBall3.setLayout(flowLayout);
 		pnlBall4.setLayout(flowLayout);
 		pnlBall5.setLayout(flowLayout);
-		
+
 		showBallselectedCount = 0;
 
 		for (int i = 0; i < 7; i++) {
@@ -603,7 +607,17 @@ public class Purchase extends JFrame {
 			});
 		}
 	}
-
+	
+	private void removeComponentFromPanel(JPanel panel) {
+	    Component[] components = panel.getComponents();
+	    for (int i = 0; i < components.length; i++) {
+	    	if (components.length > 0) {
+	    		panel.remove(components[i]); // 패널의 첫 번째 컴포넌트를 제거합니다.
+	    		PurchaseHistory.pnlwinningNumber.remove(components[i]); // 리스트에서도 제거합니다.
+	    }
+	    }
+	}
+	
 	public static void main(String[] args) {
 		new Purchase();
 	}
