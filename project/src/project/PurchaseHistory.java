@@ -174,7 +174,7 @@ public class PurchaseHistory extends JFrame {
 //				for (Integer i : pnlpurchaseNumber.keySet()) {
 //					
 //				}
-				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
+//				 if (selectedValue != null && pnlpurchaseNumber.keySet()) {
 			            for (JLabel registeredLabel : pnlpurchaseNumber.get(selectedValue)) {
 			                if (panel_1.getComponentCount() <= 5) {
 			                    panel_1.add(registeredLabel);
@@ -188,7 +188,7 @@ public class PurchaseHistory extends JFrame {
 			                    panel_5.add(registeredLabel);
 			                }
 			            }
-			        }
+//			        }
 				 
 				panel_1.revalidate();
 				panel_1.repaint();
