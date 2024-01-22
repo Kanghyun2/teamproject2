@@ -85,6 +85,7 @@ public class Purchase extends JFrame {
 //		lbl = new JLabel(new ImageIcon("회색공.png"));
 		
 		
+		
 		for (int i = 0; i <= 45; i++) { // 7x7 45 버튼으로 표현
 			int row = i / cols;
 			int col = i % cols;
