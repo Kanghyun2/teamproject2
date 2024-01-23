@@ -351,9 +351,8 @@ public class Result extends JFrame {
 					panel_4_1_1_1_1.revalidate();
 					panel_4_1_1_1_1.repaint();
 
-				} else if() {
-					
 				}
+
 			}
 
 		});
