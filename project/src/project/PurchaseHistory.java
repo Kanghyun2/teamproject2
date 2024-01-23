@@ -294,16 +294,16 @@ public class PurchaseHistory extends JFrame {
 					}
 
 					// 패널 리레이아웃 갱신
-//					panel_1.revalidate();
-//					panel_1.repaint();
-//					panel_2.revalidate();
-//					panel_2.repaint();
-//					panel_3.revalidate();
-//					panel_3.repaint();
-//					panel_4.revalidate();
-//					panel_4.repaint();
-//					panel_5.revalidate();
-//					panel_5.repaint();
+					panel_1.revalidate();
+					panel_1.repaint();
+					panel_2.revalidate();
+					panel_2.repaint();
+					panel_3.revalidate();
+					panel_3.repaint();
+					panel_4.revalidate();
+					panel_4.repaint();
+					panel_5.revalidate();
+					panel_5.repaint();
 				}
 			}
 		});
