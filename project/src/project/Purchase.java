@@ -335,7 +335,6 @@ public class Purchase extends JFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -126, SpringLayout.SOUTH, pnl);
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				showBall();
 
 				if (showBallselectedCount < 6 || showBallselectedCount > 6) {
