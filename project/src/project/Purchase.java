@@ -66,7 +66,6 @@ public class Purchase extends JFrame {
 	public static List<Set<Integer>> intSetList;
 	private Set<Integer> intSet;
 
-	
 	public Purchase() {
 		setBackground(Color.WHITE);
 		setTitle("구매 화면");
