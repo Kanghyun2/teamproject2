@@ -174,13 +174,8 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 		panel.add(panel_5);
 		panel_5.setBackground(Color.WHITE);
-		JPanel panel_6 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.WEST, panel_6, 72, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, 372, SpringLayout.SOUTH, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 8, SpringLayout.SOUTH, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_6, 589, SpringLayout.WEST, panel);
-		panel.add(panel_6);
-		panel_6.setLayout(new FlowLayout());
+		
+		
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
