@@ -283,6 +283,21 @@ public class Purchase extends JFrame {
 					}
 
 					PurchaseHistory.pnlwinningNumber.clear();
+					removeComponentFromPanel(pnlBall1);
+					pnlBall1.revalidate();
+					pnlBall1.repaint();
+					removeComponentFromPanel(pnlBall2);
+					pnlBall2.revalidate();
+					pnlBall2.repaint();
+					removeComponentFromPanel(pnlBall3);
+					pnlBall3.revalidate();
+					pnlBall3.repaint();
+					removeComponentFromPanel(pnlBall4);
+					pnlBall4.revalidate();
+					pnlBall4.repaint();
+					removeComponentFromPanel(pnlBall5);
+					pnlBall5.revalidate();
+					pnlBall5.repaint();
 				}
 			});
 			pnl.add(btnNewButton_2);
