@@ -34,13 +34,12 @@ public class PurchaseHistory extends JFrame {
 	protected static int purchaseindex = 1; // 구매콤보박스
 	protected static int numberOfPurchases = 1; // 구매장수
 	protected static List<JLabel> pnlwinningNumber = new ArrayList<>();;
-	protected static Map<Integer,List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
+	protected static Map<Integer, List<JLabel>> pnlpurchaseNumber = new HashMap<>();;
 //	protected static ArrayList<Integer> winningNumber = new ArrayList<>(); // 당첨번호
 //	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
 	private JComboBox comboBox_1;
 	private FlowLayout flowLayout;
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -64,7 +63,7 @@ public class PurchaseHistory extends JFrame {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
-		setTitle("로또 구매내역"); 
+		setTitle("로또 구매내역");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -126,7 +125,7 @@ public class PurchaseHistory extends JFrame {
 		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(comboBox_1);
-		
+
 		JLabel lblNewLabel = new JLabel("구매 내역");
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 105, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -437, SpringLayout.SOUTH, panel);
@@ -134,111 +133,103 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -721, SpringLayout.EAST, panel);
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(lblNewLabel);
-		
-		JPanel panel_6 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.WEST, panel_6, 72, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, 372, SpringLayout.SOUTH, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 8, SpringLayout.SOUTH, lblNewLabel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_6, 589, SpringLayout.WEST, panel);
-		panel.add(panel_6);
-		panel_6.setLayout(new FlowLayout());
-		
-		@Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        // 이미지 그리기
-	        g.drawImage(new ImageIcon("로또용지 테두리.png"), 0, 0, getWidth(), getHeight(), this);
-	    }
-		
-				JPanel panel_1 = new JPanel();
-				panel_6.add(panel_1);
-				sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 10, SpringLayout.NORTH, panel);
-				sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -476, SpringLayout.SOUTH, panel);
-				sl_panel.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, btnNewButton);
-				panel_1.setBackground(Color.WHITE);
-				
-						JPanel panel_2 = new JPanel();
-						panel_6.add(panel_2);
-						sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 95, SpringLayout.NORTH, panel);
-						sl_panel.putConstraint(SpringLayout.WEST, panel_2, 681, SpringLayout.WEST, panel);
-						sl_panel.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, btnNewButton);
-						panel_2.setBackground(Color.WHITE);
-						sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel_2);
-						
-								JPanel panel_3 = new JPanel();
-								panel_6.add(panel_3);
-								sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 181, SpringLayout.NORTH, panel);
-								sl_panel.putConstraint(SpringLayout.WEST, panel_3, 681, SpringLayout.WEST, panel);
-								sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -305, SpringLayout.SOUTH, panel);
-								sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, btnNewButton);
-								panel_3.setBackground(Color.WHITE);
-								sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -21, SpringLayout.NORTH, panel_3);
-								
-										JPanel panel_4 = new JPanel();
-										panel_6.add(panel_4);
-										sl_panel.putConstraint(SpringLayout.EAST, panel_4, -35, SpringLayout.EAST, panel);
-										panel_4.setBackground(Color.WHITE);
-										sl_panel.putConstraint(SpringLayout.WEST, panel_4, 44, SpringLayout.EAST, panel_6);
-										sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 38, SpringLayout.SOUTH, panel_3);
-										
-												JPanel panel_5 = new JPanel();
-												panel_6.add(panel_5);
-												sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 347, SpringLayout.NORTH, panel);
-												sl_panel.putConstraint(SpringLayout.WEST, panel_5, 681, SpringLayout.WEST, panel);
-												sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -139, SpringLayout.SOUTH, panel);
-												sl_panel.putConstraint(SpringLayout.EAST, panel_5, 0, SpringLayout.EAST, btnNewButton);
-												panel_5.setBackground(Color.WHITE);
-												sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
+
+//		@Override
+//	    protected void paintComponent(Graphics g) {
+//	        super.paintComponent(g);
+//	        // 이미지 그리기
+//	        g.drawImage(new ImageIcon("로또용지 테두리.png"), 0, 0, getWidth(), getHeight(), this);
+//	    }
+
+		JPanel panel_1 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 12, SpringLayout.SOUTH, comboBox_1);
+		panel.add(panel_1);
+		panel_1.setBackground(Color.WHITE);
+
+		JPanel panel_2 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel_2);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, panel_2);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, panel_2);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -367, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 188, SpringLayout.NORTH, panel);
+		panel.add(panel_2);
+		panel_2.setBackground(Color.WHITE);
+
+		JPanel panel_3 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 254, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -6, SpringLayout.NORTH, panel_3);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 10, SpringLayout.WEST, panel);
+		panel.add(panel_3);
+		panel_3.setBackground(Color.WHITE);
+
+		JPanel panel_4 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_4, -367, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, panel_4);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, panel_4);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 320, SpringLayout.NORTH, panel);
+		panel.add(panel_4);
+		panel_4.setBackground(Color.WHITE);
+
+		JPanel panel_5 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 386, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -105, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_5, -367, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
+		panel.add(panel_5);
+		panel_5.setBackground(Color.WHITE);
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // 선택된 값 가져오기
-		        Integer selectedValue = (Integer) comboBox_1.getSelectedItem();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 선택된 값 가져오기
+				Integer selectedValue = (Integer) comboBox_1.getSelectedItem();
 
-		        // 선택된 값이 null이 아닐 때 처리
-		        if (selectedValue != null) {
-		            // 패널 내부의 모든 컴포넌트 제거
-		        	panel_1.removeAll();
-		            panel_2.removeAll();
-		            panel_3.removeAll();
-		            panel_4.removeAll();
-		            panel_5.removeAll();
+				// 선택된 값이 null이 아닐 때 처리
+				if (selectedValue != null) {
+					// 패널 내부의 모든 컴포넌트 제거
+					panel_1.removeAll();
+					panel_2.removeAll();
+					panel_3.removeAll();
+					panel_4.removeAll();
+					panel_5.removeAll();
 
-		            // 선택된 값에 대한 처리
-		            for (Integer i : pnlpurchaseNumber.keySet()) {
-		                if (i.equals(selectedValue)) {
-		                	pnlpurchaseNumber.get(i);
-		                	for(JLabel lbl : pnlpurchaseNumber.get(i))
-		                        if (panel_1.getComponentCount() <= 5) {
-		                            panel_1.add(lbl);
-		                        } else if (panel_2.getComponentCount() <= 5) {
-		                            panel_2.add(lbl);
-		                        } else if (panel_3.getComponentCount() <= 5) {
-		                            panel_3.add(lbl);
-		                        } else if (panel_4.getComponentCount() <= 5) {
-		                            panel_4.add(lbl);
-		                        } else if (panel_5.getComponentCount() <= 5) {
-		                            panel_5.add(lbl);
-		                        
-		                    }
-		                }
-		            }
+					// 선택된 값에 대한 처리
+					for (Integer i : pnlpurchaseNumber.keySet()) {
+						if (i.equals(selectedValue)) {
+							pnlpurchaseNumber.get(i);
+							for (JLabel lbl : pnlpurchaseNumber.get(i))
+								if (panel_1.getComponentCount() <= 5) {
+									panel_1.add(lbl);
+								} else if (panel_2.getComponentCount() <= 5) {
+									panel_2.add(lbl);
+								} else if (panel_3.getComponentCount() <= 5) {
+									panel_3.add(lbl);
+								} else if (panel_4.getComponentCount() <= 5) {
+									panel_4.add(lbl);
+								} else if (panel_5.getComponentCount() <= 5) {
+									panel_5.add(lbl);
 
-		            // 패널 리레이아웃 갱신
-		            panel_1.revalidate();
-		            panel_1.repaint();
-		            panel_2.revalidate();
-		            panel_2.repaint();
-		            panel_3.revalidate();
-		            panel_3.repaint();
-		            panel_4.revalidate();
-		            panel_4.repaint();
-		            panel_5.revalidate();
-		            panel_5.repaint();
-		        }
-		    }
+								}
+						}
+					}
+
+					// 패널 리레이아웃 갱신
+					panel_1.revalidate();
+					panel_1.repaint();
+					panel_2.revalidate();
+					panel_2.repaint();
+					panel_3.revalidate();
+					panel_3.repaint();
+					panel_4.revalidate();
+					panel_4.repaint();
+					panel_5.revalidate();
+					panel_5.repaint();
+				}
+			}
 		});
 	}
 
