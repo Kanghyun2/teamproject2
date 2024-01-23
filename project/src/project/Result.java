@@ -32,6 +32,7 @@ import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 
 public class Result extends JFrame {
+	//fwsfwsaf
 	protected static final String panel_3 = null;
 	protected static final Object List = null;
 	protected static final Object String = null;
