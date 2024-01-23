@@ -3,12 +3,22 @@ package project;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,11 +43,11 @@ public class Purchase extends JFrame {
 	private JButton btnNewButton_1;
 	private ImageIcon[][] originalIcons;
 	private JPanel pnl;
-	private JPanel pnlBall1;
-	private JPanel pnlBall2;
-	private JPanel pnlBall3;
-	private JPanel pnlBall4;
-	private JPanel pnlBall5;
+	protected static JPanel pnlBall1;
+	protected static JPanel pnlBall2;
+	protected static JPanel pnlBall3;
+	protected static JPanel pnlBall4;
+	protected static JPanel pnlBall5;
 	private JLabel lbl;
 	private ImageIcon ballIcon;
 	private JButton btnRegistration;
@@ -67,17 +77,6 @@ public class Purchase extends JFrame {
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
 
-//       수정설명할것
-//       오류 몇개 수정 
-//		 showBall 수정
-//		 버튼 누를때 값이 계속 0 으로 뜨는 이유는 모르겠음 showBall 카운트 필드화 해서  오류 메세지 1~6개의 번호만 등록에서 6개의 번호만 등록하게 변경
-//		 이미지 밀린거 텍스트 커맨드로 바꿔서 이미지 크기 맞춤
-//		 자동번호 돌렸을때 이미지 이상한거 오류 수정
-//		 아직은 토글버튼 이미지 오류 발견X
-//		 미구현
-//		 라벨 이미지 토글버튼 렉걸린건지 다 안나옴
-// 		 해줘		
-
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
 //        Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
@@ -103,15 +102,20 @@ public class Purchase extends JFrame {
 			lottoNumbers[row][col].setBorderPainted(false);
 			lottoNumbers[row][col].setFocusPainted(false);
 			lottoNumbers[row][col].setContentAreaFilled(false);
+
 //			lottoNumbers[row][col].setText(Integer.toString(i + 1));
 //			lottoNumbers[row][col].setHideActionText(true);
-			lottoNumbers[row][col].setPreferredSize(new Dimension(30, 30)); // 버튼 사이즈
-
+			lottoNumbers[row][col].setPreferredSize(new Dimension(28, 28)); // 버튼 사이즈
+		
+			
+//			layeredPane.add(lottoNumbers[row][col], 0);
+//			gifLabel.setBackground(Color.WHITE);
+//			pnl.add(gifLabel);
 			pnl.add(lottoNumbers[row][col]);
-
+		
 			// 첫 번째 열은 왼쪽에 고정
 			if (col == 0) {
-				springLayout.putConstraint(SpringLayout.WEST, lottoNumbers[row][col], 180, SpringLayout.WEST, pnl);
+				springLayout.putConstraint(SpringLayout.WEST, lottoNumbers[row][col], 224, SpringLayout.WEST, pnl);
 			} else {
 				pnl.add(lottoNumbers[row][col]);
 				// 나머지 열은 이전 체크박스를 기준으로 위치 조정 (가로로 배치)

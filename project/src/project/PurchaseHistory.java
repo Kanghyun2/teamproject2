@@ -2,21 +2,19 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -59,23 +57,34 @@ public class PurchaseHistory extends JFrame {
 	 * Create the frame.
 	 */
 	public PurchaseHistory() {
+		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		setTitle("로또 구매내역");
+		setTitle("로또 구매내역");
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
-		JButton btnNewButton = new JButton("뒤로가기");
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 695, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -61, SpringLayout.EAST, panel);
+		JButton btnNewButton = new JButton("");
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -83, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 721, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -35, SpringLayout.EAST, panel);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon("뒤로가기버튼테스트-.png"));
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIMain().setVisible(true);
@@ -83,8 +92,6 @@ public class PurchaseHistory extends JFrame {
 
 			}
 		});
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -125, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -52, SpringLayout.SOUTH, panel);
 		panel.add(btnNewButton);
 
 //		// 회차 클릭 했을때 당첨번호 출력
@@ -111,6 +118,11 @@ public class PurchaseHistory extends JFrame {
 		comboBox_1 = new JComboBox(purchase);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 73, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 297, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 77, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 259, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -441, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, -534, SpringLayout.EAST, panel);
+		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(comboBox_1);
 
@@ -152,12 +164,20 @@ public class PurchaseHistory extends JFrame {
 		panel.add(panel_5);
 
 		JLabel lblNewLabel = new JLabel("구매 내역");
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 105, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -437, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 73, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, -190, SpringLayout.WEST, comboBox_1);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -59, SpringLayout.NORTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -35, SpringLayout.WEST, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -721, SpringLayout.EAST, panel);
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(lblNewLabel);
+
+		JPanel panel_6 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.WEST, panel_6, 72, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, 372, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 8, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_6, 589, SpringLayout.WEST, panel);
+		panel.add(panel_6);
+		panel_6.setLayout(new FlowLayout());
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
