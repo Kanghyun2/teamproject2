@@ -33,6 +33,7 @@ import javax.swing.SpringLayout;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
+//	private List<JLabel> registeredLabels = new ArrayList<>();
 	private JButton btnNewButton_1;
 	private ImageIcon[][] originalIcons;
 	private JPanel pnl;
@@ -53,10 +54,13 @@ public class Purchase extends JFrame {
 	private int rows = 7; // 행
 	private int cols = 7; // 열
 	private int showBallselectedCount = 0;
+	private JLabel lblAmount;
+	private int amount = 0;
 	public static List<Set<Integer>> intSetList;
 	private Set<Integer> intSet;
 
 	public Purchase() {
+		setBackground(Color.WHITE);
 		setTitle("구매 화면");
 		getContentPane().setBackground(Color.WHITE);
 		intSetList = new ArrayList<>();
@@ -265,8 +269,11 @@ public class Purchase extends JFrame {
 		});
 		pnl.add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("구매");
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, -123, SpringLayout.EAST, pnl);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setIcon(new ImageIcon("구매하기.png"));
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(false);
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -282,20 +289,33 @@ public class Purchase extends JFrame {
 					PurchaseHistory.pnlpurchaseNumber.put(PurchaseHistory.numberOfPurchases,
 							new ArrayList<>(PurchaseHistory.pnlwinningNumber));
 					PurchaseHistory.numberOfPurchases++;
-					Result.pnlpurchaseString.put("첫번째 장", new ArrayList<>(Result.purchaseNumber1));
-					Result.pnlpurchaseString.put("두번째 장", new ArrayList<>(Result.purchaseNumber2));
-					Result.pnlpurchaseString.put("세번째 장", new ArrayList<>(Result.purchaseNumber3));
-
+					amount = 0;
+					lblAmount.setText(Integer.toString(amount) + "원");
 				}
 
 				PurchaseHistory.pnlwinningNumber.clear();
+				removeComponentFromPanel(pnlBall1);
+				pnlBall1.revalidate();
+				pnlBall1.repaint();
+				removeComponentFromPanel(pnlBall2);
+				pnlBall2.revalidate();
+				pnlBall2.repaint();
+				removeComponentFromPanel(pnlBall3);
+				pnlBall3.revalidate();
+				pnlBall3.repaint();
+				removeComponentFromPanel(pnlBall4);
+				pnlBall4.revalidate();
+				pnlBall4.repaint();
+				removeComponentFromPanel(pnlBall5);
+				pnlBall5.revalidate();
+				pnlBall5.repaint();
 			}
 		});
 		pnl.add(btnNewButton_2);
 
 		JButton btnGoBack = new JButton("뒤로가기");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnGoBack, -10, SpringLayout.SOUTH, pnl);
-		springLayout.putConstraint(SpringLayout.EAST, btnGoBack, -10, SpringLayout.EAST, pnl);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnGoBack, -22, SpringLayout.SOUTH, pnl);
+		springLayout.putConstraint(SpringLayout.EAST, btnGoBack, -34, SpringLayout.EAST, pnl);
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIMain guimain = new GUIMain();
@@ -306,13 +326,13 @@ public class Purchase extends JFrame {
 		pnl.add(btnGoBack);
 
 		btnRegistration = new JButton("");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_2, 12, SpringLayout.SOUTH, btnRegistration);
+		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 367, SpringLayout.WEST, pnl);
 		btnRegistration.setIcon(new ImageIcon("확인 버튼.png"));
 		btnRegistration.setBorderPainted(false);
 		btnRegistration.setFocusPainted(false);
 		btnRegistration.setContentAreaFilled(false);
-		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 367, SpringLayout.WEST, pnl);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnRegistration, -126, SpringLayout.SOUTH, pnl);
-		springLayout.putConstraint(SpringLayout.EAST, btnRegistration, -380, SpringLayout.WEST, btnNewButton_2);
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showBall();
@@ -322,7 +342,6 @@ public class Purchase extends JFrame {
 					dialog.setVisible(true);
 				}
 			}
-
 		});
 		pnl.add(btnRegistration);
 
@@ -347,31 +366,32 @@ public class Purchase extends JFrame {
 		pnl.add(btnNewButton_3);
 
 		btnDel1 = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, btnDel1, -123, SpringLayout.EAST, pnl);
 		btnDel1.setIcon(new ImageIcon("삭제.png"));
 		btnDel1.setBorderPainted(false);
 		btnDel1.setFocusPainted(false);
 		btnDel1.setContentAreaFilled(false);
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel1, 135, SpringLayout.NORTH, pnl);
-		springLayout.putConstraint(SpringLayout.EAST, btnDel1, 0, SpringLayout.EAST, btnNewButton_2);
 		btnDel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 //					pnlBall1.removeAll();
 				removeComponentFromPanel(pnlBall1);
 				pnlBall1.revalidate();
 				pnlBall1.repaint();
-
+				amount -= 1000;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
 			}
 		});
 		pnl.add(btnDel1);
 
 		btnDel2 = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, btnDel2, -123, SpringLayout.EAST, pnl);
 		btnDel2.setIcon(new ImageIcon("삭제.png"));
 		btnDel2.setBorderPainted(false);
 		btnDel2.setFocusPainted(false);
 		btnDel2.setContentAreaFilled(false);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnDel1, -10, SpringLayout.NORTH, btnDel2);
-		springLayout.putConstraint(SpringLayout.EAST, btnDel2, 0, SpringLayout.EAST, btnNewButton_2);
-		springLayout.putConstraint(SpringLayout.WEST, btnDel2, -33, SpringLayout.EAST, btnNewButton_2);
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel2, -23, SpringLayout.NORTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnDel2, 9, SpringLayout.NORTH, btnNewButton);
 		btnDel2.addActionListener(new ActionListener() {
@@ -380,48 +400,57 @@ public class Purchase extends JFrame {
 				removeComponentFromPanel(pnlBall2);
 				pnlBall2.revalidate();
 				pnlBall2.repaint();
+				amount -= 1000;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
 			}
 		});
 		pnl.add(btnDel2);
 
 		btnDel3 = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, btnDel3, -123, SpringLayout.EAST, pnl);
 		btnDel3.setIcon(new ImageIcon("삭제.png"));
 		btnDel3.setBorderPainted(false);
 		btnDel3.setFocusPainted(false);
 		btnDel3.setContentAreaFilled(false);
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel3, 14, SpringLayout.SOUTH, btnDel2);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnDel3, -306, SpringLayout.SOUTH, pnl);
-		springLayout.putConstraint(SpringLayout.EAST, btnDel3, 0, SpringLayout.EAST, btnNewButton_2);
 		btnDel3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //					pnlBall3.removeAll();
 				removeComponentFromPanel(pnlBall3);
 				pnlBall3.revalidate();
 				pnlBall3.repaint();
+				amount -= 1000;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
 			}
 		});
 		pnl.add(btnDel3);
 
 		btnDel4 = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, btnDel4, -123, SpringLayout.EAST, pnl);
 		btnDel4.setIcon(new ImageIcon("삭제.png"));
 		btnDel4.setBorderPainted(false);
 		btnDel4.setFocusPainted(false);
 		btnDel4.setContentAreaFilled(false);
 		springLayout.putConstraint(SpringLayout.NORTH, btnDel4, 13, SpringLayout.SOUTH, btnDel3);
-		springLayout.putConstraint(SpringLayout.WEST, btnDel4, 0, SpringLayout.WEST, btnDel1);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnDel4, -261, SpringLayout.SOUTH, pnl);
-		springLayout.putConstraint(SpringLayout.EAST, btnDel4, 0, SpringLayout.EAST, btnNewButton_2);
 		btnDel4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //					pnlBall4.removeAll();
 				removeComponentFromPanel(pnlBall4);
 				pnlBall4.revalidate();
 				pnlBall4.repaint();
+				amount -= 1000;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
 			}
 		});
 		pnl.add(btnDel4);
 
 		btnDel5 = new JButton("");
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_2, 46, SpringLayout.SOUTH, btnDel5);
 		btnDel5.setIcon(new ImageIcon("삭제.png"));
 		btnDel5.setBorderPainted(false);
 		btnDel5.setFocusPainted(false);
@@ -435,11 +464,15 @@ public class Purchase extends JFrame {
 				removeComponentFromPanel(pnlBall5);
 				pnlBall5.revalidate();
 				pnlBall5.repaint();
+				amount -= 1000;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
 			}
 		});
 		pnl.add(btnDel5);
 
 		pnlBall1 = new JPanel();
+		springLayout.putConstraint(SpringLayout.WEST, btnDel2, 18, SpringLayout.EAST, pnlBall1);
 		springLayout.putConstraint(SpringLayout.WEST, btnDel1, 18, SpringLayout.EAST, pnlBall1);
 		springLayout.putConstraint(SpringLayout.EAST, pnlBall1, -174, SpringLayout.EAST, pnl);
 		springLayout.putConstraint(SpringLayout.NORTH, pnlBall1, 135, SpringLayout.NORTH, pnl);
@@ -470,6 +503,7 @@ public class Purchase extends JFrame {
 		pnlBall3.setLayout(new SpringLayout());
 
 		pnlBall4 = new JPanel();
+		springLayout.putConstraint(SpringLayout.WEST, btnDel4, 18, SpringLayout.EAST, pnlBall4);
 		springLayout.putConstraint(SpringLayout.NORTH, pnlBall4, 1, SpringLayout.SOUTH, pnlBall3);
 		springLayout.putConstraint(SpringLayout.WEST, pnlBall4, 0, SpringLayout.WEST, pnlBall1);
 		springLayout.putConstraint(SpringLayout.SOUTH, pnlBall4, -249, SpringLayout.SOUTH, pnl);
@@ -483,7 +517,6 @@ public class Purchase extends JFrame {
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_3, -143, SpringLayout.WEST, pnlBall5);
 		springLayout.putConstraint(SpringLayout.NORTH, pnlBall5, 1, SpringLayout.SOUTH, pnlBall4);
 		springLayout.putConstraint(SpringLayout.SOUTH, pnlBall5, -204, SpringLayout.SOUTH, pnl);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_2, 44, SpringLayout.SOUTH, pnlBall5);
 		springLayout.putConstraint(SpringLayout.WEST, pnlBall5, 539, SpringLayout.WEST, pnl);
 		springLayout.putConstraint(SpringLayout.EAST, pnlBall5, 0, SpringLayout.EAST, pnlBall1);
 
@@ -493,6 +526,49 @@ public class Purchase extends JFrame {
 		pnlBall5.setBackground(Color.WHITE);
 		pnl.add(pnlBall5);
 		pnlBall5.setLayout(new SpringLayout());
+
+		JButton btnNewButton_4 = new JButton("");
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_2, 0, SpringLayout.EAST, btnNewButton_4);
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_4, -55, SpringLayout.NORTH, btnDel1);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_4, 833, SpringLayout.WEST, pnl);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_4, -23, SpringLayout.NORTH, btnDel1);
+		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_4, -75, SpringLayout.EAST, pnl);
+		btnNewButton_4.setIcon(new ImageIcon("초기화2.png"));
+		btnNewButton_4.setBorderPainted(false);
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(false);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeComponentFromPanel(pnlBall1);
+				pnlBall1.revalidate();
+				pnlBall1.repaint();
+				removeComponentFromPanel(pnlBall2);
+				pnlBall2.revalidate();
+				pnlBall2.repaint();
+				removeComponentFromPanel(pnlBall3);
+				pnlBall3.revalidate();
+				pnlBall3.repaint();
+				removeComponentFromPanel(pnlBall4);
+				pnlBall4.revalidate();
+				pnlBall4.repaint();
+				removeComponentFromPanel(pnlBall5);
+				pnlBall5.revalidate();
+				pnlBall5.repaint();
+				amount = 0;
+				lblAmount.setText(Integer.toString(amount) + "원");
+				btnRegistration.setEnabled(true);
+
+			}
+		});
+		pnl.add(btnNewButton_4);
+
+		lblAmount = new JLabel("0 원");
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_2, 48, SpringLayout.EAST, lblAmount);
+		springLayout.putConstraint(SpringLayout.EAST, btnRegistration, -267, SpringLayout.WEST, lblAmount);
+		springLayout.putConstraint(SpringLayout.WEST, lblAmount, 716, SpringLayout.WEST, pnl);
+		springLayout.putConstraint(SpringLayout.EAST, lblAmount, -215, SpringLayout.EAST, pnl);
+		springLayout.putConstraint(SpringLayout.NORTH, lblAmount, 0, SpringLayout.NORTH, btnRegistration);
+		pnl.add(lblAmount);
 
 		showGUI();
 
@@ -512,6 +588,7 @@ public class Purchase extends JFrame {
 	}
 
 	private void showBall() {
+		lblAmount.setText("");
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
 		registeredLabels = new ArrayList<>();
 		pnlBall1.setLayout(flowLayout);
@@ -526,18 +603,15 @@ public class Purchase extends JFrame {
 			for (int j = 0; j < 7; j++) {
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
 					int number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
+//					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
 					if (intSet.size() <= 5) {
 						intSet.add(number);
 					} else {
 						intSetList.add(intSet);
 						intSet.clear();
 					}
-//					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
-
-					int ballWidth = ballIcon.getIconWidth();
-					int ballHeight = ballIcon.getIconHeight();
 
 					// 이미지 크기 조절
 					Image originalImage = ballIcon.getImage();
@@ -551,19 +625,41 @@ public class Purchase extends JFrame {
 				}
 			}
 		}
+
 		// 각 패널에 이미지 추가
 		if (showBallselectedCount == 6) {
 			for (JLabel registeredLabel : registeredLabels) {
 				if (pnlBall1.getComponentCount() <= 5) {
 					pnlBall1.add(registeredLabel);
+					if (pnlBall1.getComponentCount() == 6) {
+						amount += 1000;
+					}
+					lblAmount.setText(Integer.toString(amount) + "원");
 				} else if (pnlBall2.getComponentCount() <= 5) {
 					pnlBall2.add(registeredLabel);
+					if (pnlBall2.getComponentCount() == 6) {
+						amount += 1000;
+					}
+					lblAmount.setText(Integer.toString(amount) + "원");
 				} else if (pnlBall3.getComponentCount() <= 5) {
 					pnlBall3.add(registeredLabel);
+					if (pnlBall3.getComponentCount() == 6) {
+						amount += 1000;
+					}
+					lblAmount.setText(Integer.toString(amount) + "원");
 				} else if (pnlBall4.getComponentCount() <= 5) {
 					pnlBall4.add(registeredLabel);
+					if (pnlBall4.getComponentCount() == 6) {
+						amount += 1000;
+					}
+					lblAmount.setText(Integer.toString(amount) + "원");
 				} else if (pnlBall5.getComponentCount() <= 5) {
 					pnlBall5.add(registeredLabel);
+					if (pnlBall5.getComponentCount() == 6) {
+						amount += 1000;
+					}
+					lblAmount.setText(Integer.toString(amount) + "원");
+					btnRegistration.setEnabled(false);
 				}
 			}
 		}
@@ -578,6 +674,7 @@ public class Purchase extends JFrame {
 		pnlBall5.revalidate();
 		pnlBall5.repaint();
 	}
+//	
 
 	private void showGUI() {
 		setSize(1000, 600);
@@ -657,6 +754,7 @@ public class Purchase extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 					btnNewButton_1.setEnabled(true);
+					btnRegistration.setEnabled(true);
 
 				}
 			});

@@ -59,7 +59,7 @@ public class PurchaseHistory extends JFrame {
 	public PurchaseHistory() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 1029, 600);
 		setTitle("로또 구매내역");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -74,10 +74,9 @@ public class PurchaseHistory extends JFrame {
 		panel.setLayout(sl_panel);
 
 		JButton btnNewButton = new JButton("");
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, -83, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 721, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -35, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 646, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -29, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -125, SpringLayout.EAST, panel);
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setIcon(new ImageIcon("뒤로가기버튼테스트-.png"));
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
@@ -115,65 +114,72 @@ public class PurchaseHistory extends JFrame {
 //		});
 
 		comboBox_1 = new JComboBox(purchase);
-		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 73, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 297, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 77, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 259, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -441, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, -534, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 74, SpringLayout.NORTH, panel);
 		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(comboBox_1);
 
 
 		JLabel lblNewLabel = new JLabel("구매 내역");
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 105, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -437, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 45, SpringLayout.EAST, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 593, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -270, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 1, SpringLayout.NORTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 45, SpringLayout.EAST, lblNewLabel);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 73, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -721, SpringLayout.EAST, panel);
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(lblNewLabel);
 
 
 		JPanel panel_1 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 12, SpringLayout.SOUTH, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 14, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -16, SpringLayout.NORTH, panel_1);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 538, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_1, -35, SpringLayout.EAST, panel);
 		panel.add(panel_1);
 		panel_1.setBackground(Color.WHITE);
 
 		JPanel panel_2 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel_2);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, panel_2);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, panel_2);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -367, SpringLayout.EAST, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 188, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 538, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -35, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -303, SpringLayout.SOUTH, panel);
 		panel.add(panel_2);
 		panel_2.setBackground(Color.WHITE);
 
 		JPanel panel_3 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 254, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -6, SpringLayout.NORTH, panel_3);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 6, SpringLayout.SOUTH, panel_2);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 538, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -237, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_3, -35, SpringLayout.EAST, panel);
 		panel.add(panel_3);
 		panel_3.setBackground(Color.WHITE);
 
 		JPanel panel_4 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_4, -367, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, panel_4);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, panel_4);
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 320, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 6, SpringLayout.SOUTH, panel_3);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 538, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -171, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel_1);
 		panel.add(panel_4);
 		panel_4.setBackground(Color.WHITE);
 
 		JPanel panel_5 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 386, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 7, SpringLayout.SOUTH, panel_5);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, panel_1);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 6, SpringLayout.SOUTH, panel_4);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -105, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_5, -367, SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_5, 0, SpringLayout.EAST, panel_1);
 		panel.add(panel_5);
 		panel_5.setBackground(Color.WHITE);
+		
+		JLabel lblNewLabel_1 = new JLabel("장");
+		sl_panel.putConstraint(SpringLayout.EAST, comboBox_1, -6, SpringLayout.WEST, lblNewLabel_1);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 842, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, comboBox_1);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -16, SpringLayout.NORTH, panel_1);
+		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 30));
+		panel.add(lblNewLabel_1);
 		
 		
 

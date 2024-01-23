@@ -76,6 +76,7 @@ public class Result extends JFrame {
 	private List<Integer> selectedNumber2 = new ArrayList<>();
 	private int Vector;
 	private AbstractButton btnNewButton;
+	private List<Set<Integer>> intSetList;
 
 	public Result() {
 //		selectedNumber2 = new ArrayList<>();
@@ -544,6 +545,18 @@ public class Result extends JFrame {
 				}
 			}
 
+			for (Integer i : selectedNumber2) {
+				System.out.println(selectedNumber2.toString());
+				System.out.println(Purchase.intSetList);
+				for (Set<Integer> intSet : Purchase.intSetList) {
+					System.out.println(intSet.toString());
+					for (Integer j : intSet) {
+						System.out.println(j);
+						System.out.println("ghkrdls");
+					}
+				}
+			}
+
 			if (count == 6) {
 				textField_2.setText("1");
 				textField_5.setText("1");
@@ -551,10 +564,11 @@ public class Result extends JFrame {
 				textField_7.setText("1");
 				textField_8.setText("1");
 			}
-			int target = keysList.get(6);
-			if (selectedNumber2.equals(Purchase.intSetList)) {
-				count++;
-			}
+			// int target = keysList.get(6);
+
+//			if (selectedNumber2.contains(Purchase.intSetList)) {
+//				count++;
+//			}
 
 			switch (count) {
 			case 5:
