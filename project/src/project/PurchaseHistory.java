@@ -143,12 +143,6 @@ public class PurchaseHistory extends JFrame {
 		panel.add(panel_6);
 		panel_6.setLayout(new FlowLayout());
 		
-		@Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        // 이미지 그리기
-	        g.drawImage(new ImageIcon("로또용지 테두리.png"), 0, 0, getWidth(), getHeight(), this);
-	    }
 		
 				JPanel panel_1 = new JPanel();
 				panel_6.add(panel_1);
