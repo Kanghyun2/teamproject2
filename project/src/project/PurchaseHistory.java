@@ -2,21 +2,19 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
 
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
@@ -118,6 +115,8 @@ public class PurchaseHistory extends JFrame {
 //		});
 
 		comboBox_1 = new JComboBox(purchase);
+		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 73, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 297, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 77, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, comboBox_1, 259, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, comboBox_1, -441, SpringLayout.SOUTH, panel);
@@ -125,6 +124,7 @@ public class PurchaseHistory extends JFrame {
 		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(comboBox_1);
+
 
 		JLabel lblNewLabel = new JLabel("구매 내역");
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 105, SpringLayout.WEST, panel);
@@ -134,12 +134,6 @@ public class PurchaseHistory extends JFrame {
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(lblNewLabel);
 
-//		@Override
-//	    protected void paintComponent(Graphics g) {
-//	        super.paintComponent(g);
-//	        // 이미지 그리기
-//	        g.drawImage(new ImageIcon("로또용지 테두리.png"), 0, 0, getWidth(), getHeight(), this);
-//	    }
 
 		JPanel panel_1 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 12, SpringLayout.SOUTH, comboBox_1);
@@ -180,6 +174,13 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 		panel.add(panel_5);
 		panel_5.setBackground(Color.WHITE);
+		JPanel panel_6 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.WEST, panel_6, 72, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, 372, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 8, SpringLayout.SOUTH, lblNewLabel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_6, 589, SpringLayout.WEST, panel);
+		panel.add(panel_6);
+		panel_6.setLayout(new FlowLayout());
 
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
