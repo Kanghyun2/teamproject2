@@ -22,6 +22,7 @@ public class GUIMain extends JFrame {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private ImageIcon icon;
+	private Purchase purchase;
 
 	/**
 	 * Launch the application.
