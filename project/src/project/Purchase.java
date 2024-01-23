@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -88,7 +89,7 @@ public class Purchase extends JFrame {
 		getContentPane().add(pnl);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-
+		
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
 //        Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
@@ -607,8 +608,9 @@ public class Purchase extends JFrame {
 					if (intSet.size() <= 5) {
 						intSet.add(number);
 					} else {
-						intSetList.add(intSet);
+						intSetList.add(new HashSet<>(intSet));
 						intSet.clear();
+						intSet.add(number);
 					}
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
