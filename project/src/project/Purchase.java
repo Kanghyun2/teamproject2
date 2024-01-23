@@ -487,6 +487,42 @@ public class Purchase extends JFrame {
 			pnlBall5.setBackground(Color.WHITE);
 			pnl.add(pnlBall5);
 			pnlBall5.setLayout(new SpringLayout());
+			
+			JButton btnNewButton_4 = new JButton("");
+			springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_4, -55, SpringLayout.NORTH, btnDel1);
+			springLayout.putConstraint(SpringLayout.WEST, btnNewButton_4, -28, SpringLayout.EAST, btnNewButton_2);
+			springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_4, -23, SpringLayout.NORTH, btnDel1);
+			springLayout.putConstraint(SpringLayout.EAST, btnNewButton_4, -75, SpringLayout.EAST, pnl);
+			btnNewButton_4.setIcon(new ImageIcon("초기화2.png"));
+			btnNewButton_4.setBorderPainted(false);
+			btnNewButton_4.setFocusPainted(false);
+			btnNewButton_4.setContentAreaFilled(false);
+			btnNewButton_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					removeComponentFromPanel(pnlBall1);
+					pnlBall1.revalidate();
+					pnlBall1.repaint();
+					removeComponentFromPanel(pnlBall2);
+					pnlBall2.revalidate();
+					pnlBall2.repaint();
+					removeComponentFromPanel(pnlBall3);
+					pnlBall3.revalidate();
+					pnlBall3.repaint();
+					removeComponentFromPanel(pnlBall4);
+					pnlBall4.revalidate();
+					pnlBall4.repaint();
+					removeComponentFromPanel(pnlBall5);
+					pnlBall5.revalidate();
+					pnlBall5.repaint();
+					
+				}
+			});
+			pnl.add(btnNewButton_4);
+			
+			JLabel lblNewLabel_1 = new JLabel("ㅇ");
+			springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 65, SpringLayout.SOUTH, pnlBall5);
+			springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, -68, SpringLayout.WEST, btnNewButton_2);
+			pnl.add(lblNewLabel_1);
 
 			showGUI();
 		
