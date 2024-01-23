@@ -83,6 +83,7 @@ public class PurchaseHistory extends JFrame {
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(false);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIMain().setVisible(true);
@@ -91,27 +92,6 @@ public class PurchaseHistory extends JFrame {
 			}
 		});
 		panel.add(btnNewButton);
-
-//		// 회차 클릭 했을때 당첨번호 출력
-//		comboBox.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//
-//				JComboBox<Integer> source = (JComboBox<Integer>) e.getSource();
-//				Integer selectedValue = (Integer) source.getSelectedItem();
-//				if (round.iterator().equals(selectedValue)) {
-//					for (Integer element : winningNumber) {
-//						System.out.print(element + " ");
-//					}
-//					System.out.println();
-//				}
-//				if (round.lastElement().equals(selectedValue)) {
-//					comboBox_1.setEnabled(true);
-//				} else {
-//					comboBox_1.setEnabled(false);
-//				}
-//			}
-//		});
 
 		comboBox_1 = new JComboBox(purchase);
 		sl_panel.putConstraint(SpringLayout.NORTH, comboBox_1, 74, SpringLayout.NORTH, panel);
@@ -181,8 +161,6 @@ public class PurchaseHistory extends JFrame {
 		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 30));
 		panel.add(lblNewLabel_1);
 		
-		
-
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
 			@Override

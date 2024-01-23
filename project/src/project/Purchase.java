@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -60,11 +62,15 @@ public class Purchase extends JFrame {
 	private int showBallselectedCount = 0;
 	private JLabel lblAmount;
 	private int amount = 0;
+	public static List<Set<Integer>> intSetList;
+	private Set<Integer> intSet;
 
 	public Purchase() {
 		setBackground(Color.WHITE);
 		setTitle("구매 화면");
 		getContentPane().setBackground(Color.WHITE);
+		intSetList = new ArrayList<>();
+		intSet = new TreeSet<>();
 		pnl = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
