@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
+import javax.swing.JTextField;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
@@ -52,6 +53,7 @@ public class Purchase extends JFrame {
 	private int rows = 7; // 행
 	private int cols = 7; // 열
 	private int showBallselectedCount = 0;
+	private JLabel lblAmount;
 
 	public Purchase() {
 		setTitle("구매 화면");
@@ -269,6 +271,7 @@ public class Purchase extends JFrame {
 			btnNewButton_2.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
+					
 					if (pnlBall1.getComponentCount() == 0 && pnlBall2.getComponentCount() == 0
 							&& pnlBall3.getComponentCount() == 0 && pnlBall4.getComponentCount() == 0
 							&& pnlBall5.getComponentCount() == 0) {
@@ -324,14 +327,14 @@ public class Purchase extends JFrame {
 			springLayout.putConstraint(SpringLayout.EAST, btnRegistration, -380, SpringLayout.WEST, btnNewButton_2);
 			btnRegistration.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					showBall();
-
+					
 					if (showBallselectedCount < 6 || showBallselectedCount > 6) {
 						InputDialog dialog = new InputDialog(Purchase.this);
 						dialog.setVisible(true);
 					}
 				}
-
 			});
 			pnl.add(btnRegistration);
 
@@ -534,10 +537,11 @@ public class Purchase extends JFrame {
 			});
 			pnl.add(btnNewButton_4);
 			
-			JLabel lblNewLabel_1 = new JLabel("ㅇ");
-			springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 65, SpringLayout.SOUTH, pnlBall5);
-			springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, -68, SpringLayout.WEST, btnNewButton_2);
-			pnl.add(lblNewLabel_1);
+			lblAmount = new JLabel("0 원");
+			springLayout.putConstraint(SpringLayout.NORTH, lblAmount, 4, SpringLayout.NORTH, btnNewButton_2);
+			springLayout.putConstraint(SpringLayout.WEST, lblAmount, -158, SpringLayout.WEST, btnNewButton_2);
+			springLayout.putConstraint(SpringLayout.EAST, lblAmount, -125, SpringLayout.WEST, btnNewButton_2);
+			pnl.add(lblAmount);
 
 			showGUI();
 		
@@ -557,6 +561,7 @@ public class Purchase extends JFrame {
 	}
 
 	private void showBall() {
+		lblAmount.setText("");
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT);
 		registeredLabels = new ArrayList<>();
 		pnlBall1.setLayout(flowLayout);
@@ -575,9 +580,6 @@ public class Purchase extends JFrame {
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
 					
-					int ballWidth = ballIcon.getIconWidth();
-					int ballHeight = ballIcon.getIconHeight();
-
 					// 이미지 크기 조절
 					Image originalImage = ballIcon.getImage();
 					Image resizedImage = originalImage.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -590,20 +592,26 @@ public class Purchase extends JFrame {
 				}
 			}
 		}
-
+			
+		lblAmount.setText("여기에 원하는 텍스트를 입력하세요");
 		// 각 패널에 이미지 추가
 		if (showBallselectedCount == 6) {
 			for (JLabel registeredLabel : registeredLabels) {
 				if (pnlBall1.getComponentCount() <= 5) {
 					pnlBall1.add(registeredLabel);
+//					lblAmount.setText("1000 원");
 				} else if (pnlBall2.getComponentCount() <= 5) {
 					pnlBall2.add(registeredLabel);
+//					lblAmount.setText("2000 원");
 				} else if (pnlBall3.getComponentCount() <= 5) {
 					pnlBall3.add(registeredLabel);
+//					lblAmount.setText("3000 원");
 				} else if (pnlBall4.getComponentCount() <= 5) {
 					pnlBall4.add(registeredLabel);
+//					lblAmount.setText("4000 원");
 				} else if (pnlBall5.getComponentCount() <= 5) {
 					pnlBall5.add(registeredLabel);
+//					lblAmount.setText("5000 원");
 				}
 			}
 		}
