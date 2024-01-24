@@ -19,7 +19,7 @@ import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 
 public class GUIMain extends JFrame {
-
+ //ㄹ
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;

@@ -38,7 +38,6 @@ import com.sun.beans.decoder.ValueObject;
 import javafx.util.converter.FormatStringConverter;
 
 import javax.swing.JTextField;
-
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
 //	private List<JLabel> registeredLabels = new ArrayList<>();

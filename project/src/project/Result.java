@@ -541,7 +541,7 @@ public class Result extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-
+//ㄹ
 	public void MN() {
 		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
 		int count = 0;

@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
-
+//ㄹㅇ
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
 //	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
