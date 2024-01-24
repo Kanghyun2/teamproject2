@@ -83,7 +83,6 @@ public class Result extends JFrame {
 	private List<Set<Integer>> intSetList;
 	private int tfIndex;
 	private JComboBox<Integer> comboBox;
-	
 
 	public Result() {
 //		selectedNumber2 = new ArrayList<>();
@@ -559,58 +558,96 @@ public class Result extends JFrame {
 		}
 
 		setSize(1000, 600);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
+//	public void MN() {
+//		 List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
+//	    tfIndex = 0;
+//	    Integer selectedValue = (Integer) comboBox.getSelectedItem();
+//
+//	    if (Purchase.intSetList != null && selectedNumber2 != null) {
+//
+//	        if (selectedValue != null) {
+//	            for (int k = 0; k < 5; k++) {
+//	                int count = 0;
+//
+//	                for (Integer a : selectedNumber2) {
+//	                    for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
+//	                        for (Integer b : c) {
+//	                            if (a.equals(b)) {
+//	                                count++;
+//	                            }
+//	                        }
+//	                    }
+//	                }
+//	                
+//	                switch (count) {
+//	                    case 4:
+//	                        tfList.get(tfIndex).setText("2");
+//	                        break;
+//	                    case 3:
+//	                        tfList.get(tfIndex).setText("3");
+//	                        break;
+//	                    case 2:
+//	                        tfList.get(tfIndex).setText("4");
+//	                        break;
+//	                    case 1:
+//	                        tfList.get(tfIndex).setText("5");
+//	                        break;
+//	                    default:
+//	                        tfList.get(tfIndex).setText("꽝");
+//	                        break;
+//	                }
+//
+//	                tfIndex++;
+//	            }
+//	        } else {
+//	            // 선택된 아이템이 없을 때의 처리
+//	            // 예: 적절한 디폴트 값 설정 또는 사용자에게 메시지 표시 등
+//	        }
+//	    }
+//	}
 	public void MN() {
-		 List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
-	    tfIndex = 0;
+	    List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
 	    Integer selectedValue = (Integer) comboBox.getSelectedItem();
 
 	    if (Purchase.intSetList != null && selectedNumber2 != null) {
-
 	        if (selectedValue != null) {
-	            for (int k = 0; k < 5; k++) {
+	            for (int k = 0; k < Purchase.purchaseNumList.get(selectedValue).size(); k++) {
 	                int count = 0;
 
 	                for (Integer a : selectedNumber2) {
-	                    for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
-	                        for (Integer b : c) {
-	                            if (a.equals(b)) {
-	                                count++;
-	                            }
+	                    for (Integer c : Purchase.purchaseNumList.get(selectedValue).get(k)) {
+	                        if (a.equals(c)) {
+	                            count++;
 	                        }
 	                    }
 	                }
-	                
+
 	                switch (count) {
 	                    case 4:
-	                        tfList.get(tfIndex).setText("2");
+	                        tfList.get(k).setText("2");
 	                        break;
 	                    case 3:
-	                        tfList.get(tfIndex).setText("3");
+	                        tfList.get(k).setText("3");
 	                        break;
 	                    case 2:
-	                        tfList.get(tfIndex).setText("4");
+	                        tfList.get(k).setText("4");
 	                        break;
 	                    case 1:
-	                        tfList.get(tfIndex).setText("5");
+	                        tfList.get(k).setText("5");
 	                        break;
 	                    default:
-	                        tfList.get(tfIndex).setText("꽝");
+	                        tfList.get(k).setText("꽝");
 	                        break;
 	                }
-
-	                tfIndex++;
 	            }
-	        } else {
-	            // 선택된 아이템이 없을 때의 처리
-	            // 예: 적절한 디폴트 값 설정 또는 사용자에게 메시지 표시 등
 	        }
 	    }
 	}
-
 	// private void updateTextField(List<JTextField> tfList, String rank) {
 //		tfList.get(tfIndex).setText(rank);
 	// tfIndex++;

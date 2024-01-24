@@ -66,6 +66,7 @@ public class PurchaseHistory extends JFrame {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 600);
+		setLocationRelativeTo(null);
 		setTitle("로또 구매내역");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

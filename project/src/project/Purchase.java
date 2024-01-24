@@ -643,7 +643,7 @@ public class Purchase extends JFrame {
 				int number = 0;
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
 					number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
-//					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
+//					number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
 //					if (intSet.size() < 6) { // 변경: 더 이상 숫자를 추가하지 않도록 수정
 //						intSet.add(number);
 //					} if (intSet.size() == 5) {
@@ -675,8 +675,10 @@ public class Purchase extends JFrame {
 					intSetList.add(tempSet);
 					purchaseNumList.put(PurchaseHistory.numberOfPurchases, new ArrayList<Set<Integer>>(intSetList));
 					intSet.clear();
-					intSetList.clear();
 					count = 0;
+				}
+				if(intSetList.size()==5) {
+					intSetList.clear();
 				}
 			}
 		}
@@ -745,6 +747,7 @@ public class Purchase extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	class InputDialog extends JDialog {
