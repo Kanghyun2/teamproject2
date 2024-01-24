@@ -637,7 +637,7 @@ public class Purchase extends JFrame {
 		pnlBall3.setLayout(flowLayout);
 		pnlBall4.setLayout(flowLayout);
 		pnlBall5.setLayout(flowLayout);
-
+//h
 		showBallselectedCount = 0;
 		int count = 0;
 		for (int i = 0; i < 7; i++) {

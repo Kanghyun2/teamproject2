@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -75,11 +77,12 @@ public class Result extends JFrame {
 	private JTextField textField_8;
 	private Object pnlwinningNumber;
 	private Object selectedNumber;
-	private List<Integer> selectedNumber2 = new ArrayList<>();
+	private Set<Integer> selectedNumber2 = new LinkedHashSet<>();
 	private int Vector;
 	private AbstractButton btnNewButton;
 	private List<Set<Integer>> intSetList;
 	private int tfIndex;
+
 	public Result() {
 //		selectedNumber2 = new ArrayList<>();
 
@@ -198,29 +201,45 @@ public class Result extends JFrame {
 							shuffledTreeMap.put(key, imageMap.get(key));
 						}
 
-						selectedNumber2 = new ArrayList<>(keysList);
-						Collections.shuffle(selectedNumber2);
-						selectedNumber2 = selectedNumber2.subList(0, 7);
-						Collections.sort(selectedNumber2);
+						// List<JLabel> imageLabelsList = new ArrayList<>();
 
 						Random random = new Random();
-						int additionalNumber = random.nextInt(45) + 1; // Change 45 to the desired range
 
-						selectedNumber2.add(additionalNumber);
-						Collections.sort(selectedNumber2);
+						// 6개의 무작위 숫자 뽑기
+						while (selectedNumber2.size() < 6) {
+							int randomIndex = random.nextInt(keysList.size());
+							selectedNumber2.add(keysList.get(randomIndex));
+						}
 
-						for (int i = 0; i < selectedNumber2.size(); i++) {
+						// 중복되지 않는 추가적인 숫자 뽑기
+						int additionalNumber;
+						do {
+							additionalNumber = random.nextInt(45) + 1;
+						} while (selectedNumber2.contains(additionalNumber));
+
+						// 선택된 숫자 정렬
+						List<Integer> sortedNumbers = new ArrayList<>(selectedNumber2);
+						Collections.sort(sortedNumbers);
+
+						// 정렬된 숫자 출력
+						int i = 0;
+						for (Integer currentNumber : sortedNumbers) {
 							if (i == 6) {
 								imageLabels[i].setText("+");
 							} else {
-								int currentNumber = selectedNumber2.get(i);
 								String imageList = shuffledTreeMap.get(currentNumber);
 								ImageIcon icon = new ImageIcon(imageList);
 								imageLabels[i].setIcon(icon);
 							}
 							panel_2.add(imageLabels[i]);
-
+							i++;
 						}
+
+						// 추가적인 숫자 출력
+						String additionalImageList = shuffledTreeMap.get(additionalNumber);
+						ImageIcon additionalIcon = new ImageIcon(additionalImageList);
+						imageLabels[6].setIcon(additionalIcon);
+						panel_2.add(imageLabels[6]);
 
 						panel_2.revalidate();
 						panel_2.repaint();
@@ -541,36 +560,52 @@ public class Result extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-//ㄹ
+
 	public void MN() {
 		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
-		int count = 0;
 		tfIndex = 0;
+
 		if (Purchase.intSetList != null && selectedNumber2 != null) {
-			for (Integer i : selectedNumber2) {
-				for (Set<Integer> intSet : Purchase.intSetList) {
-					if (intSet.contains(i)) {
-						count++;
+			int count = 0;
+
+//				for (Set<Integer> intSet : Purchase.intSetList) {
+//					if (intSet.contains(i)) {
+//						count++;
+//					}
+//				}
+			List<Integer> selectednum = new ArrayList<>();
+
+			for (int k = 0; k < 5; k++) {
+				for (Integer a : selectedNumber2) {
+					for (Integer b : Purchase.intSetList.get(k)) {
+						if (a.equals(b)) {
+							count++;
+						}
 					}
+					selectednum.add(count);
 				}
+				count = 0;
 			}
-			//ㄹ
-			switch (count) {
-			case 6:
-				updateTextField(tfList,"2");
-				break;
-			case 5:
-				updateTextField(tfList,"3");
-				break;
-			case 4:
-				updateTextField(tfList,"4");
-				break;
-			case 3:
-				updateTextField(tfList,"5");
-				break;
-			default:
-				updateTextField(tfList,"꽝");
-				break;
+//h
+			for (int i = 0; i < 5; i++) {
+				switch (selectednum.get(i)) {
+				case 4:
+					tfList.get(tfIndex).setText("2");
+					break;
+				case 3:
+					tfList.get(tfIndex).setText("3");
+					break;
+				case 2:
+					tfList.get(tfIndex).setText("4");
+					break;
+				case 1:
+					tfList.get(tfIndex).setText("5");
+					break;
+				default:
+					tfList.get(tfIndex).setText("꽝");
+					break;
+				}
+				tfIndex++;
 			}
 		}
 	}

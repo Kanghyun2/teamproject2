@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-
+//f
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
-//ㄹㅇ
+
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
 //	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
