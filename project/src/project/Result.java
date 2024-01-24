@@ -563,8 +563,9 @@ public class Result extends JFrame {
 
 	public void MN() {
 		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
-		tfIndex = 0;
 
+		tfIndex = 0;
+//g
 		if (Purchase.intSetList != null && selectedNumber2 != null) {
 			for (int k = 0; k < 5; k++) {
 				int count = 0;
@@ -596,7 +597,9 @@ public class Result extends JFrame {
 				}
 
 				tfIndex++;
+
 			}
+
 		}
 	}
 
