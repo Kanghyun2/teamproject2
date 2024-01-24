@@ -646,12 +646,11 @@ public class Purchase extends JFrame {
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
 					number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
 //					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
-					if (intSet.size() <= 5) {
+					if (intSet.size() < 6) { // 변경: 더 이상 숫자를 추가하지 않도록 수정
 						intSet.add(number);
-					} else {
-						intSetList.add(new HashSet<>(intSet));
+					} if (intSet.size() == 5) {
+						intSetList.add(new TreeSet<>(intSet));
 						intSet.clear();
-						intSet.add(number);
 					}
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);

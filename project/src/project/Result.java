@@ -431,7 +431,7 @@ public class Result extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Integer selectedValue = (Integer) comboBox.getSelectedItem();
-
+				
 				// 선택된 값이 null이 아닐 때 처리
 				if (selectedValue != null) {
 					// 패널 내부의 모든 컴포넌트 제거
@@ -440,7 +440,11 @@ public class Result extends JFrame {
 					panel_4_1_1.removeAll();
 					panel_4_1_1_1.removeAll();
 					panel_4_1_1_1_1.removeAll();
-
+					textField_2.setText("");
+					textField_5.setText("");
+					textField_6.setText("");
+					textField_7.setText("");
+					textField_8.setText("");
 					// 선택된 값에 대한 처리
 					for (Integer i : PurchaseHistory.pnlpurchaseNumber.keySet()) {
 						if (i.equals(selectedValue)) {
@@ -584,11 +588,8 @@ public class Result extends JFrame {
 					}
 					selectednum.add(count);
 				}
-				count = 0;
-			}
-//h
-			for (int i = 0; i < 5; i++) {
-				switch (selectednum.get(i)) {
+
+				switch (count) {
 				case 4:
 					tfList.get(tfIndex).setText("2");
 					break;
@@ -608,53 +609,5 @@ public class Result extends JFrame {
 				tfIndex++;
 			}
 		}
-	}
-
-	private void updateTextField(List<JTextField> tfList, String rank) {
-		tfList.get(tfIndex).setText(rank);
-		tfIndex++;
-	}
-
-	protected JLabel textField() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel lblNewLabel_9() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel panel_2() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel panel_3(Object lblNewLabel_102) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected void setLayout(Panel panel) {
-
-	}
-
-	protected void getLayout(FlowLayout flowLayout) {
-
-	}
-
-	public static void lblNewLabel_10(List<JLabel> registeredLabels) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void purchaseAdd() {
-		purchase.add(purchaseindex);
-		purchaseindex++;
-	}
-
-	public static void main(String[] args) {
-		new Result();
-
 	}
 }

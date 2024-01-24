@@ -60,8 +60,7 @@ public class PurchaseHistory extends JFrame {
 	public PurchaseHistory() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500
-				, 600);
+		setBounds(100, 100, 500, 600);
 		setTitle("로또 구매내역");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -309,21 +308,6 @@ public class PurchaseHistory extends JFrame {
 		});
 	}
 
-//	// 로또 당첨번호 저장 메소드
-//	public static void winningNumberAdd(Integer winningnumber) {
-//		winningNumber.add(winningnumber);
-//	}
-
-//	// 내가 구매한 로또 번호 저장
-//	public static void purchaseNumberAdd(ArrayList<Integer> purchaseumber) {
-//		purchaseNumber.add(purchaseumber);
-//	}
-
-//	// 회차 올려주는 메소드
-//	public static void roundAdd() {
-//		round.add(index);
-//		index++;
-//	}
 
 	// 구매시 장수 올려주는 메소드
 	public static void purchaseAdd() {
