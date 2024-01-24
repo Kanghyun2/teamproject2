@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
@@ -80,16 +82,12 @@ public class PurchaseHistory extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
-		JButton btnNewButton = new JButton("");
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 133, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -32, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -135, SpringLayout.EAST, panel);
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setIcon(new ImageIcon("뒤로가기버튼테스트-.png"));
-		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 30));
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setContentAreaFilled(false);
+		JButton btnNewButton = new JButton("뒤로 가기");
+		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 354, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -62, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -10, SpringLayout.EAST, panel);
+		btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
+		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 14));
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,6 +140,7 @@ public class PurchaseHistory extends JFrame {
 		panel_4.setBackground(Color.WHITE);
 
 		panel_5 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 244, SpringLayout.SOUTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 33, SpringLayout.SOUTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, panel_1);

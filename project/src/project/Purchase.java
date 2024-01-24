@@ -33,6 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
+import javax.swing.UIManager;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
@@ -178,6 +179,7 @@ public class Purchase extends JFrame {
 		}
 
 		JButton btnNewButton = new JButton("자동 선택");
+		btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
 
 		btnNewButton.addActionListener(new ActionListener() {
 
@@ -197,6 +199,7 @@ public class Purchase extends JFrame {
 					originalIcons[row][col] = toggleIcon;
 				}
 
+				
 				Collections.shuffle(allButton);
 				int count = 0;
 				for (JToggleButton button : allButton) {
@@ -224,6 +227,7 @@ public class Purchase extends JFrame {
 		pnl.add(btnNewButton);
 
 		btnNewButton_1 = new JButton("반 자동");
+		btnNewButton_1.setBackground(UIManager.getColor("Button.disabledForeground"));
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, 38, SpringLayout.SOUTH, btnNewButton);
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
 		springLayout.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, btnNewButton);
@@ -329,6 +333,7 @@ public class Purchase extends JFrame {
 		pnl.add(btnNewButton_2);
 
 		JButton btnGoBack = new JButton("뒤로가기");
+		btnGoBack.setBackground(UIManager.getColor("Button.disabledForeground"));
 		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton_2, -82, SpringLayout.NORTH, btnGoBack);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnGoBack, -22, SpringLayout.SOUTH, pnl);
 		springLayout.putConstraint(SpringLayout.EAST, btnGoBack, -34, SpringLayout.EAST, pnl);

@@ -1,5 +1,7 @@
 package project;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -33,9 +35,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
+import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
 
 public class Result extends JFrame {
-	// fwsfwsaf
+
+	private LineBorder RB = new LineBorder(new Color(213, 47, 117), 2, true);
+	private LineBorder BB = new LineBorder(new Color(63, 108, 198), 2, true);
+	private LineBorder BlackB = new LineBorder(Color.LIGHT_GRAY, 1, true);
+	private LineBorder WB = new LineBorder(Color.WHITE, 1, true);
 	protected static final String panel_3 = null;
 	protected static final Object List = null;
 	protected static final Object String = null;
@@ -45,7 +53,6 @@ public class Result extends JFrame {
 	private JTextField textField;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private ImageDisplayApp app;
 	protected ArrayList<Integer> keysList;
 	protected JLabel[] imageLabels;
 	protected TreeMap<Integer, String> imageMap;
@@ -63,6 +70,7 @@ public class Result extends JFrame {
 	protected static List<JLabel> purchaseNumber2 = new ArrayList<>();
 	protected static List<JLabel> purchaseNumber3 = new ArrayList<>();
 	protected static Map<String, List<JLabel>> pnlpurchaseString = new HashMap<>();
+	protected static Map<String, List<JLabel>> purchaseNumList = new HashMap<>();
 	private int showBallselectedCount;
 	protected static String numberOfOne = "첫번째 장";
 	protected static String numberOfTwo = "두번째 장";
@@ -85,12 +93,14 @@ public class Result extends JFrame {
 	private JComboBox<Integer> comboBox;
 
 	public Result() {
+		getContentPane().setBackground(SystemColor.window);
 //		selectedNumber2 = new ArrayList<>();
 
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
 		JButton btnBack = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btnBack.setBackground(UIManager.getColor("Button.disabledForeground"));
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, btnBack, -10, SpringLayout.EAST, getContentPane());
 		getContentPane().add(btnBack);
@@ -104,17 +114,19 @@ public class Result extends JFrame {
 		});
 
 		JPanel panel = new JPanel();
+		springLayout.putConstraint(SpringLayout.EAST, panel, -518, SpringLayout.EAST, getContentPane());
+		panel.setBorder(RB);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel, -89, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, -549, SpringLayout.EAST, getContentPane());
-		panel.setBackground(SystemColor.inactiveCaption);
+		panel.setBackground(SystemColor.textHighlightText);
 		getContentPane().add(panel);
 
 		JPanel panel_1 = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 0, SpringLayout.NORTH, panel);
-		springLayout.putConstraint(SpringLayout.WEST, panel_1, 78, SpringLayout.EAST, panel);
+		springLayout.putConstraint(SpringLayout.NORTH, panel_1, 69, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, panel_1, 30, SpringLayout.EAST, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_1, -56, SpringLayout.NORTH, btnBack);
-		springLayout.putConstraint(SpringLayout.EAST, panel_1, 0, SpringLayout.EAST, btnBack);
-		panel_1.setBackground(SystemColor.inactiveCaption);
+		springLayout.putConstraint(SpringLayout.EAST, panel_1, -27, SpringLayout.EAST, getContentPane());
+		panel_1.setBorder(BB);
+		panel_1.setBackground(SystemColor.textHighlightText);
 
 		String[] menus = new String[] { "차수를 선택하세요", "-----", "1회차", "2회차", "3회차" };
 		JComboBox<String> combo = new JComboBox<>();
@@ -262,6 +274,7 @@ public class Result extends JFrame {
 		panel.add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.NORTH, textField, 6, SpringLayout.SOUTH, combo);
 		sl_panel.putConstraint(SpringLayout.EAST, textField, -5, SpringLayout.EAST, combo);
 		textField.setEditable(false);
@@ -274,6 +287,7 @@ public class Result extends JFrame {
 		panel.add(lblNewLabel_1);
 
 		textField_3 = new JTextField();
+		textField_3.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textField_3, -118, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, lblNewLabel);
 		panel.add(textField_3);
@@ -291,6 +305,7 @@ public class Result extends JFrame {
 		panel.add(lblNewLabel_8);
 
 		textField_4 = new JTextField();
+		textField_4.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 0, SpringLayout.SOUTH, lblNewLabel_8);
 		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, lblNewLabel);
 		textField_4.setEditable(false);
@@ -306,10 +321,12 @@ public class Result extends JFrame {
 		panel_1.add(lblNewLabel_3);
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4, 58, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_4);
 
 		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1, -10, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_4_1);
@@ -318,6 +335,7 @@ public class Result extends JFrame {
 		panel_1.add(panel_4_1);
 
 		JPanel panel_4_1_1 = new JPanel();
+		panel_4_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1, 186, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1, -10, SpringLayout.EAST, panel_1);
@@ -325,6 +343,7 @@ public class Result extends JFrame {
 		panel_1.add(panel_4_1_1);
 
 		JPanel panel_4_1_1_1 = new JPanel();
+		panel_4_1_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1, 257, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1, -10, SpringLayout.EAST, panel_1);
@@ -332,6 +351,7 @@ public class Result extends JFrame {
 		panel_1.add(panel_4_1_1_1);
 
 		JPanel panel_4_1_1_1_1 = new JPanel();
+		panel_4_1_1_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1, -10, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1, -6, SpringLayout.NORTH, panel_4_1_1_1_1);
@@ -340,6 +360,7 @@ public class Result extends JFrame {
 		panel_1.add(panel_4_1_1_1_1);
 
 		comboBox = new JComboBox<>(PurchaseHistory.purchase);
+		comboBox.setBackground(UIManager.getColor("ComboBox.disabledForeground"));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, comboBox, 7, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4, 9, SpringLayout.SOUTH, comboBox);
 		sl_panel_1.putConstraint(SpringLayout.WEST, comboBox, 100, SpringLayout.EAST, lblNewLabel_3);
@@ -351,72 +372,58 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_5, 7, SpringLayout.EAST, comboBox);
 		panel_1.add(lblNewLabel_5);
 
-		JLabel lblNewLabel_11 = new JLabel("등");
-		panel_1.add(lblNewLabel_11);
-
-		JLabel lblNewLabel_11_1 = new JLabel("등");
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_11, 0, SpringLayout.WEST, lblNewLabel_11_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_11, -59, SpringLayout.NORTH, lblNewLabel_11_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_11_1, 40, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_11_1, 0, SpringLayout.SOUTH, panel_4_1);
-		panel_1.add(lblNewLabel_11_1);
-
-		JLabel lblNewLabel_11_1_1 = new JLabel("등");
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_11_1_1, 0, SpringLayout.SOUTH, panel_4_1_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_11_1_1, -6, SpringLayout.WEST, panel_4_1_1);
-		panel_1.add(lblNewLabel_11_1_1);
-
-		JLabel lblNewLabel_11_1_1_1 = new JLabel("등");
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_11_1_1_1, 0, SpringLayout.SOUTH, panel_4_1_1_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_11_1_1_1, -6, SpringLayout.WEST, panel_4_1_1_1);
-		panel_1.add(lblNewLabel_11_1_1_1);
-
-		JLabel lblNewLabel_11_1_1_1_1 = new JLabel("등");
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblNewLabel_11_1_1_1_1, 0, SpringLayout.SOUTH, panel_4_1_1_1_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_11_1_1_1_1, -6, SpringLayout.WEST, panel_4_1_1_1_1);
-		panel_1.add(lblNewLabel_11_1_1_1_1);
-
 		textField_2 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_2, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_2, -6, SpringLayout.WEST, lblNewLabel_11);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_2, 28, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_2, 0, SpringLayout.SOUTH, panel_4);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_2, -6, SpringLayout.WEST, panel_4);
+		textField_2.setBackground(SystemColor.textHighlightText);
+		textField_2.setBorder(WB);
 		textField_2.setEditable(false);
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 
 		textField_5 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_2, -50, SpringLayout.NORTH, textField_5);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_5, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_5, -6, SpringLayout.WEST, lblNewLabel_11_1);
+		textField_5.setBackground(SystemColor.textHighlightText);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_5, 28, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_5, 0, SpringLayout.SOUTH, panel_4_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_5, -6, SpringLayout.WEST, panel_4_1);
+		textField_5.setBorder(WB);
 		textField_5.setEditable(false);
 		textField_5.setColumns(10);
 		panel_1.add(textField_5);
 
 		textField_6 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_5, -50, SpringLayout.NORTH, textField_6);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_6, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_6, -6, SpringLayout.WEST, lblNewLabel_11_1_1);
-		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_6, 230, SpringLayout.NORTH, panel_1);
+		textField_6.setBackground(SystemColor.textHighlightText);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_6, 0, SpringLayout.WEST, textField_5);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_6, 0, SpringLayout.SOUTH, panel_4_1_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_6, -6, SpringLayout.WEST, panel_4_1_1);
+		textField_6.setBorder(WB);
 		textField_6.setEditable(false);
 		textField_6.setColumns(10);
 		panel_1.add(textField_6);
 
 		textField_7 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, textField_7, 50, SpringLayout.SOUTH, textField_6);
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_7, 0, SpringLayout.WEST, textField_2);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_7, -6, SpringLayout.WEST, lblNewLabel_11_1_1_1);
+		textField_7.setBackground(SystemColor.textHighlightText);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_7, 28, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_7, 0, SpringLayout.SOUTH, panel_4_1_1_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_7, -6, SpringLayout.WEST, panel_4_1_1_1);
+		textField_7.setBorder(WB);
 		textField_7.setEditable(false);
 		textField_7.setColumns(10);
 		panel_1.add(textField_7);
 
 		textField_8 = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.WEST, textField_8, 10, SpringLayout.WEST, panel_1);
+		textField_8.setBackground(SystemColor.textHighlightText);
+		sl_panel_1.putConstraint(SpringLayout.WEST, textField_8, 28, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, textField_8, -10, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, textField_8, -6, SpringLayout.WEST, lblNewLabel_11_1_1_1_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, textField_8, -6, SpringLayout.WEST, panel_4_1_1_1_1);
+		textField_8.setBorder(WB);
 		textField_8.setEditable(false);
 		textField_8.setColumns(10);
 		panel_1.add(textField_8);
 
 		JButton btnNewButton = new JButton("나의 등수 확인!");
+		btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, btnNewButton, -4, SpringLayout.NORTH, lblNewLabel_3);
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnNewButton, 8, SpringLayout.WEST, panel_1);
 		panel_1.add(btnNewButton);
@@ -485,13 +492,14 @@ public class Result extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
 
 		panel_2 = new JPanel();
+		panel_2.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 37, SpringLayout.SOUTH, textField);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, 156, SpringLayout.SOUTH, textField);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -10, SpringLayout.EAST, panel);
 		panel.add(panel_2);
 
-		lblNewLabel_6.setFont(new Font("굴림", Font.PLAIN, 21));
+		lblNewLabel_6.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 21));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_6, 47, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_6, 44, SpringLayout.NORTH, getContentPane());
@@ -616,7 +624,7 @@ public class Result extends JFrame {
 
 	    if (Purchase.intSetList != null && selectedNumber2 != null) {
 	        if (selectedValue != null) {
-	            for (int k = 0; k < Purchase.purchaseNumList.get(selectedValue).size(); k++) {
+	            for (int k = 0; k < 5; k++) {
 	                int count = 0;
 
 	                for (Integer a : selectedNumber2) {
@@ -652,39 +660,6 @@ public class Result extends JFrame {
 //		tfList.get(tfIndex).setText(rank);
 	// tfIndex++;
 	// }
-
-	protected JLabel textField() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel lblNewLabel_9() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel panel_2() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected JLabel panel_3(Object lblNewLabel_102) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	protected void setLayout(Panel panel) {
-
-	}
-
-	protected void getLayout(FlowLayout flowLayout) {
-
-	}
-
-	public static void lblNewLabel_10(List<JLabel> registeredLabels) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
