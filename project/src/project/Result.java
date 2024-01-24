@@ -554,6 +554,7 @@ public class Result extends JFrame {
 					}
 				}
 			}
+			//ㄹ
 			switch (count) {
 			case 6:
 				updateTextField(tfList,"2");
