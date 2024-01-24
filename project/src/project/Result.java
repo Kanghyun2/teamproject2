@@ -10,13 +10,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.Vector;
 
 import javax.swing.AbstractButton;
@@ -32,7 +33,7 @@ import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 
 public class Result extends JFrame {
-	//fwsfwsaf
+	// fwsfwsaf
 	protected static final String panel_3 = null;
 	protected static final Object List = null;
 	protected static final Object String = null;
@@ -78,7 +79,7 @@ public class Result extends JFrame {
 	private int Vector;
 	private AbstractButton btnNewButton;
 	private List<Set<Integer>> intSetList;
-
+	private int tfIndex;
 	public Result() {
 //		selectedNumber2 = new ArrayList<>();
 
@@ -197,24 +198,33 @@ public class Result extends JFrame {
 							shuffledTreeMap.put(key, imageMap.get(key));
 						}
 
-						selectedNumber2 = keysList.subList(0, 8);
+						selectedNumber2 = new ArrayList<>(keysList);
+						Collections.shuffle(selectedNumber2);
+						selectedNumber2 = selectedNumber2.subList(0, 7);
 						Collections.sort(selectedNumber2);
 
-						// StringBuilder result = new StringBuilder();
+						Random random = new Random();
+						int additionalNumber = random.nextInt(45) + 1; // Change 45 to the desired range
 
-						for (int i = 0; i < 8; i++) {
+						selectedNumber2.add(additionalNumber);
+						Collections.sort(selectedNumber2);
+
+						for (int i = 0; i < selectedNumber2.size(); i++) {
 							if (i == 6) {
 								imageLabels[i].setText("+");
 							} else {
-								String imageList = shuffledTreeMap.get(selectedNumber2.get(i));
+								int currentNumber = selectedNumber2.get(i);
+								String imageList = shuffledTreeMap.get(currentNumber);
 								ImageIcon icon = new ImageIcon(imageList);
 								imageLabels[i].setIcon(icon);
 							}
 							panel_2.add(imageLabels[i]);
 
 						}
+
 						panel_2.revalidate();
 						panel_2.repaint();
+
 					}
 				}
 			}
@@ -531,84 +541,43 @@ public class Result extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-
+//ㄹ
 	public void MN() {
+		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
 		int count = 0;
-		if (Purchase.intSetList != null) {
+		tfIndex = 0;
+		if (Purchase.intSetList != null && selectedNumber2 != null) {
 			for (Integer i : selectedNumber2) {
 				for (Set<Integer> intSet : Purchase.intSetList) {
-					for (Integer j : intSet) {
-						if (i == j) {
-							count++;
-							break;
-						}
+					if (intSet.contains(i)) {
+						count++;
 					}
 				}
 			}
-
-			for (Integer i : selectedNumber2) {
-				System.out.println(selectedNumber2.toString());
-				System.out.println(Purchase.intSetList);
-				for (Set<Integer> intSet : Purchase.intSetList) {
-					System.out.println(intSet.toString());
-					for (Integer j : intSet) {
-						System.out.println(j);
-						System.out.println("ghkrdls");
-					}
-				}
-			}
-
-			if (count == 6) {
-				textField_2.setText("1");
-				textField_5.setText("1");
-				textField_6.setText("1");
-				textField_7.setText("1");
-				textField_8.setText("1");
-			}
-			// int target = keysList.get(6);
-
-//			if (selectedNumber2.contains(Purchase.intSetList)) {
-//				count++;
-//			}
-
+			//ㄹ
 			switch (count) {
+			case 6:
+				updateTextField(tfList,"2");
+				break;
 			case 5:
-				textField_2.setText("2");
-				textField_5.setText("2");
-				textField_6.setText("2");
-				textField_7.setText("2");
-				textField_8.setText("2");
+				updateTextField(tfList,"3");
 				break;
 			case 4:
-				textField_2.setText("3");
-				textField_5.setText("3");
-				textField_6.setText("3");
-				textField_7.setText("3");
-				textField_8.setText("3");
+				updateTextField(tfList,"4");
 				break;
 			case 3:
-				textField_2.setText("4");
-				textField_5.setText("4");
-				textField_6.setText("4");
-				textField_7.setText("4");
-				textField_8.setText("4");
-				break;
-			case 2:
-				textField_2.setText("5");
-				textField_5.setText("5");
-				textField_6.setText("5");
-				textField_7.setText("5");
-				textField_8.setText("5");
+				updateTextField(tfList,"5");
 				break;
 			default:
-				textField_2.setText("꽝");
-				textField_5.setText("꽝");
-				textField_6.setText("꽝");
-				textField_7.setText("꽝");
-				textField_8.setText("꽝");
+				updateTextField(tfList,"꽝");
 				break;
 			}
 		}
+	}
+
+	private void updateTextField(List<JTextField> tfList, String rank) {
+		tfList.get(tfIndex).setText(rank);
+		tfIndex++;
 	}
 
 	protected JLabel textField() {

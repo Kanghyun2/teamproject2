@@ -66,7 +66,6 @@ public class Purchase extends JFrame {
 	public static List<Set<Integer>> intSetList;
 	private Set<Integer> intSet;
 
-	
 	public Purchase() {
 		setBackground(Color.WHITE);
 		setTitle("구매 화면");
@@ -98,7 +97,7 @@ public class Purchase extends JFrame {
 		setResizable(false);
 		SpringLayout springLayout = new SpringLayout();
 		pnl.setLayout(springLayout);
-		
+
 //		String gifFilePath = "구매창.png";
 //        ImageIcon imageIcon = new ImageIcon(gifFilePath);
 //        Image image = imageIcon.getImage().getScaledInstance(970, 550, Image.SCALE_DEFAULT);
@@ -640,11 +639,12 @@ public class Purchase extends JFrame {
 		pnlBall5.setLayout(flowLayout);
 
 		showBallselectedCount = 0;
-
+		int count = 0;
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
+				int number = 0;
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
-					int number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
+					number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
 //					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
 					if (intSet.size() <= 5) {
 						intSet.add(number);
@@ -665,6 +665,19 @@ public class Purchase extends JFrame {
 					registeredLabels.add(lbl);
 					PurchaseHistory.pnlwinningNumber.add(lbl);
 					showBallselectedCount++;
+				}
+				if (number != 0) {
+					intSet.add(number);
+					count++;
+				}
+				if (count == 6) {
+					Set<Integer> tempSet = new TreeSet<>();
+					for (Integer k : intSet) {
+						tempSet.add(k);
+					}
+					intSetList.add(tempSet);
+					intSet.clear();
+					count = 0;
 				}
 			}
 		}
