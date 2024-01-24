@@ -83,7 +83,7 @@ public class PurchaseHistory extends JFrame {
 
 		JButton btnNewButton = new JButton("뒤로 가기");
 		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 354, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, -62, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, btnNewButton, -10, SpringLayout.EAST, panel);
 		btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 14));
@@ -139,7 +139,8 @@ public class PurchaseHistory extends JFrame {
 		panel_4.setBackground(Color.WHITE);
 
 		panel_5 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 85, SpringLayout.SOUTH, panel_5);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 244, SpringLayout.SOUTH, panel_5);
+		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 33, SpringLayout.SOUTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, panel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_5, 0, SpringLayout.EAST, panel_1);

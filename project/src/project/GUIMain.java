@@ -121,6 +121,7 @@ public class GUIMain extends JFrame {
 		btnNewButton_1.setFont(new Font("굴림", Font.PLAIN, 30));
 		panel.add(btnNewButton_1);
 
+		
 		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(false);

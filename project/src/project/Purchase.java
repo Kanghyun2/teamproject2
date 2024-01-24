@@ -199,6 +199,7 @@ public class Purchase extends JFrame {
 					originalIcons[row][col] = toggleIcon;
 				}
 
+				
 				Collections.shuffle(allButton);
 				int count = 0;
 				for (JToggleButton button : allButton) {

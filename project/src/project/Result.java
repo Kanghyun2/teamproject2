@@ -574,13 +574,11 @@ public class Result extends JFrame {
 		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
 		tfIndex = 0;
 		Integer selectedValue = (Integer) comboBox.getSelectedItem();
-
 		if (Purchase.intSetList != null && selectedNumber2 != null) {
 
 			if (selectedValue != null) {
 				for (int k = 0; k < 5; k++) {
 					int count = 0;
-
 					for (Integer a : selectedNumber2) {
 						for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
 							for (Integer b : c) {
@@ -611,12 +609,13 @@ public class Result extends JFrame {
 
 					tfIndex++;
 				}
-			} else {
-				// 선택된 아이템이 없을 때의 처리
-				// 예: 적절한 디폴트 값 설정 또는 사용자에게 메시지 표시 등
 			}
 		}
 	}
+	// private void updateTextField(List<JTextField> tfList, String rank) {
+//		tfList.get(tfIndex).setText(rank);
+	// tfIndex++;
+	// }
 
 	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
