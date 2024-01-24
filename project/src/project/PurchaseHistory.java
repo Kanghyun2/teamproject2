@@ -37,6 +37,11 @@ public class PurchaseHistory extends JFrame {
 //	protected static ArrayList<ArrayList<Integer>> purchaseNumber = new ArrayList<>(); // 구매번호
 	private JComboBox comboBox_1;
 	private FlowLayout flowLayout;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JPanel panel_5;
 
 	/**
 	 * Launch the application.
@@ -103,14 +108,14 @@ public class PurchaseHistory extends JFrame {
 		panel.add(comboBox_1);
 
 
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 108, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_1, -71, SpringLayout.EAST, panel);
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_1.setBackground(Color.WHITE);
 
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -6, SpringLayout.NORTH, panel_2);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, panel_1);
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 168, SpringLayout.NORTH, panel);
@@ -119,7 +124,7 @@ public class PurchaseHistory extends JFrame {
 		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_2.setBackground(Color.WHITE);
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_3, 6, SpringLayout.SOUTH, panel_2);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 0, SpringLayout.WEST, panel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, panel_1);
@@ -127,7 +132,7 @@ public class PurchaseHistory extends JFrame {
 		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_3.setBackground(Color.WHITE);
 
-		JPanel panel_4 = new JPanel();
+		panel_4 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 300, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, panel_4);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel_1);
@@ -135,7 +140,7 @@ public class PurchaseHistory extends JFrame {
 		panel_4.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_4.setBackground(Color.WHITE);
 
-		JPanel panel_5 = new JPanel();
+		panel_5 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 33, SpringLayout.SOUTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, -6, SpringLayout.NORTH, panel_5);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, panel_1);
@@ -256,6 +261,10 @@ public class PurchaseHistory extends JFrame {
 		lblNewLabel_6.setFont(new Font("굴림", Font.BOLD, 25));
 		panel.add(lblNewLabel_6);
 		
+		// 초기값 설정 및 해당 값에 대한 처리
+	    comboBox_1.setSelectedItem(1);
+	    updatePurchaseHistory(1);
+	    
 		// 여러장 구매했을시 내가 구매한 로또내역 출력
 		comboBox_1.addActionListener(new ActionListener() {
 			@Override
@@ -273,24 +282,7 @@ public class PurchaseHistory extends JFrame {
 					panel_5.removeAll();
 
 					// 선택된 값에 대한 처리
-					for (Integer i : pnlpurchaseNumber.keySet()) {
-						if (i.equals(selectedValue)) {
-							pnlpurchaseNumber.get(i);
-							for (JLabel lbl : pnlpurchaseNumber.get(i))
-								if (panel_1.getComponentCount() <= 5) {
-									panel_1.add(lbl);
-								} else if (panel_2.getComponentCount() <= 5) {
-									panel_2.add(lbl);
-								} else if (panel_3.getComponentCount() <= 5) {
-									panel_3.add(lbl);
-								} else if (panel_4.getComponentCount() <= 5) {
-									panel_4.add(lbl);
-								} else if (panel_5.getComponentCount() <= 5) {
-									panel_5.add(lbl);
-
-								}
-						}
-					}
+					updatePurchaseHistory(selectedValue);
 
 					// 패널 리레이아웃 갱신
 					panel_1.revalidate();
@@ -313,5 +305,25 @@ public class PurchaseHistory extends JFrame {
 	public static void purchaseAdd() {
 		purchase.add(purchaseindex);
 		purchaseindex++;
+	}
+	private void updatePurchaseHistory(int selectedValue) {
+	    // 해당 값에 대한 처리
+	    for (Integer i : pnlpurchaseNumber.keySet()) {
+	        if (i.equals(selectedValue)) {
+	            pnlpurchaseNumber.get(i);
+	            for (JLabel lbl : pnlpurchaseNumber.get(i))
+	                if (panel_1.getComponentCount() <= 5) {
+	                    panel_1.add(lbl);
+	                } else if (panel_2.getComponentCount() <= 5) {
+	                    panel_2.add(lbl);
+	                } else if (panel_3.getComponentCount() <= 5) {
+	                    panel_3.add(lbl);
+	                } else if (panel_4.getComponentCount() <= 5) {
+	                    panel_4.add(lbl);
+	                } else if (panel_5.getComponentCount() <= 5) {
+	                    panel_5.add(lbl);
+	                }
+	        }
+	    }
 	}
 }

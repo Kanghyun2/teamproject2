@@ -17,9 +17,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
@@ -31,12 +33,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
-
-import com.sun.beans.decoder.ValueObject;
-
-import javafx.util.converter.FormatStringConverter;
-
-import javax.swing.JTextField;
 
 public class Purchase extends JFrame {
 	private JToggleButton[][] lottoNumbers;
@@ -65,6 +61,7 @@ public class Purchase extends JFrame {
 	private int amount = 0;
 	public static List<Set<Integer>> intSetList;
 	private Set<Integer> intSet;
+	protected static Map<Integer, List<Set<Integer>>> purchaseNumList = new HashMap<>();
 
 	public Purchase() {
 		setBackground(Color.WHITE);
@@ -308,6 +305,7 @@ public class Purchase extends JFrame {
 					PurchaseHistory.numberOfPurchases++;
 					amount = 0;
 					lblAmount.setText(Integer.toString(amount) + "원");
+					
 				}
 
 				PurchaseHistory.pnlwinningNumber.clear();
@@ -646,12 +644,12 @@ public class Purchase extends JFrame {
 				if (lottoNumbers[i][j] != null && lottoNumbers[i][j].isSelected()) {
 					number = Integer.parseInt(lottoNumbers[i][j].getActionCommand());
 //					int number = Integer.parseInt(lottoNumbers[i][j].getText()); // 버튼 이미지 크기 텍스트 때문에 안맞아서 커맨드로 바꿈
-					if (intSet.size() < 6) { // 변경: 더 이상 숫자를 추가하지 않도록 수정
-						intSet.add(number);
-					} if (intSet.size() == 5) {
-						intSetList.add(new TreeSet<>(intSet));
-						intSet.clear();
-					}
+//					if (intSet.size() < 6) { // 변경: 더 이상 숫자를 추가하지 않도록 수정
+//						intSet.add(number);
+//					} if (intSet.size() == 5) {
+//						intSetList.add(new TreeSet<>(intSet));
+//						intSet.clear();
+//					}
 					String file = "ball_" + number + ".png";
 					ballIcon = new ImageIcon(file);
 
@@ -675,7 +673,9 @@ public class Purchase extends JFrame {
 						tempSet.add(k);
 					}
 					intSetList.add(tempSet);
+					purchaseNumList.put(PurchaseHistory.numberOfPurchases, new ArrayList<Set<Integer>>(intSetList));
 					intSet.clear();
+					intSetList.clear();
 					count = 0;
 				}
 			}
@@ -737,6 +737,7 @@ public class Purchase extends JFrame {
 		pnlBall4.repaint();
 		pnlBall5.revalidate();
 		pnlBall5.repaint();
+		
 	}
 //	
 

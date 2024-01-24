@@ -82,6 +82,8 @@ public class Result extends JFrame {
 	private AbstractButton btnNewButton;
 	private List<Set<Integer>> intSetList;
 	private int tfIndex;
+	private JComboBox<Integer> comboBox;
+	
 
 	public Result() {
 //		selectedNumber2 = new ArrayList<>();
@@ -338,7 +340,7 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1_1_1, -10, SpringLayout.SOUTH, panel_1);
 		panel_1.add(panel_4_1_1_1_1);
 
-		JComboBox<Integer> comboBox = new JComboBox<>(PurchaseHistory.purchase);
+		comboBox = new JComboBox<>(PurchaseHistory.purchase);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, comboBox, 7, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4, 9, SpringLayout.SOUTH, comboBox);
 		sl_panel_1.putConstraint(SpringLayout.WEST, comboBox, 100, SpringLayout.EAST, lblNewLabel_3);
@@ -431,7 +433,7 @@ public class Result extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Integer selectedValue = (Integer) comboBox.getSelectedItem();
-				
+
 				// 선택된 값이 null이 아닐 때 처리
 				if (selectedValue != null) {
 					// 패널 내부의 모든 컴포넌트 제거
@@ -440,11 +442,7 @@ public class Result extends JFrame {
 					panel_4_1_1.removeAll();
 					panel_4_1_1_1.removeAll();
 					panel_4_1_1_1_1.removeAll();
-					textField_2.setText("");
-					textField_5.setText("");
-					textField_6.setText("");
-					textField_7.setText("");
-					textField_8.setText("");
+
 					// 선택된 값에 대한 처리
 					for (Integer i : PurchaseHistory.pnlpurchaseNumber.keySet()) {
 						if (i.equals(selectedValue)) {
@@ -566,48 +564,98 @@ public class Result extends JFrame {
 	}
 
 	public void MN() {
-		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
-		tfIndex = 0;
+		 List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
+	    tfIndex = 0;
+	    Integer selectedValue = (Integer) comboBox.getSelectedItem();
 
-		if (Purchase.intSetList != null && selectedNumber2 != null) {
-			int count = 0;
+	    if (Purchase.intSetList != null && selectedNumber2 != null) {
 
-//				for (Set<Integer> intSet : Purchase.intSetList) {
-//					if (intSet.contains(i)) {
-//						count++;
-//					}
-//				}
-			List<Integer> selectednum = new ArrayList<>();
+	        if (selectedValue != null) {
+	            for (int k = 0; k < 5; k++) {
+	                int count = 0;
 
-			for (int k = 0; k < 5; k++) {
-				for (Integer a : selectedNumber2) {
-					for (Integer b : Purchase.intSetList.get(k)) {
-						if (a.equals(b)) {
-							count++;
-						}
-					}
-					selectednum.add(count);
-				}
+	                for (Integer a : selectedNumber2) {
+	                    for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
+	                        for (Integer b : c) {
+	                            if (a.equals(b)) {
+	                                count++;
+	                            }
+	                        }
+	                    }
+	                }
+	                
+	                switch (count) {
+	                    case 4:
+	                        tfList.get(tfIndex).setText("2");
+	                        break;
+	                    case 3:
+	                        tfList.get(tfIndex).setText("3");
+	                        break;
+	                    case 2:
+	                        tfList.get(tfIndex).setText("4");
+	                        break;
+	                    case 1:
+	                        tfList.get(tfIndex).setText("5");
+	                        break;
+	                    default:
+	                        tfList.get(tfIndex).setText("꽝");
+	                        break;
+	                }
 
-				switch (count) {
-				case 4:
-					tfList.get(tfIndex).setText("2");
-					break;
-				case 3:
-					tfList.get(tfIndex).setText("3");
-					break;
-				case 2:
-					tfList.get(tfIndex).setText("4");
-					break;
-				case 1:
-					tfList.get(tfIndex).setText("5");
-					break;
-				default:
-					tfList.get(tfIndex).setText("꽝");
-					break;
-				}
-				tfIndex++;
-			}
-		}
+	                tfIndex++;
+	            }
+	        } else {
+	            // 선택된 아이템이 없을 때의 처리
+	            // 예: 적절한 디폴트 값 설정 또는 사용자에게 메시지 표시 등
+	        }
+	    }
+	}
+
+	// private void updateTextField(List<JTextField> tfList, String rank) {
+//		tfList.get(tfIndex).setText(rank);
+	// tfIndex++;
+	// }
+
+	protected JLabel textField() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected JLabel lblNewLabel_9() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected JLabel panel_2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected JLabel panel_3(Object lblNewLabel_102) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected void setLayout(Panel panel) {
+
+	}
+
+	protected void getLayout(FlowLayout flowLayout) {
+
+	}
+
+	public static void lblNewLabel_10(List<JLabel> registeredLabels) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void purchaseAdd() {
+		purchase.add(purchaseindex);
+		purchaseindex++;
+	}
+
+	public static void main(String[] args) {
+		new Result();
+
 	}
 }
