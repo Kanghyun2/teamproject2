@@ -566,29 +566,18 @@ public class Result extends JFrame {
 		tfIndex = 0;
 
 		if (Purchase.intSetList != null && selectedNumber2 != null) {
-			int count = 0;
-
-//				for (Set<Integer> intSet : Purchase.intSetList) {
-//					if (intSet.contains(i)) {
-//						count++;
-//					}
-//				}
-			List<Integer> selectednum = new ArrayList<>();
-
 			for (int k = 0; k < 5; k++) {
+				int count = 0;
+
 				for (Integer a : selectedNumber2) {
 					for (Integer b : Purchase.intSetList.get(k)) {
 						if (a.equals(b)) {
 							count++;
 						}
 					}
-					selectednum.add(count);
 				}
-				count = 0;
-			}
-//h
-			for (int i = 0; i < 5; i++) {
-				switch (selectednum.get(i)) {
+
+				switch (count) {
 				case 4:
 					tfList.get(tfIndex).setText("2");
 					break;
@@ -605,15 +594,16 @@ public class Result extends JFrame {
 					tfList.get(tfIndex).setText("꽝");
 					break;
 				}
+
 				tfIndex++;
 			}
 		}
 	}
 
-	private void updateTextField(List<JTextField> tfList, String rank) {
-		tfList.get(tfIndex).setText(rank);
-		tfIndex++;
-	}
+	// private void updateTextField(List<JTextField> tfList, String rank) {
+//		tfList.get(tfIndex).setText(rank);
+	// tfIndex++;
+	// }
 
 	protected JLabel textField() {
 		// TODO Auto-generated method stub
