@@ -23,11 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 public class PurchaseHistory extends JFrame {
 	private JPanel contentPane;
+	private LineBorder BB = new LineBorder(new Color(63, 108, 198), 2, true);
 //	protected static Vector<Integer> round = new Vector<>(); // 회차 리스트
 	protected static Vector<Integer> purchase = new Vector<>(); // 구매 리스트
 //	protected static int index = 1; // 회차콤보박스
@@ -110,6 +113,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 108, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_1, -71, SpringLayout.EAST, panel);
 		panel.add(panel_1);
+		panel_1.setBorder(BB);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_1.setBackground(Color.WHITE);
 
@@ -119,6 +123,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 168, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -323, SpringLayout.SOUTH, panel);
 		panel.add(panel_2);
+		panel_2.setBorder(BB);
 		panel_2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_2.setBackground(Color.WHITE);
 		
@@ -127,6 +132,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, panel_3, 0, SpringLayout.WEST, panel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, panel_1);
 		panel.add(panel_3);
+		panel_3.setBorder(BB);
 		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_3.setBackground(Color.WHITE);
 
@@ -135,6 +141,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, panel_4);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel_1);
 		panel.add(panel_4);
+		panel_4.setBorder(BB);
 		panel_4.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_4.setBackground(Color.WHITE);
 
@@ -147,6 +154,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_5, 366, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_5, -125, SpringLayout.SOUTH, panel);
 		panel.add(panel_5);
+		panel_5.setBorder(BB);
 		panel_5.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel_5.setBackground(Color.WHITE);
 		
@@ -257,7 +265,7 @@ public class PurchaseHistory extends JFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_6, 0, SpringLayout.WEST, panel_6);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_6, -29, SpringLayout.NORTH, panel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_6, -46, SpringLayout.WEST, comboBox_1);
-		lblNewLabel_6.setFont(new Font("굴림", Font.BOLD, 25));
+		lblNewLabel_6.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 25));
 		panel.add(lblNewLabel_6);
 		
 		// 초기값 설정 및 해당 값에 대한 처리

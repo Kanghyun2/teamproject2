@@ -51,8 +51,6 @@ public class Result extends JFrame {
 	protected static int purchaseindex = 1;
 	protected static int numberOfPurchases = 1; // 구매장수
 	private JTextField textField;
-	private JTextField textField_3;
-	private JTextField textField_4;
 	protected ArrayList<Integer> keysList;
 	protected JLabel[] imageLabels;
 	protected TreeMap<Integer, String> imageMap;
@@ -91,6 +89,15 @@ public class Result extends JFrame {
 	private List<Set<Integer>> intSetList;
 	private int tfIndex;
 	private JComboBox<Integer> comboBox;
+	private List<JTextField> tfList;
+	private JPanel panel_4;
+	private JPanel panel_4_1;
+	private JPanel panel_4_1_1;
+	private JPanel panel_4_1_1_1;
+	private JPanel panel_4_1_1_1_1;
+	private int amount;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_4;
 
 	public Result() {
 		getContentPane().setBackground(SystemColor.window);
@@ -130,6 +137,7 @@ public class Result extends JFrame {
 
 		String[] menus = new String[] { "차수를 선택하세요", "-----", "1회차", "2회차", "3회차" };
 		JComboBox<String> combo = new JComboBox<>();
+		combo.setBackground(UIManager.getColor("ComboBox.disabledForeground"));
 		combo.setModel(new DefaultComboBoxModel<>(menus));
 
 		combo.addItemListener(new ItemListener() {
@@ -147,6 +155,7 @@ public class Result extends JFrame {
 						panel_2.repaint();
 
 					} else if (index == 2) {
+						lblNewLabel_4.setText("250.000.000 원");
 						lblNewLabel_9.setText("");
 						textField.setText("2023.08.16");
 						TreeMap<Integer, String> imageMap3 = new TreeMap<>();
@@ -160,7 +169,7 @@ public class Result extends JFrame {
 						List<Integer> keysList = new ArrayList<>(imageMap3.keySet());
 						for (int j = 0; j < 8; j++) {
 							if (j == 6) {
-								imageLabels[j].setText("+");
+//								imageLabels[j].setText("+");
 							} else if (j <= 5) {
 								imageList = imageMap3.get(keysList.get(j));
 								ImageIcon icon = new ImageIcon(imageList);
@@ -174,8 +183,9 @@ public class Result extends JFrame {
 						}
 						panel_2.revalidate();
 						panel_2.repaint();
-
 					} else if (index == 3) {
+						lblNewLabel_4.setText("150.000.000 원");
+
 						lblNewLabel_9.setText("");
 						textField.setText("2024.01.11");
 
@@ -190,7 +200,7 @@ public class Result extends JFrame {
 						List<Integer> keysList = new ArrayList<>(imageMap2.keySet());
 						for (int j = 0; j < 8; j++) {
 							if (j == 6) {
-								imageLabels[j].setText("+");
+//								imageLabels[j].setText("+");
 							} else if (j <= 5) {
 								imageList = imageMap2.get(keysList.get(j));
 								ImageIcon icon = new ImageIcon(imageList);
@@ -206,6 +216,8 @@ public class Result extends JFrame {
 						panel_2.repaint();
 
 					} else if (index == 4) {
+						lblNewLabel_4.setText("450.000.000 원");
+
 						lblNewLabel_9.setText("");
 						textField.setText("2024.01.25");
 
@@ -236,9 +248,10 @@ public class Result extends JFrame {
 
 						// 정렬된 숫자 출력
 						int i = 0;
+
 						for (Integer currentNumber : sortedNumbers) {
 							if (i == 6) {
-								imageLabels[i].setText("+");
+//								imageLabels[i].setText("+");
 							} else {
 								String imageList = shuffledTreeMap.get(currentNumber);
 								ImageIcon icon = new ImageIcon(imageList);
@@ -251,12 +264,10 @@ public class Result extends JFrame {
 						// 추가적인 숫자 출력
 						String additionalImageList = shuffledTreeMap.get(additionalNumber);
 						ImageIcon additionalIcon = new ImageIcon(additionalImageList);
-						imageLabels[6].setIcon(additionalIcon);
-						panel_2.add(imageLabels[6]);
-
+						imageLabels[7].setIcon(additionalIcon);
+						panel_2.add(imageLabels[7]);
 						panel_2.revalidate();
 						panel_2.repaint();
-
 					}
 				}
 			}
@@ -274,6 +285,7 @@ public class Result extends JFrame {
 		panel.add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.setBackground(Color.WHITE);
 		textField.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.NORTH, textField, 6, SpringLayout.SOUTH, combo);
 		sl_panel.putConstraint(SpringLayout.EAST, textField, -5, SpringLayout.EAST, combo);
@@ -286,31 +298,15 @@ public class Result extends JFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_1, 10, SpringLayout.EAST, textField);
 		panel.add(lblNewLabel_1);
 
-		textField_3 = new JTextField();
-		textField_3.setBorder(BlackB);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_3, -118, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_3, 0, SpringLayout.EAST, lblNewLabel);
-		panel.add(textField_3);
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-
 		JLabel lblNewLabel_7 = new JLabel("총 당첨금액");
-		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, 0, SpringLayout.SOUTH, textField_3);
-		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_7, -28, SpringLayout.WEST, textField_3);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_7, 88, SpringLayout.WEST, panel);
 		panel.add(lblNewLabel_7);
 
 		JLabel lblNewLabel_8 = new JLabel("내가 받을 금액");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_8, 30, SpringLayout.SOUTH, lblNewLabel_7);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_8, 311, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_7, -30, SpringLayout.NORTH, lblNewLabel_8);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_8, 0, SpringLayout.EAST, lblNewLabel_7);
 		panel.add(lblNewLabel_8);
-
-		textField_4 = new JTextField();
-		textField_4.setBorder(BlackB);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField_4, 0, SpringLayout.SOUTH, lblNewLabel_8);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_4, 0, SpringLayout.EAST, lblNewLabel);
-		textField_4.setEditable(false);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
 		getContentPane().add(panel_1);
 		SpringLayout sl_panel_1 = new SpringLayout();
 		panel_1.setLayout(sl_panel_1);
@@ -320,12 +316,14 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_3, 178, SpringLayout.WEST, panel_1);
 		panel_1.add(lblNewLabel_3);
 
-		JPanel panel_4 = new JPanel();
+		panel_4 = new JPanel();
+		panel_4.setBackground(Color.WHITE);
 		panel_4.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4, 58, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_4);
 
-		JPanel panel_4_1 = new JPanel();
+		panel_4_1 = new JPanel();
+		panel_4_1.setBackground(Color.WHITE);
 		panel_4_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1, -10, SpringLayout.EAST, panel_1);
@@ -334,7 +332,8 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1, 115, SpringLayout.NORTH, panel_1);
 		panel_1.add(panel_4_1);
 
-		JPanel panel_4_1_1 = new JPanel();
+		panel_4_1_1 = new JPanel();
+		panel_4_1_1.setBackground(Color.WHITE);
 		panel_4_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1, 186, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1, 58, SpringLayout.WEST, panel_1);
@@ -342,7 +341,8 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1, -6, SpringLayout.NORTH, panel_4_1_1);
 		panel_1.add(panel_4_1_1);
 
-		JPanel panel_4_1_1_1 = new JPanel();
+		panel_4_1_1_1 = new JPanel();
+		panel_4_1_1_1.setBackground(Color.WHITE);
 		panel_4_1_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4_1_1_1, 257, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1, 58, SpringLayout.WEST, panel_1);
@@ -350,7 +350,8 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4_1_1, -6, SpringLayout.NORTH, panel_4_1_1_1);
 		panel_1.add(panel_4_1_1_1);
 
-		JPanel panel_4_1_1_1_1 = new JPanel();
+		panel_4_1_1_1_1 = new JPanel();
+		panel_4_1_1_1_1.setBackground(Color.WHITE);
 		panel_4_1_1_1_1.setBorder(BlackB);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4_1_1_1_1, 58, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4_1_1_1_1, -10, SpringLayout.EAST, panel_1);
@@ -427,14 +428,27 @@ public class Result extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.NORTH, btnNewButton, -4, SpringLayout.NORTH, lblNewLabel_3);
 		sl_panel_1.putConstraint(SpringLayout.WEST, btnNewButton, 8, SpringLayout.WEST, panel_1);
 		panel_1.add(btnNewButton);
-
+		
+		comboBox.setSelectedItem(1);
+		updateResult(1);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
+				for (int i = 0; i < tfList.size(); i++) {
+					tfList.get(i).setText("");
+				}
+				int index = combo.getSelectedIndex();
+				if (index == 4) {
 				MN();
+				}
+				lblNewLabel_2.setText(Integer.toString(amount) + "원") ;
+				amount = 0;
+				
 			}
 		});
-
+		
 		comboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -448,7 +462,11 @@ public class Result extends JFrame {
 					panel_4_1_1.removeAll();
 					panel_4_1_1_1.removeAll();
 					panel_4_1_1_1_1.removeAll();
-
+					textField_2.setText("");
+					textField_5.setText("");
+					textField_6.setText("");
+					textField_7.setText("");
+					textField_8.setText("");
 					// 선택된 값에 대한 처리
 					for (Integer i : PurchaseHistory.pnlpurchaseNumber.keySet()) {
 						if (i.equals(selectedValue)) {
@@ -492,6 +510,7 @@ public class Result extends JFrame {
 		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, lblNewLabel_6);
 
 		panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
 		panel_2.setBorder(BlackB);
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 37, SpringLayout.SOUTH, textField);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel);
@@ -508,6 +527,16 @@ public class Result extends JFrame {
 
 		lblNewLabel_9 = new JLabel();
 		panel_2.add(lblNewLabel_9);
+		
+		lblNewLabel_2 = new JLabel("");
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 0, SpringLayout.NORTH, lblNewLabel_8);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_2, 31, SpringLayout.EAST, lblNewLabel_8);
+		panel.add(lblNewLabel_2);
+		
+		lblNewLabel_4 = new JLabel("");
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_4, 6, SpringLayout.EAST, lblNewLabel_7);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, 0, SpringLayout.SOUTH, lblNewLabel_7);
+		panel.add(lblNewLabel_4);
 
 		imageMap = new TreeMap<>();
 		imageMap.put(1, "ball_1.png");
@@ -566,49 +595,117 @@ public class Result extends JFrame {
 		}
 
 		setSize(1000, 600);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
-	public void MN() {
-		List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
-		tfIndex = 0;
-		Integer selectedValue = (Integer) comboBox.getSelectedItem();
-		if (Purchase.intSetList != null && selectedNumber2 != null) {
+//	public void MN() {
+//		 List<JTextField> tfList = Arrays.asList(textField_2, textField_5, textField_6, textField_7, textField_8);
+//	    tfIndex = 0;
+//	    Integer selectedValue = (Integer) comboBox.getSelectedItem();
+//
+//	    if (Purchase.intSetList != null && selectedNumber2 != null) {
+//
+//	        if (selectedValue != null) {
+//	            for (int k = 0; k < 5; k++) {
+//	                int count = 0;
+//
+//	                for (Integer a : selectedNumber2) {
+//	                    for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
+//	                        for (Integer b : c) {
+//	                            if (a.equals(b)) {
+//	                                count++;
+//	                            }
+//	                        }
+//	                    }
+//	                }
+//	                
+//	                switch (count) {
+//	                    case 4:
+//	                        tfList.get(tfIndex).setText("2");
+//	                        break;
+//	                    case 3:
+//	                        tfList.get(tfIndex).setText("3");
+//	                        break;
+//	                    case 2:
+//	                        tfList.get(tfIndex).setText("4");
+//	                        break;
+//	                    case 1:
+//	                        tfList.get(tfIndex).setText("5");
+//	                        break;
+//	                    default:
+//	                        tfList.get(tfIndex).setText("꽝");
+//	                        break;
+//	                }
+//
+//	                tfIndex++;
+//	            }
+//	        } else {
+//	            // 선택된 아이템이 없을 때의 처리
+//	            // 예: 적절한 디폴트 값 설정 또는 사용자에게 메시지 표시 등
+//	        }
+//	    }
+//	}
 
+	public void MN() {
+		Integer selectedValue = (Integer) comboBox.getSelectedItem();
+
+		if (Purchase.intSetList != null && selectedNumber2 != null) {
 			if (selectedValue != null) {
-				for (int k = 0; k < 5; k++) {
+				for (int k = 0; k < Purchase.purchaseNumList.get(selectedValue).size(); k++) {
 					int count = 0;
+
 					for (Integer a : selectedNumber2) {
-						for (Set<Integer> c : Purchase.purchaseNumList.get(selectedValue)) {
-							for (Integer b : c) {
-								if (a.equals(b)) {
-									count++;
-								}
+						for (Integer c : Purchase.purchaseNumList.get(selectedValue).get(k)) {
+							if (a.equals(c)) {
+								count++;
 							}
 						}
 					}
-
 					switch (count) {
 					case 4:
-						tfList.get(tfIndex).setText("2등");
+						tfList.get(k).setText("2등");
+						amount += 5800000;
 						break;
 					case 3:
-						tfList.get(tfIndex).setText("3등");
+						tfList.get(k).setText("3등");
+						amount += 150000;
 						break;
 					case 2:
-						tfList.get(tfIndex).setText("4등");
+						tfList.get(k).setText("4등");
+						amount += 50000;
 						break;
 					case 1:
-						tfList.get(tfIndex).setText("5등");
+						tfList.get(k).setText("5등");
+						amount += 5000;
 						break;
 					default:
-						tfList.get(tfIndex).setText("낙첨");
+						tfList.get(k).setText("낙첨");
 						break;
 					}
-
-					tfIndex++;
 				}
+			}
+		}
+	}
+
+	private void updateResult(int selectedValue) {
+		// 해당 값에 대한 처리
+		for (Integer i : Purchase.purchaseNumList.keySet()) {
+			if (i.equals(selectedValue)) {
+				Purchase.purchaseNumList.get(i);
+				for (JLabel lbl : PurchaseHistory.pnlpurchaseNumber.get(i))
+					if (panel_4.getComponentCount() <= 5) {
+						panel_4.add(lbl);
+					} else if (panel_4_1.getComponentCount() <= 5) {
+						panel_4_1.add(lbl);
+					} else if (panel_4_1_1.getComponentCount() <= 5) {
+						panel_4_1_1.add(lbl);
+					} else if (panel_4_1_1_1.getComponentCount() <= 5) {
+						panel_4_1_1_1.add(lbl);
+					} else if (panel_4_1_1_1_1.getComponentCount() <= 5) {
+						panel_4_1_1_1_1.add(lbl);
+					}
 			}
 		}
 	}
