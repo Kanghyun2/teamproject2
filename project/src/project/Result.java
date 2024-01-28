@@ -83,13 +83,8 @@ public class Result extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
-	private Object pnlwinningNumber;
-	private Object selectedNumber;
 	private Set<Integer> selectedNumber2 = new LinkedHashSet<>();
-	private int Vector;
 	private AbstractButton btnNewButton;
-	private List<Set<Integer>> intSetList;
-	private int tfIndex;
 	private JComboBox<Integer> comboBox;
 
 	public Result() {

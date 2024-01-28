@@ -45,9 +45,6 @@ public class PurchaseHistory extends JFrame {
 	private JPanel panel_4;
 	private JPanel panel_5;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

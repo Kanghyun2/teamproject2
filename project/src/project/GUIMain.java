@@ -26,9 +26,6 @@ public class GUIMain extends JFrame {
 	private JButton btnNewButton_2;
 	private ImageIcon icon;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,9 +39,6 @@ public class GUIMain extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public GUIMain() {
 		setTitle("Lotto");
 		GUImathod();
