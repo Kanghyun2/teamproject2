@@ -155,7 +155,7 @@ public class Result extends JFrame {
 						List<Integer> keysList = new ArrayList<>(imageMap3.keySet());
 						for (int j = 0; j < 8; j++) {
 							if (j == 6) {
-								imageLabels[j].setText("+");
+//								imageLabels[j].setText("+");
 							} else if (j <= 5) {
 								imageList = imageMap3.get(keysList.get(j));
 								ImageIcon icon = new ImageIcon(imageList);
@@ -185,7 +185,7 @@ public class Result extends JFrame {
 						List<Integer> keysList = new ArrayList<>(imageMap2.keySet());
 						for (int j = 0; j < 8; j++) {
 							if (j == 6) {
-								imageLabels[j].setText("+");
+//								imageLabels[j].setText("+");
 							} else if (j <= 5) {
 								imageList = imageMap2.get(keysList.get(j));
 								ImageIcon icon = new ImageIcon(imageList);
@@ -233,7 +233,7 @@ public class Result extends JFrame {
 						int i = 0;
 						for (Integer currentNumber : sortedNumbers) {
 							if (i == 6) {
-								imageLabels[i].setText("+");
+//								imageLabels[i].setText("+");
 							} else {
 								String imageList = shuffledTreeMap.get(currentNumber);
 								ImageIcon icon = new ImageIcon(imageList);
@@ -246,8 +246,8 @@ public class Result extends JFrame {
 						// 추가적인 숫자 출력
 						String additionalImageList = shuffledTreeMap.get(additionalNumber);
 						ImageIcon additionalIcon = new ImageIcon(additionalImageList);
-						imageLabels[6].setIcon(additionalIcon);
-						panel_2.add(imageLabels[6]);
+						imageLabels[7].setIcon(additionalIcon);
+						panel_2.add(imageLabels[7]);
 
 						panel_2.revalidate();
 						panel_2.repaint();
